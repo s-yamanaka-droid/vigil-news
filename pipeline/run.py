@@ -8,7 +8,9 @@ from datetime import datetime
 from pathlib import Path
 import concurrent.futures
 
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "agents/cmo/x_agent"))
+RESEARCHER_PATH = Path.home() / "agents/cmo/x_agent"
+sys.path.insert(0, str(RESEARCHER_PATH))
+sys.path.insert(0, str(Path(__file__).parent))
 
 from researcher import fetch_latest
 from generator import generate_articles
@@ -68,6 +70,15 @@ def run(date_str: str = None, dry_run: bool = False, skip_slides: bool = False):
 
     # 4. HTML生成
     log.info("4. HTML生成")
+
+    # 記事データをJSONで保存（再ビルド時に使えるように）
+    import json
+    data_dir = SITE_DIR / "news" / date_str
+    data_dir.mkdir(parents=True, exist_ok=True)
+    (data_dir / "articles.json").write_text(
+        json.dumps(articles, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
     daily_path = build_daily_page(date_str, articles)
     log.info(f"   {daily_path}")
 
