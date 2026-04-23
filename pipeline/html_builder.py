@@ -345,30 +345,26 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
     html = '<div class="today-grid">\n'
 
     for i, a in enumerate(articles, 1):
-        title    = a.get("title", "")
-        category = a.get("category", "AI情報")
-        source   = a.get("source", "")
-        lede     = a.get("lede", "")
-        keypoints = a.get("keypoints", [])
+        title      = a.get("title", "")
+        category   = a.get("category", "AI情報")
+        source     = a.get("source", "")
+        lede       = a.get("lede", "")
         detail_url = f"{root}news/{date_str}/#topic-{i}"
         slide_rel  = f"{img_root}/topic_{i}.png"
         slide_exists = (img_dir / f"topic_{i}.png").exists()
 
         if i == 1:
             # ── Lead card (2×2, dark background) ──
-            slide_html = ""
+            # 画像はfull表示、テキストオーバーレイは最小限（chip行のみ）
             if slide_exists:
-                # 実画像をオーバーレイ
-                words = title.split("　") if "　" in title else title.split(" — ")
-                bigt_text = words[0][:20] if words else title[:20]
-                slide_html = f"""    <div class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0">
-      <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;" loading="lazy" />
+                slide_html = f"""    <a href="{detail_url}" class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;">
+      <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy" />
       <div class="sl-inner">
         <div class="chip">VIGIL · SLIDE 01 / {len(articles):02d} <b>●</b></div>
-        <div class="bigt">{bigt_text}</div>
+        <div style="flex:1"></div>
         <div class="meta">{category.upper()} · {source.upper()}</div>
       </div>
-    </div>"""
+    </a>"""
             else:
                 slide_html = f"""    <div class="slide">
       <div class="sl-inner">
@@ -394,25 +390,14 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
   </div>
 """
         else:
-            # ── Regular card ──
-            img_html = ""
-            if slide_exists:
-                img_html = (
-                    f'    <div style="aspect-ratio:16/9;overflow:hidden;margin:4px 0;" '
-                    f'class="zoom-image" data-src="{slide_rel}" data-alt="{title}" '
-                    f'role="button" tabindex="0">\n'
-                    f'      <img src="{slide_rel}" alt="{title}" '
-                    f'style="width:100%;height:100%;object-fit:cover;" loading="lazy" />\n'
-                    f'    </div>\n'
-                )
-
+            # ── Regular card — 画像なし（vigil.css 仕様通り）──
             html += f"""  <div class="tcard">
     <div class="tl">
       <span class="n">{str(i).zfill(2)}</span>
       <span class="cat">{category}</span>
     </div>
     <h3>{title}</h3>
-{img_html}    <p class="lede">{lede}</p>
+    <p class="lede">{lede}</p>
     <div class="foot">
       <span class="src">{source}</span>
       <a href="{detail_url}" class="go">READ →</a>
