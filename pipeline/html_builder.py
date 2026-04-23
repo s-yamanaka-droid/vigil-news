@@ -1,27 +1,87 @@
 """
-VIGIL — HTML Builder v3
-重厚エディトリアルデザイン × 動的インタラクション
+VIGIL — HTML Builder v4
+vigil.css (Claude Design) の DOM 構造に完全準拠
 """
 from datetime import datetime
 from pathlib import Path
+import json
 
 SITE_DIR = Path(__file__).parent.parent / "docs"
-FONTS = (
-    "https://fonts.googleapis.com/css2?"
-    "family=Barlow+Condensed:wght@600;700;800;900&"
-    "family=Inter:wght@400;500;600;700&"
-    "family=JetBrains+Mono:wght@400;500;600;700&"
-    "family=Noto+Sans+JP:wght@400;500;700&display=swap"
-)
 
 WEEKDAYS_EN = ["MON","TUE","WED","THU","FRI","SAT","SUN"]
-MONTHS_EN   = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE",
-               "JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"]
+WEEKDAYS_LONG = ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
+MONTHS_EN = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE",
+             "JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"]
+
+# vigil.css が要求するフォント
+FONTS_VIGIL = (
+    "https://fonts.googleapis.com/css2?"
+    "family=JetBrains+Mono:wght@400;500;600;700;800&"
+    "family=Noto+Sans+JP:wght@400;500;700&"
+    "family=Noto+Serif+JP:wght@400;600;700&display=swap"
+)
+# detail ページ用フォント（Barlow Condensed も維持）
+FONTS_DETAIL = (
+    "https://fonts.googleapis.com/css2?"
+    "family=Barlow+Condensed:wght@600;700;800;900&"
+    "family=JetBrains+Mono:wght@400;500;600;700;800&"
+    "family=Noto+Sans+JP:wght@400;500;700&"
+    "family=Noto+Serif+JP:wght@400;600;700&display=swap"
+)
+
+INTERACTIVE_JS = """
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
+  <img src="" id="lightbox-img" alt="" />
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('lightbox');
+  var img=document.getElementById('lightbox-img');
+  var close=document.getElementById('lightbox-close');
+  document.querySelectorAll('.zoom-image').forEach(function(el){
+    el.addEventListener('click',function(){
+      img.src='';
+      overlay.classList.add('is-open');
+      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; },20);
+    });
+  });
+  function closeBox(){
+    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    setTimeout(function(){ overlay.classList.remove('is-open'); img.src=''; img.style.opacity=''; img.style.transform=''; },300);
+  }
+  close.addEventListener('click',closeBox);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+
+  /* scroll fade-in */
+  var topics=document.querySelectorAll('.daily-topic');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+    topics.forEach(function(el){io.observe(el);});
+  } else { topics.forEach(function(el){el.classList.add('is-visible');}); }
+
+  /* dispatch ticker */
+  var row=document.querySelector('.dispatch');
+  if(row && row.dataset.ticker!=='off'){
+    var inner=row.innerHTML;
+    row.innerHTML=inner+inner;
+    var pos=0,spd=0.4;
+    (function tick(){
+      pos+=spd;
+      if(pos>=row.scrollWidth/2)pos=0;
+      row.scrollLeft=pos;
+      requestAnimationFrame(tick);
+    })();
+  }
+})();
+</script>
+"""
 
 
-# ── 共通パーツ ────────────────────────────────────────────────
-
-def _head(title: str, desc: str, css_path: str) -> str:
+def _head(title, desc, css_path, fonts):
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,263 +91,245 @@ def _head(title: str, desc: str, css_path: str) -> str:
 <meta name="description" content="{desc}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="{FONTS}" rel="stylesheet">
+<link href="{fonts}" rel="stylesheet">
 <link rel="stylesheet" href="{css_path}" />
 </head>
 <body>"""
 
 
-def _dispatch(issue: str, date_str: str, count: int, build: str) -> str:
-    """最上部の黒いティッカーリボン"""
-    inner = (
-        f'<span class="tick">VIGIL №{issue}</span>'
-        f'<span class="sep">/</span>'
-        f'<span>{date_str}</span>'
-        f'<span class="sep">/</span>'
-        f'<span>MORNING EDITION</span>'
-        f'<span class="sep">/</span>'
-        f'<span>{count} ITEMS</span>'
-        f'<span class="sep">/</span>'
-        f'<span>BUILD {build}</span>'
-        f'<span class="sep">/</span>'
-        f'<span class="live">LIVE</span>'
-        f'<span class="sep">/</span>'
-        f'<span>CURATED BY 山中秀斗</span>'
-    )
-    return f'<div class="dispatch"><div class="container row">{inner}</div></div>'
-
-
-def _masthead(root: str, today_str: str, weekday: str) -> str:
-    """スティッキーナビ"""
-    nav_items = [
-        ("TODAY",   f"{root}news/{today_str}/"),
-        ("ARCHIVE", f"{root}#archive"),
-        ("BRIEFINGS", f"{root}#archive"),
-        ("SOURCES", f"{root}#about"),
-        ("ABOUT",   f"{root}#about"),
-    ]
-    nav_html = "\n".join(
-        f'      <a href="{href}">{label}</a>' for label, href in nav_items
-    )
-    return f"""<header class="masthead">
-  <div class="container row">
-    <a href="{root}" class="wordmark">
-      <span class="dot-red"></span>VIGIL
-    </a>
-    <button class="nav-toggle" type="button" aria-label="メニュー"
-            aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav class="main-nav" id="main-nav">
-{nav_html}
-    </nav>
-    <a href="#" class="subscribe-btn">SUBSCRIBE · 07:15 DAILY →</a>
-    <div class="meta">JST · 07:15 · {weekday}</div>
-  </div>
-</header>
-<script>
-(function(){{
-  var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
-  if(!btn||!nav)return;
-  function setOpen(o){{
-    btn.setAttribute('aria-expanded',o?'true':'false');
-    nav.classList.toggle('is-open',o);
-  }}
-  btn.addEventListener('click',function(){{setOpen(btn.getAttribute('aria-expanded')!=='true');}});
-  nav.querySelectorAll('a').forEach(function(a){{a.addEventListener('click',function(){{setOpen(false);}});}});
-  document.addEventListener('keydown',function(e){{if(e.key==='Escape')setOpen(false);}});
-}})();
-</script>"""
-
-
-INTERACTIVE_JS = """
-<div class="lightbox-overlay" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
-  <img src="" id="lightbox-img" alt="" />
-</div>
-<script>
-(function(){
-  /* --- Lightbox --- */
-  var overlay = document.getElementById('lightbox');
-  var img     = document.getElementById('lightbox-img');
-  var close   = document.getElementById('lightbox-close');
-
-  document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click', function(){
-      img.src = '';
-      overlay.classList.add('is-open');
-      setTimeout(function(){ img.src = el.dataset.src; img.alt = el.dataset.alt || ''; }, 20);
-    });
-  });
-  function closeBox(){
-    img.style.opacity = '0'; img.style.transform = 'scale(0.93)';
-    setTimeout(function(){
-      overlay.classList.remove('is-open');
-      img.src = ''; img.style.opacity = ''; img.style.transform = '';
-    }, 300);
-  }
-  close.addEventListener('click', closeBox);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeBox(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeBox(); });
-
-  /* --- Scroll fade-in (.daily-topic) --- */
-  var topics = document.querySelectorAll('.daily-topic');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
-      });
-    }, {threshold: 0.07, rootMargin: '0px 0px -32px 0px'});
-    topics.forEach(function(el){ io.observe(el); });
-  } else {
-    topics.forEach(function(el){ el.classList.add('is-visible'); });
-  }
-
-  /* --- Dispatch ticker: seamless duplicate --- */
-  var row = document.querySelector('.dispatch .row');
-  if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
-})();
-</script>
-"""
-
-
-# ── index page ───────────────────────────────────────────────
+# ── INDEX PAGE ───────────────────────────────────────────────
 
 def build_index(all_dates: list[str], today_articles: list[dict], today_str: str) -> Path:
-    """トップページを生成"""
-    dt    = datetime.strptime(today_str, "%Y-%m-%d")
-    issue = str(int(dt.strftime("%m%d"))).zfill(4)
-    build = dt.strftime("%Y%m%d") + ".0715"
-    weekday   = WEEKDAYS_EN[dt.weekday()]
-    month_en  = MONTHS_EN[dt.month - 1]
+    dt       = datetime.strptime(today_str, "%Y-%m-%d")
+    issue    = str(int(dt.strftime("%m%d"))).zfill(4)
+    weekday  = WEEKDAYS_EN[dt.weekday()]
+    weekday_long = WEEKDAYS_LONG[dt.weekday()]
+    month_en = MONTHS_EN[dt.month - 1]
+    img_dir  = SITE_DIR / "assets" / "images" / today_str
 
-    dispatch = _dispatch(issue, today_str, len(today_articles), build)
-    masthead = _masthead("./", today_str, weekday)
-
-    # ── ヒーロー統計 ──
-    days_count    = len(all_dates)
-    archive_count = days_count * len(today_articles) if days_count else len(today_articles)
-    stats_html = f"""<div class="hero-stats">
-  <div class="hero-stat">
-    <div class="hero-stat-val">{len(today_articles):02d}</div>
-    <div class="hero-stat-label">TODAY</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">{days_count * 5}</div>
-    <div class="hero-stat-label">BRIEFINGS / 30D</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">{archive_count:,}</div>
-    <div class="hero-stat-label">ARCHIVE</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">{days_count * 8}</div>
-    <div class="hero-stat-label">DELIVERED</div>
+    # ── dispatch bar ──
+    dispatch = f"""<div class="dispatch" data-ticker="on">
+  <span class="tick">VIGIL</span>
+  <span class="sep">/</span>
+  <span>№{issue}</span>
+  <span class="sep">/</span>
+  <span>{today_str}</span>
+  <span class="sep">/</span>
+  <span>MORNING EDITION</span>
+  <span class="sep">/</span>
+  <span>{len(today_articles)} ITEMS</span>
+  <span class="sep">/</span>
+  <span class="live"><span class="dot"></span>LIVE</span>
+  <span class="sep">/</span>
+  <span>CURATED BY 山中秀斗</span>
+  <div class="right">
+    <span class="jst"><b>07:15</b> JST</span>
+    <span>{weekday}</span>
   </div>
 </div>"""
 
-    hero_html = f"""<section class="hero">
-  <div class="container">
-    <div class="hero-meta-line">
-      <span>MORNING DISPATCH</span>
-      <span class="sep">//</span>
-      <span>{weekday}, {month_en} {dt.day}, {dt.year}</span>
-      <span class="sep">//</span>
-      <span>ISSUE N°{issue}</span>
-      <span class="sep">//</span>
-      <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
-    </div>
-    <div class="hero-title-wrap">
-      <h1>VIGIL</h1>
-      <div class="hero-issue">N°{issue}</div>
-    </div>
-    <hr class="hero-divider" />
-    <div class="hero-tagline">
-      AI業界で<em>昨夜起きたこと</em>を、毎朝<em>07:15 JST</em>に。
-      ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
-    </div>
-    {stats_html}
+    # ── nav ──
+    nav = f"""<nav class="main">
+  <div class="brand"><em>●</em>VIGIL</div>
+  <ul>
+    <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="#archive">ARCHIVE</a></li>
+    <li><a href="#briefings">BRIEFINGS</a></li>
+    <li><a href="#about">SOURCES</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+</nav>"""
+
+    # ── hero ──
+    top = today_articles[0] if today_articles else {}
+    top_title = top.get("title", "")
+    top_lede  = top.get("lede", "")[:80] + "…" if len(top.get("lede","")) > 80 else top.get("lede","")
+
+    unique_sources = len(set(a.get("source","") for a in today_articles))
+    days_count = len(all_dates)
+
+    hero = f"""<div class="hero-wrap">
+  <div class="edition-line">
+    <span>MORNING DISPATCH</span>
+    <span class="sep">//</span>
+    <span>{weekday_long}, {month_en} {dt.day}, {dt.year}</span>
+    <span class="sep">//</span>
+    <span>ISSUE N°{issue}</span>
+    <span class="sep">//</span>
+    <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
   </div>
-</section>"""
+  <div class="hero">
+    <div class="logo-block">
+      <h1>VIGIL<span class="dot">.</span></h1>
+      <div class="sub"><b>AI MORNING INTELLIGENCE</b> · DAILY DISPATCH</div>
+      <div class="tagline">
+        AI業界で<b>昨夜起きたこと</b>を、毎朝<b>07:15 JST</b>に。<br>
+        ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
+      </div>
+    </div>
+    <a href="./news/{today_str}/" class="today-cta">
+      <div class="ctop">
+        <span>TODAY'S ISSUE</span>
+        <b>● LIVE</b>
+      </div>
+      <h2>{dt.strftime('%m%d')}<span class="issue">MORNING EDITION · N°{issue}</span></h2>
+      <div class="headline">{top_lede}</div>
+      <span class="gotoday">READ TODAY'S DISPATCH →</span>
+      <div class="meta-grid">
+        <div><div class="k">ITEMS</div><div class="v"><em>{len(today_articles):02d}</em></div></div>
+        <div><div class="k">SOURCES</div><div class="v">{unique_sources}</div></div>
+        <div><div class="k">ARCHIVE</div><div class="v">{days_count}</div></div>
+      </div>
+    </a>
+  </div>
+</div>"""
 
-    # ── 今日の記事カードグリッド ──
-    img_dir  = SITE_DIR / "assets" / "images" / today_str
-    cards_html = _build_card_grid(today_articles, today_str, img_dir, root="./")
+    # ── stats row ──
+    archive_total = sum(
+        len(json.loads((SITE_DIR / "news" / d / "articles.json").read_text(encoding="utf-8")))
+        if (SITE_DIR / "news" / d / "articles.json").exists() else 8
+        for d in all_dates
+    )
+    stats = f"""<div style="max-width:1400px;margin:0 auto;padding:0 40px">
+  <div class="stats-row">
+    <div class="stat">
+      <div class="k">TODAY</div>
+      <div class="v">{len(today_articles):02d}</div>
+      <div class="n">items in this issue</div>
+    </div>
+    <div class="stat">
+      <div class="k">SOURCES</div>
+      <div class="v">{unique_sources}</div>
+      <div class="n">feeds monitored</div>
+    </div>
+    <div class="stat">
+      <div class="k">ARCHIVE</div>
+      <div class="v">{archive_total}</div>
+      <div class="n">total articles</div>
+    </div>
+    <div class="stat">
+      <div class="k">DAYS</div>
+      <div class="v">{days_count}</div>
+      <div class="n">issues published</div>
+    </div>
+  </div>
+</div>"""
 
-    # ── アーカイブ ──
-    archive_html = ""
+    # ── section head: today ──
+    categories = list(dict.fromkeys(a.get("category","") for a in today_articles))
+    pills = "".join(
+        f'<span class="pill{"  red" if i==0 else ""}">{c}</span>'
+        for i, c in enumerate(categories[:4])
+    )
+
+    section_today = f"""<div class="section-head" id="today">
+  <span class="kicker">§01</span>
+  <h2>Today's Dispatch</h2>
+  <span class="jp">今朝の配信</span>
+  <span class="count">{len(today_articles)} items</span>
+  <a href="./news/{today_str}/" class="morelink">ALL {len(today_articles)} ITEMS →</a>
+</div>
+<div class="today-strip">
+  {pills}
+  <div class="bar"></div>
+  <span>{today_str}</span>
+</div>"""
+
+    # ── today cards grid ──
+    cards_html = _build_today_grid(today_articles, today_str, img_dir, root="./")
+
+    # ── archive ──
+    section_archive = f"""<div class="section-head" id="archive">
+  <span class="kicker">§02</span>
+  <h2>Archive</h2>
+  <span class="jp">過去のディスパッチ</span>
+  <span class="count">{days_count} issues</span>
+</div>
+<div class="archive">
+  <div class="archive-list">"""
+
     for d in sorted(all_dates, reverse=True)[:30]:
         dd = datetime.strptime(d, "%Y-%m-%d")
-        archive_html += (
-            f'    <a href="./news/{d}/" class="archive-card">\n'
-            f'      <div class="d">{d}</div>\n'
-            f'      <div class="n">{WEEKDAYS_EN[dd.weekday()]} · MORNING DISPATCH</div>\n'
-            f'    </a>\n'
-        )
+        is_today = "today" if d == today_str else ""
+        # articles.jsonから記事データ読み込み
+        art_path = SITE_DIR / "news" / d / "articles.json"
+        day_articles = []
+        if art_path.exists():
+            try:
+                day_articles = json.loads(art_path.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        count = len(day_articles) or 8
+        head = day_articles[0]["title"] if day_articles else "Morning Dispatch"
+        cats = list(dict.fromkeys(a.get("category","") for a in day_articles[:3]))
+        tags = "".join(f'<span>{c}</span>' for c in cats[:3])
+
+        section_archive += f"""
+    <a href="./news/{d}/" class="arow {is_today}">
+      <div class="dt"><span class="day">{dd.day:02d}</span> <span class="wd">{WEEKDAYS_EN[dd.weekday()]}</span></div>
+      <div class="head">{head[:60]}{"…" if len(head)>60 else ""}</div>
+      <div class="items"><b>{count}</b> items</div>
+      <div class="tags">{tags}</div>
+      <div class="arr">→</div>
+    </a>"""
+
+    section_archive += "\n  </div>\n</div>"
+
+    # ── about ──
+    section_about = f"""<div class="section-head" id="about">
+  <span class="kicker">§03</span>
+  <h2>About</h2>
+  <span class="jp">VIGILについて</span>
+</div>
+<div class="about">
+  <div class="card-about">
+    <h3>VIGIL — AI Morning Intelligence</h3>
+    <p>毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
+    <p>PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
+    <div class="deliverbox">
+      <div><div class="b">CURATOR</div><div class="v">山中秀斗</div></div>
+      <div><div class="b">SINCE</div><div class="v">{min(all_dates) if all_dates else today_str}</div></div>
+      <div><div class="b">TIME</div><div class="v">07:15 JST</div></div>
+      <div><div class="b">ISSUES</div><div class="v">{days_count}</div></div>
+    </div>
+  </div>
+  <div class="sources">
+    <h3>RSS SOURCES</h3>
+    <ul>
+      <li><span class="dot"></span><span class="nm">OpenAI Blog</span></li>
+      <li><span class="dot"></span><span class="nm">Anthropic Blog</span></li>
+      <li><span class="dot"></span><span class="nm">Google AI Blog</span></li>
+      <li><span class="dot"></span><span class="nm">TechCrunch AI</span></li>
+      <li><span class="dot"></span><span class="nm">The Verge AI</span></li>
+      <li><span class="dot"></span><span class="nm">MIT Tech Review AI</span></li>
+      <li><span class="dot"></span><span class="nm">ITmedia AI</span></li>
+      <li><span class="dot"></span><span class="nm">Zenn AI</span></li>
+    </ul>
+  </div>
+</div>"""
+
+    # ── colophon ──
+    colophon = f"""<div class="colophon">
+  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="right">{today_str} · BUILD {dt.strftime('%Y%m%d')}.0715</div>
+</div>"""
 
     html = _head(
         "VIGIL — AI Morning Intelligence",
         "山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。",
-        "./assets/style.css",
+        "./assets/vigil.css",
+        FONTS_VIGIL,
     ) + f"""
 {dispatch}
-{masthead}
-
-{hero_html}
-
-<section class="section" id="today">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§01</span>
-        <h2>Today · Dispatch<span class="sub">今朝の配信</span></h2>
-      </div>
-      <a href="./news/{today_str}/" class="section-link">ALL {len(today_articles)} ITEMS →</a>
-    </div>
-  </div>
-  {cards_html}
-</section>
-
-<section class="section" id="archive">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§02</span>
-        <h2>Archive<span class="sub">過去のディスパッチ</span></h2>
-      </div>
-    </div>
-    <div class="archive-grid">
-{archive_html}    </div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§03</span>
-        <h2>About<span class="sub">VIGILについて</span></h2>
-      </div>
-    </div>
-    <p style="max-width:600px;color:var(--ink-soft);line-height:1.8;">
-      毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。
-      人間の介入ほぼゼロで動くモーニングディスパッチです。
-    </p>
-    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);">
-      PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES
-    </p>
-  </div>
-</section>
-
-<footer>
-  <div class="container row">
-    <span class="brand">VIGIL</span>
-    <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
-    <span>{today_str}</span>
-  </div>
-</footer>
+{nav}
+{hero}
+{stats}
+{section_today}
+{cards_html}
+{section_archive}
+{section_about}
+{colophon}
 {INTERACTIVE_JS}
 </body>
 </html>"""
@@ -297,37 +339,161 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
     return out_path
 
 
-# ── daily page ───────────────────────────────────────────────
+def _build_today_grid(articles, date_str, img_dir, root="../../"):
+    """vigil.css の .today-grid / .tcard / .tcard.lead を生成"""
+    img_root = f"{root}assets/images/{date_str}"
+    html = '<div class="today-grid">\n'
+
+    for i, a in enumerate(articles, 1):
+        title    = a.get("title", "")
+        category = a.get("category", "AI情報")
+        source   = a.get("source", "")
+        lede     = a.get("lede", "")
+        keypoints = a.get("keypoints", [])
+        detail_url = f"{root}news/{date_str}/#topic-{i}"
+        slide_rel  = f"{img_root}/topic_{i}.png"
+        slide_exists = (img_dir / f"topic_{i}.png").exists()
+
+        if i == 1:
+            # ── Lead card (2×2, dark background) ──
+            slide_html = ""
+            if slide_exists:
+                # 実画像をオーバーレイ
+                words = title.split("　") if "　" in title else title.split(" — ")
+                bigt_text = words[0][:20] if words else title[:20]
+                slide_html = f"""    <div class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0">
+      <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;" loading="lazy" />
+      <div class="sl-inner">
+        <div class="chip">VIGIL · SLIDE 01 / {len(articles):02d} <b>●</b></div>
+        <div class="bigt">{bigt_text}</div>
+        <div class="meta">{category.upper()} · {source.upper()}</div>
+      </div>
+    </div>"""
+            else:
+                slide_html = f"""    <div class="slide">
+      <div class="sl-inner">
+        <div class="chip">VIGIL · SLIDE 01 / {len(articles):02d} <b>●</b></div>
+        <div class="bigt">{title[:24]}</div>
+        <div class="meta">{category.upper()} · {source.upper()}</div>
+      </div>
+    </div>"""
+
+            html += f"""  <div class="tcard lead">
+    <div class="tl">
+      <span class="n">01</span>
+      <span class="cat">{category}</span>
+      <span class="top">TOP STORY</span>
+    </div>
+    <h3>{title}</h3>
+{slide_html}
+    <p class="lede">{lede}</p>
+    <div class="foot">
+      <span class="src">{source}</span>
+      <a href="{detail_url}" class="go">READ →</a>
+    </div>
+  </div>
+"""
+        else:
+            # ── Regular card ──
+            img_html = ""
+            if slide_exists:
+                img_html = (
+                    f'    <div style="aspect-ratio:16/9;overflow:hidden;margin:4px 0;" '
+                    f'class="zoom-image" data-src="{slide_rel}" data-alt="{title}" '
+                    f'role="button" tabindex="0">\n'
+                    f'      <img src="{slide_rel}" alt="{title}" '
+                    f'style="width:100%;height:100%;object-fit:cover;" loading="lazy" />\n'
+                    f'    </div>\n'
+                )
+
+            html += f"""  <div class="tcard">
+    <div class="tl">
+      <span class="n">{str(i).zfill(2)}</span>
+      <span class="cat">{category}</span>
+    </div>
+    <h3>{title}</h3>
+{img_html}    <p class="lede">{lede}</p>
+    <div class="foot">
+      <span class="src">{source}</span>
+      <a href="{detail_url}" class="go">READ →</a>
+    </div>
+  </div>
+"""
+
+    html += "</div>\n"
+    return html
+
+
+# ── DAILY DETAIL PAGE ────────────────────────────────────────
 
 def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None) -> Path:
-    """日付別詳細ページ"""
-    dt         = datetime.strptime(date_str, "%Y-%m-%d")
-    issue      = str(issue_num or int(dt.strftime("%m%d"))).zfill(4)
-    build      = dt.strftime("%Y%m%d") + ".0715"
-    today_str  = dt.strftime("%Y-%m-%d")
-    weekday    = WEEKDAYS_EN[dt.weekday()]
-    month_en   = MONTHS_EN[dt.month - 1]
+    dt        = datetime.strptime(date_str, "%Y-%m-%d")
+    issue     = str(issue_num or int(dt.strftime("%m%d"))).zfill(4)
+    weekday   = WEEKDAYS_EN[dt.weekday()]
+    month_en  = MONTHS_EN[dt.month - 1]
 
     out_dir = SITE_DIR / "news" / date_str
     out_dir.mkdir(parents=True, exist_ok=True)
     img_dir = SITE_DIR / "assets" / "images" / date_str
     img_dir.mkdir(parents=True, exist_ok=True)
 
-    dispatch = _dispatch(issue, today_str, len(articles), build)
-    masthead = _masthead("../../", today_str, weekday)
+    # ── dispatch ──
+    dispatch = f"""<div class="dispatch">
+  <span class="tick">VIGIL</span>
+  <span class="sep">/</span>
+  <span>№{issue}</span>
+  <span class="sep">/</span>
+  <span>{date_str}</span>
+  <span class="sep">/</span>
+  <span>MORNING EDITION</span>
+  <span class="sep">/</span>
+  <span>{len(articles)} ITEMS</span>
+  <span class="sep">/</span>
+  <span class="live"><span class="dot"></span>LIVE</span>
+  <div class="right">
+    <span class="jst"><b>07:15</b> JST</span>
+    <span>{weekday}</span>
+  </div>
+</div>"""
 
-    # ── 記事カード（detail） ──
+    # ── nav ──
+    nav = f"""<nav class="main">
+  <div class="brand"><em>●</em>VIGIL</div>
+  <ul>
+    <li><a href="../../">HOME</a></li>
+    <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="../../#archive">ARCHIVE</a></li>
+    <li><a href="../../#about">ABOUT</a></li>
+  </ul>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+</nav>"""
+
+    # ── daily head ──
+    daily_head = f"""<div class="hero-wrap">
+  <div class="edition-line">
+    MORNING DISPATCH
+    <span class="sep">//</span>
+    {WEEKDAYS_LONG[dt.weekday()]}, {month_en} {dt.day}, {dt.year}
+    <span class="sep">//</span>
+    ISSUE N°{issue}
+  </div>
+  <h1 class="date-huge">{dt.year}<span class="dot">.</span>{dt.strftime('%m')}<span class="dot">.</span>{dt.strftime('%d')}</h1>
+  <div class="strap">
+    <span><span class="count">{len(articles):02d}</span>&nbsp;ITEMS</span>
+    <span>AI MORNING INTELLIGENCE</span>
+  </div>
+</div>"""
+
+    # ── articles ──
     topics_html = ""
     for i, a in enumerate(articles, 1):
-        slide_rel   = f"../../assets/images/{date_str}/topic_{i}.png"
+        slide_rel    = f"../../assets/images/{date_str}/topic_{i}.png"
         slide_exists = (img_dir / f"topic_{i}.png").exists()
-
-        slide_html = ""
+        slide_html   = ""
         if slide_exists:
             slide_html = (
-                f'      <div class="slide-img zoom-image" '
-                f'data-src="{slide_rel}" data-alt="{a["title"]}" '
-                f'role="button" tabindex="0">\n'
+                f'      <div class="slide-img zoom-image" data-src="{slide_rel}" '
+                f'data-alt="{a["title"]}" role="button" tabindex="0">\n'
                 f'        <img src="{slide_rel}" alt="{a["title"]}" loading="lazy" />\n'
                 f'      </div>'
             )
@@ -384,34 +550,17 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
     html = _head(
         f"{date_str} Morning Dispatch — VIGIL",
         f"{date_str} の VIGIL モーニングディスパッチ — {len(articles)}本のAI業界ニュース。",
-        "../../assets/style.css",
-    ) + f"""
+        "../../assets/vigil.css",
+        FONTS_VIGIL,
+    ) + DAILY_CSS + f"""
 {dispatch}
-{masthead}
-
-<section class="daily-head">
-  <div class="container">
-    <div class="hero-meta-line">
-      MORNING DISPATCH
-      <span class="sep">//</span> {weekday} · {month_en} {dt.day}, {dt.year}
-    </div>
-    <h1 class="date-huge">{dt.year}<span class="dot">.</span>{dt.strftime('%m')}<span class="dot">.</span>{dt.strftime('%d')}</h1>
-    <div class="strap">
-      <span><span class="count">{len(articles):02d}</span>&nbsp;ITEMS</span>
-      <span>AI MORNING INTELLIGENCE</span>
-    </div>
-  </div>
-</section>
-
+{nav}
+{daily_head}
 {topics_html}
-
-<footer>
-  <div class="container row">
-    <span class="brand">VIGIL</span>
-    <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
-    <span>{date_str} DISPATCH</span>
-  </div>
-</footer>
+<div class="colophon">
+  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="right">{date_str} DISPATCH</div>
+</div>
 {INTERACTIVE_JS}
 </body>
 </html>"""
@@ -421,162 +570,69 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
     return out_path
 
 
-# ── カードグリッド共通ビルダー ────────────────────────────────
-
-def _build_card_grid(articles: list[dict], date_str: str, img_dir: Path, root: str = "../../") -> str:
-    """インデックス用カードグリッドを生成"""
-    if not articles:
-        return ""
-
-    img_root = f"{root}assets/images/{date_str}"
-    cards = []
-
-    for i, a in enumerate(articles, 1):
-        slide_rel    = f"{img_root}/topic_{i}.png"
-        slide_exists = (img_dir / f"topic_{i}.png").exists()
-        detail_url   = f"{root}news/{date_str}/#topic-{i}"
-        likes        = a.get("likes", 0)
-        category     = a.get("category", "AI情報")
-        source       = a.get("source", "")
-        title        = a["title"]
-        lede         = a.get("lede", "")
-        keypoints    = a.get("keypoints", [])[:3]
-        impr         = a.get("impressions", 0)
-
-        # カテゴリバッジ
-        badge_html = f'<span class="badge badge-cat">{category}</span>'
-        date_badge = f'<span class="badge badge-date">{date_str}</span>'
-        src_html   = f'<span class="src-chips">{source}</span>' if source else ""
-        meta_html  = f'<div class="card-meta">{badge_html}{date_badge}{src_html}</div>'
-
-        # キーポイント
-        kp_html = "".join(
-            f'<li>{kp}</li>' for kp in keypoints
-        ) if keypoints else ""
-        kp_block = f'<ul class="card-points">{kp_html}</ul>' if kp_html else ""
-
-        # 統計フッター
-        likes_str = f"{likes:,}" if likes else "—"
-        impr_str  = f"{impr/1_000_000:.1f}M" if impr >= 1_000_000 else (f"{impr/1000:.0f}K" if impr >= 1000 else "—")
-        foot_html = (
-            f'<div class="card-foot">'
-            f'<div class="card-stats">'
-            f'<span>♥ <span class="card-stat-val card-stat-likes">{likes_str}</span></span>'
-            + (f'<span>SHR <span class="card-stat-val">{impr_str}</span></span>' if impr else "")
-            + f'</div>'
-            f'<a href="{detail_url}" class="card-read">READ →</a>'
-            f'</div>'
-        )
-
-        # 1枚目はトップストーリー（横長レイアウト）
-        if i == 1:
-            img_html = ""
-            if slide_exists:
-                img_html = (
-                    f'<div class="card-img zoom-image" data-src="{slide_rel}" '
-                    f'data-alt="{title}" role="button" tabindex="0">\n'
-                    f'  <img src="{slide_rel}" alt="{title}" loading="lazy" />\n'
-                    f'  <div class="card-img-cap">FIG 01 · {title[:40]}{"…" if len(title)>40 else ""}</div>\n'
-                    f'</div>'
-                )
-            top_card = (
-                f'<div class="card-top">\n'
-                f'  <div>\n'
-                f'    <div class="card-num-wrap">'
-                f'      <div class="card-num">01</div>'
-                f'      <div class="card-num-label">TOP STORY</div>'
-                f'    </div>\n'
-                f'    {meta_html}\n'
-                f'    <h2>{title}</h2>\n'
-                f'    <p class="card-lede">{lede}</p>\n'
-                f'    {kp_block}\n'
-                f'    {foot_html}\n'
-                f'  </div>\n'
-                f'  {img_html}\n'
-                f'</div>'
-            )
-            cards.append(("top", top_card))
-        else:
-            img_html = ""
-            if slide_exists:
-                img_html = (
-                    f'<div class="card-img zoom-image" data-src="{slide_rel}" '
-                    f'data-alt="{title}" role="button" tabindex="0">\n'
-                    f'  <img src="{slide_rel}" alt="{title}" loading="lazy" />\n'
-                    f'</div>'
-                )
-            card = (
-                f'<div class="card">\n'
-                f'  <div class="card-num">{str(i).zfill(2)}</div>\n'
-                f'  {meta_html}\n'
-                f'  <h2>{title}</h2>\n'
-                f'  {img_html}\n'
-                f'  <p class="card-lede">{lede}</p>\n'
-                f'  {kp_block}\n'
-                f'  {foot_html}\n'
-                f'</div>'
-            )
-            cards.append(("normal", card))
-
-    # グリッド組み立て：1枚目は全幅、残りは3列
-    html = ""
-    if cards:
-        top_type, top_html = cards[0]
-        html += f'<div class="dispatch-grid cols-1">\n{top_html}\n</div>\n'
-
-    remaining = cards[1:]
-    if remaining:
-        html += '<div class="dispatch-grid cols-3">\n'
-        html += "\n".join(c for _, c in remaining)
-        html += "\n</div>\n"
-
-    return html
+# vigil.css にない detail ページ専用スタイル（inline で追加）
+DAILY_CSS = """
+<style>
+.date-huge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:clamp(48px,10vw,112px);line-height:.9;letter-spacing:-.03em;margin:8px 0 20px;}
+.date-huge .dot{color:var(--red)}
+.strap{display:flex;gap:28px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+.strap .count{color:var(--ink);font-weight:700}
+.container{max-width:1400px;margin:0 auto;padding:0 40px}
+.daily-topic{padding:52px 0;border-bottom:1px solid var(--rule);position:relative;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.daily-topic.is-visible{opacity:1;transform:none}
+.daily-topic::before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--red);transition:height .4s}
+.daily-topic:hover::before{height:100%}
+.daily-topic .container{display:grid;grid-template-columns:72px 1fr 240px;gap:36px}
+.numeral{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:64px;line-height:1;color:var(--rule-2);position:relative;top:-6px;transition:color .2s}
+.daily-topic:hover .numeral{color:var(--red)}
+.numeral .ord{display:block;font-size:9px;letter-spacing:.16em;color:var(--mute);margin-top:8px;line-height:1.4;white-space:nowrap}
+.cat-line{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.cat-line .sep{color:var(--mute);margin:0 8px}
+.main h2{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;line-height:1.3;margin:0 0 18px;letter-spacing:-.01em}
+.lede{font-family:'Noto Serif JP',serif;font-size:16px;line-height:1.75;margin:0 0 24px;color:var(--ink-2)}
+.main h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:24px 0 10px;color:var(--mute)}
+.keypoints{list-style:none;padding:0;margin:0 0 24px}
+.keypoints li{padding:10px 14px 10px 44px;margin-bottom:2px;background:var(--paper-2);border-left:2px solid transparent;position:relative;font-size:14px;line-height:1.6;transition:border-color .15s,transform .2s}
+.keypoints li:hover{border-left-color:var(--red);transform:translateX(4px)}
+.keypoints li::before{content:attr(data-i);position:absolute;left:14px;top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em}
+.pull{padding:18px 22px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-top:24px;transition:border-left-width .2s,padding-left .2s}
+.pull:hover{border-left-width:6px;padding-left:19px}
+.slide-img{margin:20px 0;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;position:relative;transition:border-color .2s}
+.slide-img:hover{border-color:var(--red)}
+.slide-img img{width:100%;display:block;transition:transform .5s}
+.slide-img:hover img{transform:scale(1.02)}
+.side{font-size:13px}
+.side dl{margin:0}
+.side dt{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:18px 0 4px}
+.side dt:first-child{margin-top:0}
+.side dd{margin:0;word-break:break-all}
+.side dd a:hover{color:var(--red)}
+.likes{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:28px;color:var(--red)}
+.likes-label{font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.lightbox-overlay{display:flex;align-items:center;justify-content:center;position:fixed;inset:0;padding:24px;background:rgba(14,13,11,0);z-index:1000;pointer-events:none;transition:background .3s}
+.lightbox-overlay.is-open{background:rgba(14,13,11,.93);pointer-events:auto}
+.lightbox-overlay img{max-width:100%;max-height:90vh;object-fit:contain;opacity:0;transform:scale(.93);transition:opacity .35s,transform .35s}
+.lightbox-overlay.is-open img{opacity:1;transform:scale(1)}
+.lightbox-close{position:absolute;top:20px;right:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F7F5F2;cursor:pointer;background:none;border:1px solid rgba(247,245,242,.3);padding:6px 14px;transition:background .2s}
+.lightbox-close:hover{background:var(--red)}
+@media(max-width:900px){.daily-topic .container{grid-template-columns:1fr}.numeral{font-size:36px}.side{border-top:1px solid var(--rule);padding-top:20px}}
+</style>"""
 
 
 # ── CLI テスト ────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    test_articles = [
-        {
-            "title": "ChatGPT Images 2.0 発表 — 文字・UIが崩れない「thinking-level」画像モデル",
-            "category": "新モデル発表",
-            "source": "@OpenAI",
-            "lede": "OpenAIが新世代画像生成モデル「ChatGPT Images 2.0」（内部コード名 telepathy）を正式発表。最大2K解像度で、細かい文字・UI要素・複雑なレイアウトを崩さずに描画できる推論型モデル。",
-            "keypoints": [
-                "最大2K解像度・文字・UI・密度の高い構図でも破綻しにくい",
-                "\"thinking\"（推論）で指示追従性が大幅向上",
-                "ChatGPT（Proプラン$200含む）で即日利用可能",
-            ],
-            "pull": "Sam Altmanは「OpenAI過去最高のリリース」と評価。",
-            "links": ["https://openai.com/index/chatgpt-images-2"],
-            "likes": 21440,
-            "impressions": 4200000,
-        },
-        {
-            "title": "OpenAI Codex、MAU 4M突破+レート上限リセット",
-            "category": "ツール更新",
-            "source": "@sama",
-            "lede": "Codexでタスクを中断していた人は、今週もう一度踏み込めるタイミング。受講生向けには「今週はCodexを使い倒すチャンス」として伝えられるタイムセンシティブ情報。",
-            "keypoints": ["レート上限全アカウント一斉リセット", "MAU 4M突破、長時間エージェント運用が定着"],
-            "pull": "MAU急増の背景にはChronicleメモリ・Mac連携・Computer Useなどの大型アップデート。",
-            "links": ["https://openai.com/codex"],
-            "likes": 23499,
-            "impressions": 412000,
-        },
-        {
-            "title": "Cursor × SpaceX 提携 — Composerを「現実の難コード」で強化",
-            "category": "業界動向",
-            "source": "@cursor_ai",
-            "lede": "Cursor Composerの完成度が上がると従量課金を回避しつつ高速という選択肢が現実になる。コスト重視派には中期的に重要な材料。",
-            "keypoints": ["Composerモデルを実運用コードで再訓練", "従来APIコスト回避の現実解に"],
-            "pull": "実際のSpaceXコードベースで訓練することで、エッジケースへの対応力が向上。",
-            "links": ["https://cursor.com"],
-            "likes": 11483,
-            "impressions": 318000,
-        },
-    ]
-    today = "2026-04-24"
-    p1 = build_daily_page(today, test_articles)
-    print(f"生成: {p1}")
-    p2 = build_index([today], test_articles, today)
-    print(f"生成: {p2}")
+    today = "2026-04-23"
+    art_path = SITE_DIR / "news" / today / "articles.json"
+    if art_path.exists():
+        articles = json.loads(art_path.read_text(encoding="utf-8"))
+        print(f"articles.json から {len(articles)} 件読み込み")
+    else:
+        articles = [
+            {"title":"OpenAIがワークスペースエージェント機能をChatGPTに導入","category":"ツール更新","source":"OpenAI Blog","lede":"ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。","keypoints":["Codex駆動エージェントがワークフロー自動化を実現","複数ツール連携でチーム作業をスケール"],"pull":"エージェント時代の到来により企業の生産性向上が加速。"},
+        ] * 3
+
+    p1 = build_daily_page(today, articles)
+    print(f"daily: {p1}")
+    p2 = build_index([today], articles, today)
+    print(f"index: {p2}")

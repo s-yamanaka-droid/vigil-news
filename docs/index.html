@@ -7,238 +7,217 @@
 <meta name="description" content="山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/vigil.css" />
 </head>
 <body>
-<div class="dispatch"><div class="container row"><span class="tick">VIGIL №0423</span><span class="sep">/</span><span>2026-04-23</span><span class="sep">/</span><span>MORNING EDITION</span><span class="sep">/</span><span>8 ITEMS</span><span class="sep">/</span><span>BUILD 20260423.0715</span><span class="sep">/</span><span class="live">LIVE</span><span class="sep">/</span><span>CURATED BY 山中秀斗</span></div></div>
-<header class="masthead">
-  <div class="container row">
-    <a href="./" class="wordmark">
-      <span class="dot-red"></span>VIGIL
+<div class="dispatch" data-ticker="on">
+  <span class="tick">VIGIL</span>
+  <span class="sep">/</span>
+  <span>№0423</span>
+  <span class="sep">/</span>
+  <span>2026-04-23</span>
+  <span class="sep">/</span>
+  <span>MORNING EDITION</span>
+  <span class="sep">/</span>
+  <span>3 ITEMS</span>
+  <span class="sep">/</span>
+  <span class="live"><span class="dot"></span>LIVE</span>
+  <span class="sep">/</span>
+  <span>CURATED BY 山中秀斗</span>
+  <div class="right">
+    <span class="jst"><b>07:15</b> JST</span>
+    <span>THU</span>
+  </div>
+</div>
+<nav class="main">
+  <div class="brand"><em>●</em>VIGIL</div>
+  <ul>
+    <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="#archive">ARCHIVE</a></li>
+    <li><a href="#briefings">BRIEFINGS</a></li>
+    <li><a href="#about">SOURCES</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+</nav>
+<div class="hero-wrap">
+  <div class="edition-line">
+    <span>MORNING DISPATCH</span>
+    <span class="sep">//</span>
+    <span>THURSDAY, APRIL 23, 2026</span>
+    <span class="sep">//</span>
+    <span>ISSUE N°0423</span>
+    <span class="sep">//</span>
+    <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
+  </div>
+  <div class="hero">
+    <div class="logo-block">
+      <h1>VIGIL<span class="dot">.</span></h1>
+      <div class="sub"><b>AI MORNING INTELLIGENCE</b> · DAILY DISPATCH</div>
+      <div class="tagline">
+        AI業界で<b>昨夜起きたこと</b>を、毎朝<b>07:15 JST</b>に。<br>
+        ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
+      </div>
+    </div>
+    <a href="./news/2026-04-23/" class="today-cta">
+      <div class="ctop">
+        <span>TODAY'S ISSUE</span>
+        <b>● LIVE</b>
+      </div>
+      <h2>0423<span class="issue">MORNING EDITION · N°0423</span></h2>
+      <div class="headline">ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。</div>
+      <span class="gotoday">READ TODAY'S DISPATCH →</span>
+      <div class="meta-grid">
+        <div><div class="k">ITEMS</div><div class="v"><em>03</em></div></div>
+        <div><div class="k">SOURCES</div><div class="v">1</div></div>
+        <div><div class="k">ARCHIVE</div><div class="v">1</div></div>
+      </div>
     </a>
-    <button class="nav-toggle" type="button" aria-label="メニュー"
-            aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav class="main-nav" id="main-nav">
-      <a href="./news/2026-04-23/">TODAY</a>
-      <a href="./#archive">ARCHIVE</a>
-      <a href="./#archive">BRIEFINGS</a>
-      <a href="./#about">SOURCES</a>
-      <a href="./#about">ABOUT</a>
-    </nav>
-    <a href="#" class="subscribe-btn">SUBSCRIBE · 07:15 DAILY →</a>
-    <div class="meta">JST · 07:15 · THU</div>
-  </div>
-</header>
-<script>
-(function(){
-  var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
-  if(!btn||!nav)return;
-  function setOpen(o){
-    btn.setAttribute('aria-expanded',o?'true':'false');
-    nav.classList.toggle('is-open',o);
-  }
-  btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
-  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
-})();
-</script>
-
-<section class="hero">
-  <div class="container">
-    <div class="hero-meta-line">
-      <span>MORNING DISPATCH</span>
-      <span class="sep">//</span>
-      <span>THU, APRIL 23, 2026</span>
-      <span class="sep">//</span>
-      <span>ISSUE N°0423</span>
-      <span class="sep">//</span>
-      <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
-    </div>
-    <div class="hero-title-wrap">
-      <h1>VIGIL</h1>
-      <div class="hero-issue">N°0423</div>
-    </div>
-    <hr class="hero-divider" />
-    <div class="hero-tagline">
-      AI業界で<em>昨夜起きたこと</em>を、毎朝<em>07:15 JST</em>に。
-      ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
-    </div>
-    <div class="hero-stats">
-  <div class="hero-stat">
-    <div class="hero-stat-val">08</div>
-    <div class="hero-stat-label">TODAY</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">5</div>
-    <div class="hero-stat-label">BRIEFINGS / 30D</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">8</div>
-    <div class="hero-stat-label">ARCHIVE</div>
-  </div>
-  <div class="hero-stat">
-    <div class="hero-stat-val">8</div>
-    <div class="hero-stat-label">DELIVERED</div>
   </div>
 </div>
-  </div>
-</section>
-
-<section class="section" id="today">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§01</span>
-        <h2>Today · Dispatch<span class="sub">今朝の配信</span></h2>
-      </div>
-      <a href="./news/2026-04-23/" class="section-link">ALL 8 ITEMS →</a>
+<div style="max-width:1400px;margin:0 auto;padding:0 40px">
+  <div class="stats-row">
+    <div class="stat">
+      <div class="k">TODAY</div>
+      <div class="v">03</div>
+      <div class="n">items in this issue</div>
+    </div>
+    <div class="stat">
+      <div class="k">SOURCES</div>
+      <div class="v">1</div>
+      <div class="n">feeds monitored</div>
+    </div>
+    <div class="stat">
+      <div class="k">ARCHIVE</div>
+      <div class="v">8</div>
+      <div class="n">total articles</div>
+    </div>
+    <div class="stat">
+      <div class="k">DAYS</div>
+      <div class="v">1</div>
+      <div class="n">issues published</div>
     </div>
   </div>
-  <div class="dispatch-grid cols-1">
-<div class="card-top">
-  <div>
-    <div class="card-num-wrap">      <div class="card-num">01</div>      <div class="card-num-label">TOP STORY</div>    </div>
-    <div class="card-meta"><span class="badge badge-cat">ツール更新</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">OpenAI Blog</span></div>
-    <h2>OpenAIがワークスペースエージェント機能をChatGPTに導入</h2>
-    <p class="card-lede">ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。</p>
-    <ul class="card-points"><li>Codex駆動エージェントがワークフロー自動化を実現</li><li>複数ツール連携でチーム作業をスケール</li><li>WebSockets活用で遅延短縮を達成</li></ul>
-    <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-1" class="card-read">READ →</a></div>
-  </div>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_1.png" data-alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_1.png" alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" loading="lazy" />
-  <div class="card-img-cap">FIG 01 · OpenAIがワークスペースエージェント機能をChatGPTに導入</div>
 </div>
+<div class="section-head" id="today">
+  <span class="kicker">§01</span>
+  <h2>Today's Dispatch</h2>
+  <span class="jp">今朝の配信</span>
+  <span class="count">3 items</span>
+  <a href="./news/2026-04-23/" class="morelink">ALL 3 ITEMS →</a>
 </div>
+<div class="today-strip">
+  <span class="pill  red">ツール更新</span>
+  <div class="bar"></div>
+  <span>2026-04-23</span>
 </div>
-<div class="dispatch-grid cols-3">
-<div class="card">
-  <div class="card-num">02</div>
-  <div class="card-meta"><span class="badge badge-cat">業界動向</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">OpenAI Blog</span></div>
-  <h2>OpenAI、医療従事者向けChatGPT無料提供を開始</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_2.png" data-alt="OpenAI、医療従事者向けChatGPT無料提供を開始" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_2.png" alt="OpenAI、医療従事者向けChatGPT無料提供を開始" loading="lazy" />
-</div>
-  <p class="card-lede">米国の医師・看護師・薬剤師に対しChatGPT for Cliniciansを無料提供し、臨床業務や医療文書作成、研究支援を推進。</p>
-  <ul class="card-points"><li>医療従事者に無料アクセス提供</li><li>臨床ケアと文書作成に対応</li><li>医療研究を支援</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-2" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">03</div>
-  <div class="card-meta"><span class="badge badge-cat">新モデル発表</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">Google AI Blog</span></div>
-  <h2>Googleが次世代TPU 8T/8iを発表、エージェント時代へ対応</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_3.png" data-alt="Googleが次世代TPU 8T/8iを発表、エージェント時代へ対応" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_3.png" alt="Googleが次世代TPU 8T/8iを発表、エージェント時代へ対応" loading="lazy" />
-</div>
-  <p class="card-lede">Google Cloud Next 2026でTPUの第8世代として専用TPU 8T/8iが発表され、エージェント型AIワークロードの高速化を実現。</p>
-  <ul class="card-points"><li>エージェント用途の特化設計</li><li>第8世代TPUで性能向上</li><li>クラウド基盤の強化</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-3" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">04</div>
-  <div class="card-meta"><span class="badge badge-cat">ツール更新</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">Google AI Blog</span></div>
-  <h2>Googleが新AI Modeを搭載したChrome提供開始</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_4.png" data-alt="Googleが新AI Modeを搭載したChrome提供開始" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_4.png" alt="Googleが新AI Modeを搭載したChrome提供開始" loading="lazy" />
-</div>
-  <p class="card-lede">ChromeにAI Mode機能が追加され、AIを活用したWebブラウジング体験で検索から情報活用まで統合。</p>
-  <ul class="card-points"><li>AI統合ブラウジング機能</li><li>検索連携で情報取得効率化</li><li>リアルタイムWeb検索</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-4" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">05</div>
-  <div class="card-meta"><span class="badge badge-cat">ツール更新</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">TechCrunch AI</span></div>
-  <h2>GoogleがWorkspaceにAIインターン機能を実装</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_5.png" data-alt="GoogleがWorkspaceにAIインターン機能を実装" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_5.png" alt="GoogleがWorkspaceにAIインターン機能を実装" loading="lazy" />
-</div>
-  <p class="card-lede">Google WorkspaceにWorkspace Intelligenceが統合され、自動化された業務支援機能でオフィスワークの効率を大幅向上。</p>
-  <ul class="card-points"><li>Workspace Intelligence搭載</li><li>自動化された業務関数を実装</li><li>チーム生産性を向上</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-5" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">06</div>
-  <div class="card-meta"><span class="badge badge-cat">業界動向</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">MIT Tech Review AI</span></div>
-  <h2>企業AI導入に必要な「データファブリック」基盤の重要性が浮上</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_6.png" data-alt="企業AI導入に必要な「データファブリック」基盤の重要性が浮上" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_6.png" alt="企業AI導入に必要な「データファブリック」基盤の重要性が浮上" loading="lazy" />
-</div>
-  <p class="card-lede">AI導入が実験段階から実運用へ移行する中、コパイロットやエージェント展開に不可欠なデータ基盤構築の課題が明確化。</p>
-  <ul class="card-points"><li>実運用段階へ急速に移行中</li><li>データ統合基盤が課題に</li><li>予測システム導入増加</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-6" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">07</div>
-  <div class="card-meta"><span class="badge badge-cat">業界動向</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">TechCrunch AI</span></div>
-  <h2>TeslaがAI投資を拡大、2026年の設備投資を25億ドルに増加</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_7.png" data-alt="TeslaがAI投資を拡大、2026年の設備投資を25億ドルに増加" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_7.png" alt="TeslaがAI投資を拡大、2026年の設備投資を25億ドルに増加" loading="lazy" />
-</div>
-  <p class="card-lede">Teslaが2026年の設備投資計画を過去比3倍の25億ドルに拡大し、AI・自動運転開発への投資加速を宣言。</p>
-  <ul class="card-points"><li>設備投資を大幅増加</li><li>AI・自動運転が重点</li><li>過去比3倍の投資規模</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-7" class="card-read">READ →</a></div>
-</div>
-<div class="card">
-  <div class="card-num">08</div>
-  <div class="card-meta"><span class="badge badge-cat">ツール更新</span><span class="badge badge-date">2026-04-23</span><span class="src-chips">TechCrunch AI</span></div>
-  <h2>XがGrokキュレーションによるAI駆動カスタムフィードを展開</h2>
-  <div class="card-img zoom-image" data-src="./assets/images/2026-04-23/topic_8.png" data-alt="XがGrokキュレーションによるAI駆動カスタムフィードを展開" role="button" tabindex="0">
-  <img src="./assets/images/2026-04-23/topic_8.png" alt="XがGrokキュレーションによるAI駆動カスタムフィードを展開" loading="lazy" />
-</div>
-  <p class="card-lede">XがコミュニティをGrok駆動のAIカスタムタイムラインに置き換え、個人化されたフィード体験と広告新枠を実装。</p>
-  <ul class="card-points"><li>AI駆動のカスタムタイムライン実装</li><li>Grokによる自動キュレーション</li><li>広告新枠を追加</li></ul>
-  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">—</span></span></div><a href="./news/2026-04-23/#topic-8" class="card-read">READ →</a></div>
-</div>
-</div>
-
-</section>
-
-<section class="section" id="archive">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§02</span>
-        <h2>Archive<span class="sub">過去のディスパッチ</span></h2>
+<div class="today-grid">
+  <div class="tcard lead">
+    <div class="tl">
+      <span class="n">01</span>
+      <span class="cat">ツール更新</span>
+      <span class="top">TOP STORY</span>
+    </div>
+    <h3>OpenAIがワークスペースエージェント機能をChatGPTに導入</h3>
+    <div class="slide zoom-image" data-src="./assets/images/2026-04-23/topic_1.png" data-alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" role="button" tabindex="0">
+      <img src="./assets/images/2026-04-23/topic_1.png" alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;" loading="lazy" />
+      <div class="sl-inner">
+        <div class="chip">VIGIL · SLIDE 01 / 03 <b>●</b></div>
+        <div class="bigt">OpenAIがワークスペースエージェント</div>
+        <div class="meta">ツール更新 · OPENAI BLOG</div>
       </div>
     </div>
-    <div class="archive-grid">
-    <a href="./news/2026-04-23/" class="archive-card">
-      <div class="d">2026-04-23</div>
-      <div class="n">THU · MORNING DISPATCH</div>
+    <p class="lede">ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。</p>
+    <div class="foot">
+      <span class="src">OpenAI Blog</span>
+      <a href="./news/2026-04-23/#topic-1" class="go">READ →</a>
+    </div>
+  </div>
+  <div class="tcard">
+    <div class="tl">
+      <span class="n">02</span>
+      <span class="cat">ツール更新</span>
+    </div>
+    <h3>OpenAIがワークスペースエージェント機能をChatGPTに導入</h3>
+    <div style="aspect-ratio:16/9;overflow:hidden;margin:4px 0;" class="zoom-image" data-src="./assets/images/2026-04-23/topic_2.png" data-alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" role="button" tabindex="0">
+      <img src="./assets/images/2026-04-23/topic_2.png" alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+    </div>
+    <p class="lede">ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。</p>
+    <div class="foot">
+      <span class="src">OpenAI Blog</span>
+      <a href="./news/2026-04-23/#topic-2" class="go">READ →</a>
+    </div>
+  </div>
+  <div class="tcard">
+    <div class="tl">
+      <span class="n">03</span>
+      <span class="cat">ツール更新</span>
+    </div>
+    <h3>OpenAIがワークスペースエージェント機能をChatGPTに導入</h3>
+    <div style="aspect-ratio:16/9;overflow:hidden;margin:4px 0;" class="zoom-image" data-src="./assets/images/2026-04-23/topic_3.png" data-alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" role="button" tabindex="0">
+      <img src="./assets/images/2026-04-23/topic_3.png" alt="OpenAIがワークスペースエージェント機能をChatGPTに導入" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+    </div>
+    <p class="lede">ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。</p>
+    <div class="foot">
+      <span class="src">OpenAI Blog</span>
+      <a href="./news/2026-04-23/#topic-3" class="go">READ →</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-head" id="archive">
+  <span class="kicker">§02</span>
+  <h2>Archive</h2>
+  <span class="jp">過去のディスパッチ</span>
+  <span class="count">1 issues</span>
+</div>
+<div class="archive">
+  <div class="archive-list">
+    <a href="./news/2026-04-23/" class="arow today">
+      <div class="dt"><span class="day">23</span> <span class="wd">THU</span></div>
+      <div class="head">Morning Dispatch</div>
+      <div class="items"><b>8</b> items</div>
+      <div class="tags"></div>
+      <div class="arr">→</div>
     </a>
+  </div>
+</div>
+<div class="section-head" id="about">
+  <span class="kicker">§03</span>
+  <h2>About</h2>
+  <span class="jp">VIGILについて</span>
+</div>
+<div class="about">
+  <div class="card-about">
+    <h3>VIGIL — AI Morning Intelligence</h3>
+    <p>毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
+    <p>PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
+    <div class="deliverbox">
+      <div><div class="b">CURATOR</div><div class="v">山中秀斗</div></div>
+      <div><div class="b">SINCE</div><div class="v">2026-04-23</div></div>
+      <div><div class="b">TIME</div><div class="v">07:15 JST</div></div>
+      <div><div class="b">ISSUES</div><div class="v">1</div></div>
     </div>
   </div>
-</section>
-
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">
-        <span class="num">§03</span>
-        <h2>About<span class="sub">VIGILについて</span></h2>
-      </div>
-    </div>
-    <p style="max-width:600px;color:var(--ink-soft);line-height:1.8;">
-      毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。
-      人間の介入ほぼゼロで動くモーニングディスパッチです。
-    </p>
-    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);">
-      PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES
-    </p>
+  <div class="sources">
+    <h3>RSS SOURCES</h3>
+    <ul>
+      <li><span class="dot"></span><span class="nm">OpenAI Blog</span></li>
+      <li><span class="dot"></span><span class="nm">Anthropic Blog</span></li>
+      <li><span class="dot"></span><span class="nm">Google AI Blog</span></li>
+      <li><span class="dot"></span><span class="nm">TechCrunch AI</span></li>
+      <li><span class="dot"></span><span class="nm">The Verge AI</span></li>
+      <li><span class="dot"></span><span class="nm">MIT Tech Review AI</span></li>
+      <li><span class="dot"></span><span class="nm">ITmedia AI</span></li>
+      <li><span class="dot"></span><span class="nm">Zenn AI</span></li>
+    </ul>
   </div>
-</section>
-
-<footer>
-  <div class="container row">
-    <span class="brand">VIGIL</span>
-    <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
-    <span>2026-04-23</span>
-  </div>
-</footer>
+</div>
+<div class="colophon">
+  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="right">2026-04-23 · BUILD 20260423.0715</div>
+</div>
 
 <div class="lightbox-overlay" id="lightbox">
   <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
@@ -246,45 +225,46 @@
 </div>
 <script>
 (function(){
-  /* --- Lightbox --- */
-  var overlay = document.getElementById('lightbox');
-  var img     = document.getElementById('lightbox-img');
-  var close   = document.getElementById('lightbox-close');
-
+  var overlay=document.getElementById('lightbox');
+  var img=document.getElementById('lightbox-img');
+  var close=document.getElementById('lightbox-close');
   document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click', function(){
-      img.src = '';
+    el.addEventListener('click',function(){
+      img.src='';
       overlay.classList.add('is-open');
-      setTimeout(function(){ img.src = el.dataset.src; img.alt = el.dataset.alt || ''; }, 20);
+      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; },20);
     });
   });
   function closeBox(){
-    img.style.opacity = '0'; img.style.transform = 'scale(0.93)';
-    setTimeout(function(){
-      overlay.classList.remove('is-open');
-      img.src = ''; img.style.opacity = ''; img.style.transform = '';
-    }, 300);
+    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    setTimeout(function(){ overlay.classList.remove('is-open'); img.src=''; img.style.opacity=''; img.style.transform=''; },300);
   }
-  close.addEventListener('click', closeBox);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeBox(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeBox(); });
+  close.addEventListener('click',closeBox);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
 
-  /* --- Scroll fade-in (.daily-topic) --- */
-  var topics = document.querySelectorAll('.daily-topic');
+  /* scroll fade-in */
+  var topics=document.querySelectorAll('.daily-topic');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
-      });
-    }, {threshold: 0.07, rootMargin: '0px 0px -32px 0px'});
-    topics.forEach(function(el){ io.observe(el); });
-  } else {
-    topics.forEach(function(el){ el.classList.add('is-visible'); });
-  }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+    topics.forEach(function(el){io.observe(el);});
+  } else { topics.forEach(function(el){el.classList.add('is-visible');}); }
 
-  /* --- Dispatch ticker: seamless duplicate --- */
-  var row = document.querySelector('.dispatch .row');
-  if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
+  /* dispatch ticker */
+  var row=document.querySelector('.dispatch');
+  if(row && row.dataset.ticker!=='off'){
+    var inner=row.innerHTML;
+    row.innerHTML=inner+inner;
+    var pos=0,spd=0.4;
+    (function tick(){
+      pos+=spd;
+      if(pos>=row.scrollWidth/2)pos=0;
+      row.scrollLeft=pos;
+      requestAnimationFrame(tick);
+    })();
+  }
 })();
 </script>
 
