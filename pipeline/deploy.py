@@ -12,7 +12,7 @@ REPO_DIR = Path(__file__).parent.parent
 
 def git_push(commit_msg: str) -> bool:
     cmds = [
-        ["git", "-C", str(REPO_DIR), "add", "site/"],
+        ["git", "-C", str(REPO_DIR), "add", "docs/"],
         ["git", "-C", str(REPO_DIR), "commit", "-m", commit_msg],
         ["git", "-C", str(REPO_DIR), "push", "origin", "main"],
     ]

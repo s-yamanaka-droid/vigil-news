@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 import json
 
-SITE_DIR = Path(__file__).parent.parent / "site"
+SITE_DIR = Path(__file__).parent.parent / "docs"
 FONTS = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
 
 NAV_LINKS = """
