@@ -1,40 +1,41 @@
 /* ==============================================================
    VIGIL — AI Morning Intelligence
-   Design: Editorial paper × terminal dispatch × TREPRO brand
-   Brand: #F10903 (TREPRO Red) / #F7F5F2 (paper) / #141311 (ink)
-   v2 — Dynamic interactions
+   Design: Editorial broadsheet × terminal dispatch × TREPRO brand
+   v3 — Heavy condensed grid redesign
    ============================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&display=swap');
 
 :root {
   --paper:        #F7F5F2;
   --paper-deep:   #EDE9E2;
-  --ink:          #141311;
+  --paper-mid:    #E5DFD4;
+  --ink:          #0E0D0B;
   --ink-soft:     #2a2723;
-  --mute:         #837b6c;
-  --hair:         #1c1a16;
-  --accent:       #F10903;   /* TREPRO Red */
+  --mute:         #7a7265;
+  --hair:         #d4cec5;
+  --hair-dark:    #1c1a16;
+  --accent:       #F10903;
   --accent-deep:  #b80702;
   --highlight:    #FFE135;
-  --mono-tint:    #3d3630;
   --max:          1320px;
   --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  margin: 0; padding: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", "Noto Sans JP", -apple-system, sans-serif;
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 body {
-  background-image: radial-gradient(rgba(20,19,17,0.03) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(20,19,17,0.025) 1px, transparent 1px);
   background-size: 4px 4px;
 }
 a { color: inherit; text-decoration: none; }
@@ -43,98 +44,100 @@ img { max-width: 100%; display: block; }
 
 
 /* ============================================================
-   Dispatch ribbon — スクロールティッカー
+   Dispatch ribbon
    ============================================================ */
 .dispatch {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
   color: var(--paper); background: var(--ink);
-  padding: 10px 0; border-bottom: 2px solid var(--accent);
+  padding: 9px 0;
+  border-bottom: 2px solid var(--accent);
   overflow: hidden;
 }
 .dispatch .row {
-  display: flex; gap: 24px; align-items: center;
-  animation: ticker 40s linear infinite;
+  display: flex; gap: 20px; align-items: center;
   white-space: nowrap;
+  animation: ticker 48s linear infinite;
 }
 .dispatch .row:hover { animation-play-state: paused; }
 @keyframes ticker {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-/* ティッカーは同じ内容を2連結してループさせるため、row内を2倍にする手法 */
-.dispatch .tick { color: var(--highlight); }
-.dispatch .sep  { opacity: 0.35; }
-.dispatch .live {
-  color: var(--accent); font-weight: 700;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.dispatch .live::before {
-  content: "●"; font-size: 8px;
-  animation: blink 1.4s steps(2, end) infinite;
-}
-@keyframes blink { 50% { opacity: 0.15; } }
+.dispatch .tick   { color: var(--highlight); font-weight: 700; }
+.dispatch .sep    { opacity: 0.3; }
+.dispatch .live   { color: var(--accent); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+.dispatch .live::before { content: "●"; font-size: 7px; animation: blink 1.4s steps(2,end) infinite; }
+@keyframes blink { 50% { opacity: 0.1; } }
 
 
 /* ============================================================
    Masthead
    ============================================================ */
 .masthead {
-  border-bottom: 1px solid var(--hair);
-  padding: 28px 0 24px;
+  border-bottom: 1px solid var(--hair-dark);
+  padding: 0;
   position: sticky; top: 0; z-index: 200;
   background: var(--paper);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
-.masthead::after {
-  content: "";
-  position: absolute; bottom: -1px; left: 0; width: 0; height: 2px;
-  background: var(--accent);
-  transition: width 0.6s var(--ease-out);
-}
-.masthead:hover::after { width: 100%; }
-
 .masthead .row {
-  display: flex; align-items: baseline;
-  justify-content: space-between; gap: 32px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 0;
+  height: 56px;
 }
 .masthead .wordmark {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 700; font-size: 26px;
-  letter-spacing: 0.12em; line-height: 1; text-transform: uppercase;
-  transition: letter-spacing 0.25s var(--ease-out);
+  font-weight: 700; font-size: 22px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
 }
-.masthead .wordmark:hover { letter-spacing: 0.22em; }
+.masthead .wordmark .dot-red,
 .masthead .wordmark .bar {
-  display: inline-block; width: 14px; height: 14px;
-  background: var(--accent); margin-right: 10px;
-  transform: translateY(-1px);
-  transition: transform 0.25s var(--ease-spring), background 0.2s;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  transition: transform 0.3s var(--ease-spring);
+  /* .bar 後方互換: inline-block で余白を付ける */
+  display: inline-block; margin-right: 10px;
 }
-.masthead .wordmark:hover .bar {
-  transform: translateY(-1px) rotate(45deg);
-  background: var(--accent-deep);
-}
-.masthead .meta {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--mute);
+.masthead .wordmark:hover .dot-red,
+.masthead .wordmark:hover .bar { transform: scale(1.5); }
+
+.masthead nav {
+  display: flex; align-items: center; gap: 0; flex: 1; padding: 0 32px;
 }
 .masthead nav a {
   font-family: "JetBrains Mono", monospace;
-  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-  margin-left: 22px; padding-bottom: 2px;
-  position: relative;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0 16px; height: 56px; display: flex; align-items: center;
+  position: relative; color: var(--mute);
+  transition: color 0.2s;
 }
+.masthead nav a.is-active, .masthead nav a:hover { color: var(--ink); }
 .masthead nav a::after {
-  content: ""; position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 1px; background: var(--accent);
+  content: ""; position: absolute; bottom: 0; left: 16px; right: 16px;
+  height: 2px; background: var(--accent);
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.25s var(--ease-out);
 }
-.masthead nav a:hover { color: var(--accent); }
+.masthead nav a.is-active::after,
 .masthead nav a:hover::after { transform: scaleX(1); }
+
+.masthead .subscribe-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--ink); color: var(--paper);
+  padding: 10px 20px; border: none; cursor: pointer; flex-shrink: 0;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.masthead .subscribe-btn:hover { background: var(--accent); }
+
+.masthead .meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute); padding-left: 24px; flex-shrink: 0;
+}
 
 /* ハンバーガー */
 .nav-toggle {
@@ -142,313 +145,422 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--ink); cursor: pointer;
   align-items: center; justify-content: center;
   flex-direction: column; gap: 5px; flex-shrink: 0;
-  transition: border-color 0.2s, background 0.2s;
+  transition: background 0.15s;
 }
 .nav-toggle:hover { background: var(--ink); }
 .nav-toggle:hover .nav-toggle-bar { background: var(--paper); }
-.nav-toggle-bar {
-  width: 18px; height: 2px; background: var(--ink); display: block;
-  transition: background 0.2s;
-}
+.nav-toggle-bar { width: 18px; height: 2px; background: var(--ink); display: block; }
 
 
 /* ============================================================
-   Hero
+   Hero — 巨大タイトル
    ============================================================ */
 .hero {
-  padding: 64px 0 56px;
-  border-bottom: 1px solid var(--hair);
-  overflow: hidden;
+  padding: 40px 0 0;
+  border-bottom: 2px solid var(--ink);
 }
-.hero .grid {
-  display: grid; grid-template-columns: 1fr 380px;
-  gap: 48px; align-items: end; margin-bottom: 40px;
-}
-.hero .eyebrow {
+.hero-meta-line {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 20px;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--mute); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.hero-meta-line .sep { opacity: 0.4; }
+
+.hero-title-wrap {
+  position: relative; border-top: 1px solid var(--hair-dark); padding-top: 16px;
 }
 .hero h1 {
+  font-family: "Barlow Condensed", "JetBrains Mono", sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px, 14vw, 180px);
+  line-height: 0.88; letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-issue {
+  position: absolute; top: 20px; right: 0;
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 800; font-size: clamp(32px, 5vw, 64px);
+  color: var(--accent); letter-spacing: 0.01em; line-height: 1;
+}
+
+.hero-divider { border: none; border-top: 2px solid var(--ink); margin: 16px 0 0; }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: none;
+}
+.hero-stat {
+  padding: 20px 24px; border-right: 1px solid var(--hair);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.hero-stat:first-child { padding-left: 0; }
+.hero-stat:last-child { border-right: none; }
+.hero-stat-val {
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 800; font-size: 36px; line-height: 1; color: var(--ink);
+  transition: color 0.2s;
+}
+.hero-stat:hover .hero-stat-val { color: var(--accent); }
+.hero-stat-label {
   font-family: "JetBrains Mono", monospace;
-  font-size: clamp(52px, 8vw, 96px);
-  font-weight: 700; line-height: 0.92; letter-spacing: -0.02em;
-  text-transform: uppercase; margin: 0;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
 }
-.hero .aside {
-  padding: 28px; border: 1px solid var(--hair);
-  background: var(--paper-deep);
-  transition: border-color 0.25s, transform 0.3s var(--ease-out), box-shadow 0.3s;
-}
-.hero .aside:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(20,19,17,0.08);
-}
-.hero .aside p { margin: 0 0 12px; color: var(--ink-soft); font-size: 14px; }
-.hero .aside p:last-child { margin: 0; }
-.hero-strap {
-  display: flex; flex-wrap: wrap; gap: 32px; padding-top: 32px;
+.hero-tagline {
+  padding: 24px 0 28px;
+  font-size: 15px; color: var(--ink-soft); line-height: 1.6;
   border-top: 1px solid var(--hair);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute);
+  max-width: 540px;
 }
-.hero-strap .k {
-  color: var(--ink); font-weight: 700; font-size: 20px; margin-right: 6px;
-  display: inline-block;
-  transition: color 0.2s, transform 0.3s var(--ease-spring);
-}
-.hero-strap > span:hover .k { color: var(--accent); transform: scale(1.15); }
+.hero-tagline em { color: var(--accent); font-style: normal; font-weight: 600; }
 
 
 /* ============================================================
-   Section
+   Section header
    ============================================================ */
-.section { padding: 64px 0; border-bottom: 1px solid var(--hair); }
+.section { padding: 56px 0; border-bottom: 1px solid var(--hair); }
 .section-head {
   display: flex; align-items: baseline;
   justify-content: space-between; margin-bottom: 40px;
 }
-.section-head .title .en {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--mute); display: block; margin-bottom: 8px;
+.section-label {
+  display: flex; align-items: baseline; gap: 16px;
 }
-.section-head .title h2 { margin: 0; font-size: 28px; font-weight: 700; }
+.section-label .num {
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 800; font-size: 22px; color: var(--accent);
+  letter-spacing: 0.02em;
+}
+.section-label h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700; font-size: 26px; letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.section-label .sub {
+  font-size: 13px; color: var(--mute); font-weight: 400;
+  font-family: "Inter", sans-serif; text-transform: none; letter-spacing: 0;
+  margin-left: 4px;
+}
+.section-link {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); display: flex; align-items: center; gap: 6px;
+  transition: gap 0.2s var(--ease-out);
+}
+.section-link:hover { gap: 12px; }
 
 
 /* ============================================================
-   Daily topic card — スクロールフェードイン
+   Article card grid (index)
    ============================================================ */
+.dispatch-grid {
+  display: grid; gap: 1px;
+  background: var(--hair);
+}
+.dispatch-grid.cols-1 { grid-template-columns: 1fr; }
+.dispatch-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* トップストーリーカード */
+.card-top {
+  background: var(--paper);
+  padding: 32px;
+  display: grid; grid-template-columns: 1fr 420px; gap: 32px; align-items: start;
+}
+
+/* 通常カード */
+.card {
+  background: var(--paper);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
+}
+.card:hover { background: var(--paper-deep); }
+.card::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.card:hover::after { transform: scaleX(1); }
+
+/* カード番号 */
+.card-num {
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 900; font-size: 56px; line-height: 1; color: var(--paper-deep);
+  transition: color 0.25s;
+}
+.card:hover .card-num,
+.card-top:hover .card-num { color: var(--accent); }
+.card-num-wrap { display: flex; flex-direction: column; gap: 2px; }
+.card-num-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+
+/* カードのメタ行 */
+.card-meta {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 8px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.badge-cat {
+  background: var(--accent); color: var(--paper);
+}
+.badge-date {
+  background: transparent; color: var(--mute);
+  border: 1px solid var(--hair); font-weight: 400;
+}
+.badge-src {
+  background: transparent; color: var(--ink-soft);
+  border: 1px solid var(--hair);
+}
+.src-chips {
+  display: flex; align-items: center; gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+}
+.src-chips::before { content: "SRC ·"; opacity: 0.5; }
+
+/* カードタイトル */
+.card h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800; font-size: 28px; line-height: 1.15;
+  letter-spacing: 0.01em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.card:hover h2 { color: var(--accent-deep); }
+.card-top h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800; font-size: clamp(28px, 3.5vw, 48px); line-height: 1.1;
+  letter-spacing: 0.01em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.card-top:hover h2 { color: var(--accent-deep); }
+
+/* リード */
+.card-lede {
+  font-size: 14px; line-height: 1.7; color: var(--ink-soft);
+}
+
+/* キーポイント（カード内） */
+.card-points { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.card-points li {
+  font-size: 13px; color: var(--ink-soft); line-height: 1.5;
+  padding: 8px 12px 8px 14px;
+  border-left: 2px solid var(--hair);
+  transition: border-color 0.15s, background 0.15s, transform 0.2s var(--ease-spring);
+  cursor: default;
+}
+.card-points li:hover {
+  border-left-color: var(--accent); background: var(--paper-mid);
+  transform: translateX(3px);
+}
+.card-points li strong { font-weight: 600; color: var(--ink); }
+
+/* カードフッター */
+.card-foot {
+  margin-top: auto; padding-top: 16px;
+  border-top: 1px solid var(--hair);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.card-stats {
+  display: flex; align-items: center; gap: 16px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute);
+}
+.card-stat-val { color: var(--ink); font-weight: 700; }
+.card-stat-likes { color: var(--accent); }
+.card-read {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute); display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s, gap 0.2s var(--ease-out);
+}
+.card-read:hover { color: var(--accent); gap: 12px; }
+
+/* スライド画像（カード内） */
+.card-img {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--paper-mid);
+  cursor: zoom-in;
+  transition: border-color 0.2s, box-shadow 0.3s var(--ease-out);
+}
+.card-img::after {
+  content: "⊕";
+  position: absolute; top: 12px; right: 12px;
+  font-size: 18px; color: var(--paper);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  opacity: 0; transition: opacity 0.2s;
+}
+.card-img:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.card-img:hover::after { opacity: 1; }
+.card-img img {
+  width: 100%; display: block;
+  transition: transform 0.5s var(--ease-out);
+}
+.card-img:hover img { transform: scale(1.03); }
+.card-img-cap {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute); padding: 8px 10px;
+  border-top: 1px solid var(--paper-mid); background: var(--paper-deep);
+}
+
+
+/* ============================================================
+   Daily page — detail view (scroll fade)
+   ============================================================ */
+.daily-head { padding: 48px 0 40px; border-bottom: 1px solid var(--hair-dark); }
+.date-huge {
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 900; font-size: clamp(56px, 10vw, 120px);
+  line-height: 0.9; letter-spacing: -0.02em; margin: 16px 0 20px;
+}
+.date-huge .dot { color: var(--accent); }
+.strap {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+}
+.strap .count { color: var(--ink); font-weight: 700; }
+
 .daily-topic {
-  padding: 56px 0;
-  border-bottom: 1px solid var(--paper-deep);
+  padding: 56px 0; border-bottom: 1px solid var(--paper-deep);
   position: relative;
-  /* フェードイン初期状態 */
   opacity: 0; transform: translateY(24px);
-  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out),
-              border-left-color 0.2s;
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
 }
 .daily-topic.is-visible { opacity: 1; transform: translateY(0); }
-
-/* ホバーで左ボーダーが伸びる */
 .daily-topic::before {
   content: ""; position: absolute; left: 0; top: 0;
-  width: 3px; height: 0;
-  background: var(--accent);
+  width: 3px; height: 0; background: var(--accent);
   transition: height 0.4s var(--ease-out);
 }
 .daily-topic:hover::before { height: 100%; }
-
 .daily-topic .container {
-  display: grid;
-  grid-template-columns: 80px 1fr 260px;
-  gap: 40px;
+  display: grid; grid-template-columns: 80px 1fr 260px; gap: 40px;
 }
 
-/* トピック番号 */
 .numeral {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 64px; font-weight: 700; line-height: 1;
-  color: var(--paper-deep);
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 900; font-size: 72px; line-height: 1; color: var(--paper-deep);
   position: relative; top: -8px;
   transition: color 0.25s;
 }
 .daily-topic:hover .numeral { color: var(--accent); }
 .numeral .ord {
   display: block; font-size: 9px; letter-spacing: 0.16em;
-  color: var(--mute); margin-top: 8px; line-height: 1.4;
-  white-space: nowrap;
-  transition: color 0.25s;
+  font-family: "JetBrains Mono", monospace; font-weight: 400;
+  color: var(--mute); margin-top: 8px; line-height: 1.4; white-space: nowrap;
 }
-.daily-topic:hover .numeral .ord { color: var(--accent-deep); }
 
-/* カテゴリライン */
 .cat-line {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 16px;
+  color: var(--accent); margin-bottom: 14px;
 }
 .cat-line .sep { color: var(--mute); margin: 0 8px; }
 
-/* 見出し */
 .main h2 {
-  font-size: 26px; font-weight: 700; line-height: 1.3;
-  margin: 0 0 20px;
-  transition: color 0.2s;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800; font-size: 36px; line-height: 1.15;
+  letter-spacing: 0.01em; text-transform: uppercase;
+  margin: 0 0 20px; transition: color 0.2s;
 }
 .daily-topic:hover .main h2 { color: var(--accent-deep); }
 
-
-/* ============================================================
-   スライド画像 — ズーム＋ライトボックス
-   ============================================================ */
 .slide-img {
-  margin: 24px 0;
-  border: 1px solid var(--paper-deep);
-  overflow: hidden;
-  cursor: zoom-in;
-  position: relative;
+  margin: 24px 0; border: 1px solid var(--paper-mid); overflow: hidden;
+  cursor: zoom-in; position: relative;
   transition: border-color 0.2s, box-shadow 0.3s var(--ease-out);
 }
 .slide-img::after {
-  content: "ZOOM ⊕";
-  position: absolute; bottom: 12px; right: 14px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px; letter-spacing: 0.12em;
-  color: var(--paper); background: rgba(20,19,17,0.72);
-  padding: 4px 8px;
-  opacity: 0; transform: translateY(6px);
+  content: "ZOOM ⊕"; position: absolute; bottom: 12px; right: 14px;
+  font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.1em;
+  color: var(--paper); background: rgba(14,13,11,0.7); padding: 4px 8px;
+  opacity: 0; transform: translateY(4px);
   transition: opacity 0.2s, transform 0.2s var(--ease-out);
 }
-.slide-img:hover {
-  border-color: var(--accent);
-  box-shadow: 0 8px 32px rgba(20,19,17,0.12);
-}
+.slide-img:hover { border-color: var(--accent); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
 .slide-img:hover::after { opacity: 1; transform: translateY(0); }
-.slide-img img {
-  width: 100%; height: auto; display: block;
-  transform-origin: center;
-  transition: transform 0.5s var(--ease-out);
-}
-.slide-img:hover img { transform: scale(1.025); }
+.slide-img img { width: 100%; transition: transform 0.5s var(--ease-out); }
+.slide-img:hover img { transform: scale(1.02); }
 
-
-/* ============================================================
-   リード文 / キーポイント / プル
-   ============================================================ */
-.lede {
-  font-size: 16px; line-height: 1.7;
-  margin: 0 0 28px; color: var(--ink-soft);
-}
+.lede { font-size: 16px; line-height: 1.75; margin: 0 0 28px; color: var(--ink-soft); }
 .main h3 {
-  font-size: 12px; font-family: "JetBrains Mono", monospace;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 10px; font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.18em; text-transform: uppercase;
   margin: 28px 0 12px; color: var(--mute);
 }
 
-/* キーポイントリスト */
 .keypoints { list-style: none; padding: 0; margin: 0 0 28px; }
 .keypoints li {
   padding: 12px 16px 12px 48px; margin-bottom: 2px;
-  background: var(--paper-deep);
-  border-left: 2px solid transparent;
+  background: var(--paper-deep); border-left: 2px solid transparent;
   position: relative; font-size: 14px; line-height: 1.6;
   cursor: default;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease-spring);
+  transition: background 0.15s, border-color 0.15s, transform 0.2s var(--ease-spring);
 }
-.keypoints li:hover {
-  background: #e6e0d4;
-  border-left-color: var(--accent);
-  transform: translateX(4px);
-}
+.keypoints li:hover { background: var(--paper-mid); border-left-color: var(--accent); transform: translateX(4px); }
 .keypoints li::before {
-  content: attr(data-i);
-  position: absolute; left: 16px; top: 12px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px; color: var(--accent); letter-spacing: 0.1em;
-  transition: transform 0.2s var(--ease-spring);
+  content: attr(data-i); position: absolute; left: 16px; top: 12px;
+  font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--accent);
+  letter-spacing: 0.1em; transition: transform 0.2s var(--ease-spring);
 }
 .keypoints li:hover::before { transform: scale(1.3); }
 
-/* ポップアップツールチップ（キーポイント拡大） */
-.keypoints li::after {
-  content: attr(data-i) "  " attr(data-tip);
-  position: absolute; left: 50%; bottom: calc(100% + 8px);
-  transform: translateX(-50%) translateY(6px);
-  background: var(--ink); color: var(--paper);
-  font-family: "JetBrains Mono", monospace; font-size: 11px;
-  letter-spacing: 0.08em; line-height: 1.5;
-  padding: 8px 14px; white-space: nowrap;
-  pointer-events: none; z-index: 100;
-  opacity: 0; transition: opacity 0.18s, transform 0.18s var(--ease-out);
-}
-/* data-tip がある要素だけポップアップ表示 */
-.keypoints li[data-tip]:hover::after {
-  opacity: 1; transform: translateX(-50%) translateY(0);
-}
-
-/* プルクォート */
 .pull {
   padding: 20px 24px; border-left: 3px solid var(--accent);
   background: var(--paper-deep); font-size: 14px; line-height: 1.7;
   color: var(--ink-soft); font-style: italic; margin-top: 28px;
   transition: border-left-width 0.2s, padding-left 0.2s, background 0.2s;
 }
-.pull:hover {
-  border-left-width: 6px; padding-left: 21px;
-  background: #e6e0d4;
-}
+.pull:hover { border-left-width: 6px; padding-left: 21px; background: var(--paper-mid); }
 
-
-/* ============================================================
-   サイドバー
-   ============================================================ */
+/* サイドバー（detail） */
 .side { font-size: 13px; }
 .side dl { margin: 0; }
 .side dt {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--mute); margin: 20px 0 4px;
+  font-family: "JetBrains Mono", monospace; font-size: 9px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+  margin: 20px 0 4px;
 }
 .side dt:first-child { margin-top: 0; }
 .side dd { margin: 0; word-break: break-all; }
 .side dd a {
-  position: relative; display: inline;
   background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0 1px; background-position: 0 100%;
   background-repeat: no-repeat;
   transition: background-size 0.3s var(--ease-out), color 0.2s;
 }
 .side dd a:hover { color: var(--accent); background-size: 100% 1px; }
-
 .likes {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 28px; font-weight: 700; color: var(--accent);
-  display: inline-block;
-  transition: transform 0.3s var(--ease-spring);
+  font-family: "Barlow Condensed", monospace;
+  font-weight: 800; font-size: 32px; color: var(--accent);
+  display: inline-block; transition: transform 0.3s var(--ease-spring);
 }
 .side:hover .likes { transform: scale(1.08); }
-.likes-label {
-  font-size: 11px; color: var(--mute);
-  letter-spacing: 0.1em; text-transform: uppercase;
-}
+.likes-label { font-size: 11px; color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; }
 
 
 /* ============================================================
-   Daily head（日付大文字ページトップ）
-   ============================================================ */
-.daily-head { padding: 56px 0 40px; border-bottom: 1px solid var(--hair); }
-.date-huge {
-  font-family: "JetBrains Mono", monospace;
-  font-size: clamp(48px, 10vw, 112px);
-  font-weight: 700; line-height: 0.9;
-  letter-spacing: -0.03em; margin: 0 0 24px;
-}
-.date-huge .dot { color: var(--accent); }
-.strap {
-  display: flex; gap: 32px; flex-wrap: wrap;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 13px; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--mute);
-}
-.strap .count { color: var(--ink); font-weight: 700; }
-
-
-/* ============================================================
-   Archive grid — リフトカード
+   Archive grid
    ============================================================ */
 .archive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px;
 }
 .archive-card {
   padding: 24px; background: var(--paper-deep);
   display: flex; flex-direction: column; gap: 8px;
   position: relative; overflow: hidden;
-  transition: background 0.2s, transform 0.3s var(--ease-out),
-              box-shadow 0.3s var(--ease-out);
+  transition: background 0.2s, transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 .archive-card::before {
   content: ""; position: absolute; bottom: 0; left: 0; right: 0;
@@ -456,26 +568,16 @@ img { max-width: 100%; display: block; }
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.3s var(--ease-out);
 }
-.archive-card:hover {
-  background: #e5dfd5;
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(20,19,17,0.10);
-  z-index: 1;
-}
+.archive-card:hover { background: var(--paper-mid); transform: translateY(-5px); box-shadow: 0 14px 36px rgba(14,13,11,0.09); z-index: 1; }
 .archive-card:hover::before { transform: scaleX(1); }
 .archive-card .d {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 22px; font-weight: 700;
+  font-family: "Barlow Condensed", monospace; font-weight: 800; font-size: 24px;
   transition: color 0.2s;
 }
 .archive-card:hover .d { color: var(--accent); }
 .archive-card .n {
-  font-size: 12px; color: var(--mute);
-  font-family: "JetBrains Mono", monospace;
-  letter-spacing: 0.1em; text-transform: uppercase;
-}
-.archive-card .topics {
-  font-size: 13px; color: var(--ink-soft); margin-top: 4px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
 }
 
 
@@ -484,84 +586,68 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 footer {
   padding: 48px 0; border-top: 2px solid var(--ink);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--mute);
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
 }
-footer .row {
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 16px;
-}
-footer .brand {
-  color: var(--ink); font-weight: 700; font-size: 13px;
-  transition: color 0.2s;
-}
+footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+footer .brand { color: var(--ink); font-weight: 700; font-size: 14px; transition: color 0.2s; }
 footer .brand:hover { color: var(--accent); }
 
 
 /* ============================================================
-   Lightbox — スムーズオープン
+   Lightbox
    ============================================================ */
 .lightbox-overlay {
   display: flex; align-items: center; justify-content: center;
   position: fixed; inset: 0; padding: 24px;
-  background: rgba(20,19,17,0.0);
-  z-index: 1000;
-  pointer-events: none;
+  background: rgba(14,13,11,0); z-index: 1000; pointer-events: none;
   transition: background 0.3s;
 }
-.lightbox-overlay.is-open {
-  background: rgba(20,19,17,0.92);
-  pointer-events: auto;
-}
+.lightbox-overlay.is-open { background: rgba(14,13,11,0.93); pointer-events: auto; }
 .lightbox-overlay img {
   max-width: 100%; max-height: 90vh; object-fit: contain;
   opacity: 0; transform: scale(0.93);
   transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
-.lightbox-overlay.is-open img {
-  opacity: 1; transform: scale(1);
-}
+.lightbox-overlay.is-open img { opacity: 1; transform: scale(1); }
 .lightbox-close {
   position: absolute; top: 20px; right: 24px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 13px; letter-spacing: 0.1em;
-  color: var(--paper); cursor: pointer;
-  background: none; border: 1px solid rgba(247,245,242,0.25);
-  text-transform: uppercase; padding: 6px 14px;
+  font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.1em;
+  color: var(--paper); cursor: pointer; background: none;
+  border: 1px solid rgba(247,245,242,0.3); text-transform: uppercase; padding: 6px 14px;
   transition: background 0.2s, border-color 0.2s;
 }
-.lightbox-close:hover {
-  background: var(--accent); border-color: var(--accent);
-}
-
-
-/* ============================================================
-   Scroll fade-in observer — JS で .is-visible を付与
-   ============================================================ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.lightbox-close:hover { background: var(--accent); border-color: var(--accent); }
 
 
 /* ============================================================
    Responsive
    ============================================================ */
+@media (max-width: 1100px) {
+  .dispatch-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .card-top { grid-template-columns: 1fr; }
+}
 @media (max-width: 900px) {
-  .hero .grid { grid-template-columns: 1fr; }
-  .hero .aside { display: none; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .dispatch-grid.cols-3 { grid-template-columns: 1fr; }
   .daily-topic .container { grid-template-columns: 1fr; }
-  .numeral { font-size: 36px; }
+  .numeral { font-size: 40px; }
   .side { border-top: 1px solid var(--paper-deep); padding-top: 24px; }
   .nav-toggle { display: flex; }
-  .main-nav {
-    display: none; position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--paper); border-bottom: 1px solid var(--hair);
-    padding: 16px 32px; z-index: 100;
+  .masthead nav { display: none; }
+  .masthead nav.is-open {
+    display: flex; flex-direction: column; align-items: stretch;
+    position: absolute; top: 56px; left: 0; right: 0;
+    background: var(--paper); border-bottom: 1px solid var(--hair-dark);
+    padding: 8px 0; z-index: 100;
   }
-  .main-nav.is-open { display: flex; flex-direction: column; gap: 16px; }
-  .main-nav a { margin-left: 0; }
-  .masthead { position: sticky; }
+  .masthead nav.is-open a { height: 44px; border: none; }
+  .masthead { position: relative; }
   .dispatch .row { animation: none; }
+  .hero-stat { padding: 16px 20px; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  .hero h1 { font-size: 18vw; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
 }

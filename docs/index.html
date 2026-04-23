@@ -7,47 +7,41 @@
 <meta name="description" content="山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <body>
-<div class="dispatch">
-  <div class="container row">
-    <span class="tick">VIGIL №0423</span>
-    <span class="sep">/</span>
-    <span>2026-04-23</span>
-    <span class="sep">/</span>
-    <span>MORNING EDITION</span>
-    <span class="sep">/</span>
-    <span>8 ITEMS</span>
-    <span class="sep">/</span>
-    <span>BUILD 20260423.0715</span>
-    <span class="sep">/</span>
-    <span class="live">LIVE</span>
-    <span class="sep">/</span>
-    <span>CURATED BY 山中秀斗</span>
-  </div>
-</div>
+<div class="dispatch"><div class="container row"><span class="tick">VIGIL №0424</span><span class="sep">/</span><span>2026-04-24</span><span class="sep">/</span><span>MORNING EDITION</span><span class="sep">/</span><span>3 ITEMS</span><span class="sep">/</span><span>BUILD 20260424.0715</span><span class="sep">/</span><span class="live">LIVE</span><span class="sep">/</span><span>CURATED BY 山中秀斗</span></div></div>
 <header class="masthead">
   <div class="container row">
-    <a href="./" class="wordmark"><span class="bar"></span>VIGIL</a>
-    <button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+    <a href="./" class="wordmark">
+      <span class="dot-red"></span>VIGIL
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニュー"
+            aria-expanded="false" aria-controls="main-nav">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
     <nav class="main-nav" id="main-nav">
-      <a href="./">HOME</a>
-      <a href="./news/2026-04-23/">TODAY</a>
+      <a href="./news/2026-04-24/">TODAY</a>
       <a href="./#archive">ARCHIVE</a>
+      <a href="./#archive">BRIEFINGS</a>
+      <a href="./#about">SOURCES</a>
       <a href="./#about">ABOUT</a>
-</nav>
-    <div class="meta">JST · 07:15 · THU</div>
+    </nav>
+    <a href="#" class="subscribe-btn">SUBSCRIBE · 07:15 DAILY →</a>
+    <div class="meta">JST · 07:15 · FRI</div>
   </div>
 </header>
 <script>
 (function(){
   var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
   if(!btn||!nav)return;
-  function setOpen(o){btn.setAttribute('aria-expanded',o?'true':'false');nav.classList.toggle('is-open',o);}
+  function setOpen(o){
+    btn.setAttribute('aria-expanded',o?'true':'false');
+    nav.classList.toggle('is-open',o);
+  }
   btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
@@ -56,49 +50,103 @@
 
 <section class="hero">
   <div class="container">
-    <div class="grid">
-      <div>
-        <div class="eyebrow">MORNING DISPATCH <span class="dot">·</span> 2026-04-23 <span class="dot">·</span> ISSUE N°0423</div>
-        <h1>VIGIL<br><span style="font-size:0.45em;letter-spacing:0.08em;color:var(--mute);">AI INTELLIGENCE</span></h1>
-      </div>
-      <aside class="aside">
-        <p>山中秀斗が毎朝整理する AI 業界のモーニングディスパッチ。</p>
-        <p>ニュース・ツール・論文・良質な情報を、朝刊として一枚に。</p>
-      </aside>
+    <div class="hero-meta-line">
+      <span>MORNING DISPATCH</span>
+      <span class="sep">//</span>
+      <span>FRI, APRIL 24, 2026</span>
+      <span class="sep">//</span>
+      <span>ISSUE N°0424</span>
+      <span class="sep">//</span>
+      <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
     </div>
-    <div class="hero-strap">
-      <span><span class="k">08</span>TODAY</span>
-      <span><span class="k">1</span>DAYS</span>
-      <span>SINCE 2026-04-23</span>
-      <span>07:15 JST DAILY</span>
+    <div class="hero-title-wrap">
+      <h1>VIGIL</h1>
+      <div class="hero-issue">N°0424</div>
     </div>
+    <hr class="hero-divider" />
+    <div class="hero-tagline">
+      AI業界で<em>昨夜起きたこと</em>を、毎朝<em>07:15 JST</em>に。
+      ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
+    </div>
+    <div class="hero-stats">
+  <div class="hero-stat">
+    <div class="hero-stat-val">03</div>
+    <div class="hero-stat-label">TODAY</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-val">5</div>
+    <div class="hero-stat-label">BRIEFINGS / 30D</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-val">3</div>
+    <div class="hero-stat-label">ARCHIVE</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-val">8</div>
+    <div class="hero-stat-label">DELIVERED</div>
+  </div>
+</div>
   </div>
 </section>
 
 <section class="section" id="today">
   <div class="container">
     <div class="section-head">
-      <div class="title">
-        <span class="en">§01 · Today's Dispatch</span>
-        <h2>本日のAIニュース</h2>
+      <div class="section-label">
+        <span class="num">§01</span>
+        <h2>Today · Dispatch<span class="sub">今朝の配信</span></h2>
       </div>
-      <a href="./news/2026-04-23/" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">ALL 8 ITEMS →</a>
+      <a href="./news/2026-04-24/" class="section-link">ALL 3 ITEMS →</a>
     </div>
   </div>
+  <div class="dispatch-grid cols-1">
+<div class="card-top">
+  <div>
+    <div class="card-num-wrap">      <div class="card-num">01</div>      <div class="card-num-label">TOP STORY</div>    </div>
+    <div class="card-meta"><span class="badge badge-cat">新モデル発表</span><span class="badge badge-date">2026-04-24</span><span class="src-chips">@OpenAI</span></div>
+    <h2>ChatGPT Images 2.0 発表 — 文字・UIが崩れない「thinking-level」画像モデル</h2>
+    <p class="card-lede">OpenAIが新世代画像生成モデル「ChatGPT Images 2.0」（内部コード名 telepathy）を正式発表。最大2K解像度で、細かい文字・UI要素・複雑なレイアウトを崩さずに描画できる推論型モデル。</p>
+    <ul class="card-points"><li>最大2K解像度・文字・UI・密度の高い構図でも破綻しにくい</li><li>"thinking"（推論）で指示追従性が大幅向上</li><li>ChatGPT（Proプラン$200含む）で即日利用可能</li></ul>
+    <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">21,440</span></span><span>SHR <span class="card-stat-val">4.2M</span></span></div><a href="./news/2026-04-24/#topic-1" class="card-read">READ →</a></div>
+  </div>
+  
+</div>
+</div>
+<div class="dispatch-grid cols-3">
+<div class="card">
+  <div class="card-num">02</div>
+  <div class="card-meta"><span class="badge badge-cat">ツール更新</span><span class="badge badge-date">2026-04-24</span><span class="src-chips">@sama</span></div>
+  <h2>OpenAI Codex、MAU 4M突破+レート上限リセット</h2>
+  
+  <p class="card-lede">Codexでタスクを中断していた人は、今週もう一度踏み込めるタイミング。受講生向けには「今週はCodexを使い倒すチャンス」として伝えられるタイムセンシティブ情報。</p>
+  <ul class="card-points"><li>レート上限全アカウント一斉リセット</li><li>MAU 4M突破、長時間エージェント運用が定着</li></ul>
+  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">23,499</span></span><span>SHR <span class="card-stat-val">412K</span></span></div><a href="./news/2026-04-24/#topic-2" class="card-read">READ →</a></div>
+</div>
+<div class="card">
+  <div class="card-num">03</div>
+  <div class="card-meta"><span class="badge badge-cat">業界動向</span><span class="badge badge-date">2026-04-24</span><span class="src-chips">@cursor_ai</span></div>
+  <h2>Cursor × SpaceX 提携 — Composerを「現実の難コード」で強化</h2>
+  
+  <p class="card-lede">Cursor Composerの完成度が上がると従量課金を回避しつつ高速という選択肢が現実になる。コスト重視派には中期的に重要な材料。</p>
+  <ul class="card-points"><li>Composerモデルを実運用コードで再訓練</li><li>従来APIコスト回避の現実解に</li></ul>
+  <div class="card-foot"><div class="card-stats"><span>♥ <span class="card-stat-val card-stat-likes">11,483</span></span><span>SHR <span class="card-stat-val">318K</span></span></div><a href="./news/2026-04-24/#topic-3" class="card-read">READ →</a></div>
+</div>
+</div>
+
 </section>
 
 <section class="section" id="archive">
   <div class="container">
     <div class="section-head">
-      <div class="title">
-        <span class="en">§02 · Archive</span>
-        <h2>過去のディスパッチ</h2>
+      <div class="section-label">
+        <span class="num">§02</span>
+        <h2>Archive<span class="sub">過去のディスパッチ</span></h2>
       </div>
     </div>
     <div class="archive-grid">
-    <a href="./news/2026-04-23/" class="archive-card">
-      <div class="d">2026-04-23</div>
-      <div class="n">THU · MORNING DISPATCH</div>
+    <a href="./news/2026-04-24/" class="archive-card">
+      <div class="d">2026-04-24</div>
+      <div class="n">FRI · MORNING DISPATCH</div>
     </a>
     </div>
   </div>
@@ -107,13 +155,18 @@
 <section class="section" id="about">
   <div class="container">
     <div class="section-head">
-      <div class="title">
-        <span class="en">§03 · About</span>
-        <h2>VIGILについて</h2>
+      <div class="section-label">
+        <span class="num">§03</span>
+        <h2>About<span class="sub">VIGILについて</span></h2>
       </div>
     </div>
-    <p style="max-width:640px;color:var(--ink-soft);">毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
-    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);">PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
+    <p style="max-width:600px;color:var(--ink-soft);line-height:1.8;">
+      毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。
+      人間の介入ほぼゼロで動くモーニングディスパッチです。
+    </p>
+    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);">
+      PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES
+    </p>
   </div>
 </section>
 
@@ -121,7 +174,7 @@
   <div class="container row">
     <span class="brand">VIGIL</span>
     <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
-    <span>2026-04-23</span>
+    <span>2026-04-24</span>
   </div>
 </footer>
 
@@ -132,41 +185,42 @@
 <script>
 (function(){
   /* --- Lightbox --- */
-  var overlay=document.getElementById('lightbox');
-  var img=document.getElementById('lightbox-img');
-  var close=document.getElementById('lightbox-close');
+  var overlay = document.getElementById('lightbox');
+  var img     = document.getElementById('lightbox-img');
+  var close   = document.getElementById('lightbox-close');
+
   document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click',function(){
-      img.src='';
+    el.addEventListener('click', function(){
+      img.src = '';
       overlay.classList.add('is-open');
-      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; }, 20);
+      setTimeout(function(){ img.src = el.dataset.src; img.alt = el.dataset.alt || ''; }, 20);
     });
   });
   function closeBox(){
-    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    img.style.opacity = '0'; img.style.transform = 'scale(0.93)';
     setTimeout(function(){
       overlay.classList.remove('is-open');
-      img.src=''; img.style.opacity=''; img.style.transform='';
+      img.src = ''; img.style.opacity = ''; img.style.transform = '';
     }, 300);
   }
-  close.addEventListener('click',closeBox);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+  close.addEventListener('click', closeBox);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeBox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeBox(); });
 
-  /* --- Scroll fade-in --- */
+  /* --- Scroll fade-in (.daily-topic) --- */
   var topics = document.querySelectorAll('.daily-topic');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
       });
-    },{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold: 0.07, rootMargin: '0px 0px -32px 0px'});
     topics.forEach(function(el){ io.observe(el); });
   } else {
     topics.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* --- Dispatch ticker duplicate --- */
+  /* --- Dispatch ticker: seamless duplicate --- */
   var row = document.querySelector('.dispatch .row');
   if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
 })();
