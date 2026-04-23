@@ -1,138 +1,137 @@
 [
   {
-    "title": "OpenAI、医療専門家向け無料ChatGPT提供開始",
-    "category": "ツール更新",
-    "source": "OpenAI Blog",
-    "lede": "OpenAIが検証済みの米国医師・看護師・薬剤師向けにChatGPTを無料化し、臨床記録作成や研究支援を実現。",
-    "keypoints": [
-      "医療専門家向け無料提供開始",
-      "臨床ケア・文書作成・研究に対応",
-      "米国の医療者が対象",
-      "検証プロセスによる信頼性確保"
-    ],
-    "pull": "医療現場でのAI活用を加速させ、専門家の負担軽減を実現する戦略的展開。",
-    "links": [
-      "https://openai.com/index/making-chatgpt-better-for-clinicians"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "OpenAI、ワークスペースエージェント正式リリース",
+    "title": "OpenAIがGPT-5.5を発表、スーパーアプリへ一歩前進",
     "category": "新モデル発表",
-    "source": "OpenAI Blog",
-    "lede": "ChatGPTにコードキサー搭載のエージェント機能を統合。複雑なワークフロー自動化とツール連携を実現。",
+    "source": "TechCrunch AI",
+    "lede": "OpenAIが最新モデルGPT-5.5を発表。より高速で直感的、コーディングや研究に対応し、スーパーアプリ構想に近づく。",
     "keypoints": [
-      "クラウドベースのエージェント機能",
-      "複数ツール統合による業務自動化",
-      "チームレベルでのスケーリング対応",
-      "セキュアな運用環境"
+      "前世代より高速かつ少ないトークン数で処理",
+      "複雑なタスク対応でエージェント型へ進化",
+      "ChatGPT・Codex・AIブラウザの統合目指す",
+      "企業向けと消費者向けの新しいフロンティア"
     ],
-    "pull": "エンタープライズ向けのAIエージェントが実務化段階へ。業務効率化の新局面。",
+    "pull": "「これはより敏捷で直感的なコンピューティングへの実質的なステップ。複数のステップがこれからも続く」（Greg Brockman）",
     "links": [
-      "https://openai.com/index/introducing-workspace-agents-in-chatgpt",
-      "https://openai.com/academy/workspace-agents"
+      "https://techcrunch.com/2026/04/23/openai-chatgpt-gpt-5-5-ai-model-superapp/"
     ],
     "likes": 0
   },
   {
-    "title": "Google、AI時代向けTPU8T/8i発表",
+    "title": "Google、第8世代TPU「8i」「8t」を発表しAIエージェント時代へ対応",
     "category": "新モデル発表",
     "source": "Google AI Blog",
-    "lede": "Googleが第8世代TPUの2つの専用チップを発表。エージェント型AI向けの処理最適化を実現。",
+    "lede": "GoogleがAIエージェント向けに特化した2種類のTPU（8i・8t）を発表。複数ステップのワークフロー実行を高速化。",
     "keypoints": [
-      "第8世代TPU2種類発表",
-      "エージェント型AI専用最適化",
-      "クラウドネクスト2026で公開",
-      "AI推論効率向上"
+      "TPU 8iはAIエージェントの推論・計画・実行を最適化",
+      "TPU 8tは大規模モデル学習に対応する単一メモリプール",
+      "エージェントAI大衆化の基盤インフラ整備",
+      "121エクサフロップスのコンピュート能力"
     ],
-    "pull": "専用TPUによるエージェント型AI時代への本格対応。インフラの競争が加速。",
+    "pull": "「推論を早く、計画を立てられ、実行できる──エージェントには複数ステップの動作が不可欠」",
     "links": [
       "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
     ],
     "likes": 0
   },
   {
-    "title": "Eraが1100万ドル調達、AIウェアラブル向けプラットフォーム展開",
+    "title": "Sierra、AI統合企業Fragment買収で フランス展開を強化",
     "category": "業界動向",
-    "source": "TechCrunch",
-    "lede": "AIハードウェア向けソフトウェアプラットフォームのEraが1100万ドル資金調達。眼鏡やリングなど多様なフォームファクター対応。",
+    "source": "TechCrunch AI",
+    "lede": "Bret Taylor率いるSierraが、YC出身のフランス企業Fragmentを買収。3月のOpera Tech・Receptive AI買収に続く3件目の買収。",
     "keypoints": [
-      "1100万ドルの資金調達実施",
-      "眼鏡・リング・ペンダント型対応",
-      "複数フォームファクター戦略",
-      "AIウェアラブル市場拡大"
+      "Fragment創業者がSierraチームに参画",
+      "AIをワークフローに統合するソリューション強化",
+      "フランスでのエージェント開発能力向上",
+      "Sierra自体は$10B評価で$630M調達済み"
     ],
-    "pull": "AIハードウェアの多様化時代へ。統一プラットフォームの必要性が現実化。",
+    "pull": "「Moindrot氏とGenthial氏はエージェント開発能力に貴重な強みをもたらす」",
     "links": [
-      "https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/"
+      "https://techcrunch.com/2026/04/23/bret-taylors-sierra-buys-yc-backed-ai-startup-fragment/"
     ],
     "likes": 0
   },
   {
-    "title": "企業AI導入にはデータ基盤整備が必須",
-    "category": "業界動向",
-    "source": "MIT Technology Review",
-    "lede": "MITレビューが指摘。エンタープライズAI展開にはコパイロット・エージェント導入前のデータ基盤構築が鍵。",
+    "title": "MIT Tech Review、AI業界で今注目すべき10のテーマを列挙",
+    "category": "研究",
+    "source": "MIT Tech Review AI",
+    "lede": "MIT Tech Reviewがビジネス価値と動向を踏まえた「今のAI」10要素を発表。LLMs+、人型ロボット学習、詐欺高度化、世界モデルなど。",
     "keypoints": [
-      "データ基盤の重要性を強調",
-      "サプライチェーン・金融対応",
-      "実験段階から実運用へ移行",
-      "構造的な基盤整備が必須"
+      "LLMs+（効率化・マルチステップ対応）が次フロンティア",
+      "人型ロボット学習データとしての動画利用拡大",
+      "AI活用詐欺・フィッシング攻撃の加速化",
+      "Mixture-of-Expertsなど効率化アーキテクチャ台頭"
     ],
-    "pull": "AI導入成功の70%はデータ基盤。基礎設備の見直しが企業競争力を左右する。",
+    "pull": "「LLMの低コスト化と長期自律動作がAIの次段階。だが低コスト化は犯罪者にも利益をもたらす」",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135643/10-ai-artificial-intelligence-trends-technologies-research-2026/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Google Ads Advisor、エージェント型安全機能3つを追加",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "Google Adsが方針違反検出・24時間セキュリティ監視・自動認定機能をAI化。複雑な手続きを数秒に短縮。",
+    "keypoints": [
+      "複雑な方針違反をフラグ立て・ガイダンス提供",
+      "24時間セキュリティ監視とパーソナライズド提案",
+      "認定手続き自動化で数週間を数秒に圧縮",
+      "Gemini活用で管理負荷大幅削減"
+    ],
+    "pull": "「キャンペーン管理の時間を減らし、ビジネス成長に集中できる」",
+    "links": [
+      "https://blog.google/products/ads-commerce/ads-advisor-google-ads/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "エンタープライズAI成功の鍵は「データファブリック」--SAP分析",
+    "category": "業界動向",
+    "source": "MIT Tech Review AI",
+    "lede": "AIが組織に浸透する中、成功の障壁はモデル性能ではなくデータの品質と文脈化。ビジネスコンテキストなしの高速判断は危険。",
+    "keypoints": [
+      "AIの成功率はデータ文脈化に依存",
+      "コンテキストなし高速判断はROI損失の原因",
+      "データファブリックは統合以上の機能が必須",
+      "年末までに半数企業が3機能以上にAI導入"
+    ],
+    "pull": "「スピード無き判断は害になる。判断品質がROIを生む」（SAP CPO Irfan Khan）",
     "links": [
       "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
     ],
     "likes": 0
   },
   {
-    "title": "AI駆動開発が実務化、生産性3倍化の現実",
-    "category": "業界動向",
-    "source": "Zenn",
-    "lede": "日本企業事例。エンジニア1人がAIエージェント従えて従来3人チームの仕事完遂。実装からレビューまでAI化進展。",
-    "keypoints": [
-      "3人チーム相当の業務を1人化",
-      "コード実装・テスト・要件定義AI対応",
-      "1年で開発スタイル大幅変化",
-      "レビュー・要件定義に人間介入"
-    ],
-    "pull": "AI駆動開発で生産性3倍。ただし人間の役割は品質判断へシフト必須。",
-    "links": [
-      "https://zenn.dev/dely_jp/articles/a686fcca32ba41"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "生成AI詐欺が急増、セキュリティ課題顕在化",
-    "category": "その他",
-    "source": "MIT Technology Review",
-    "lede": "ChatGPT公開以来、生成AIを悪用した詐欺が急増。テキスト生成能力の負の側面が社会課題化。",
-    "keypoints": [
-      "詐欺悪用が急増傾向",
-      "大量テキスト生成の危険性",
-      "セキュリティ対策重要化",
-      "規制議論の加速"
-    ],
-    "pull": "AI民主化がもたらした光と影。セキュリティ対応が企業責任の中心課題に。",
-    "links": [
-      "https://www.technologyreview.com/2026/04/21/1135647/supercharged-scams-ai-artificial-intelligence/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "Googleがオーストリアにアルプス初データセンター投資",
-    "category": "業界動向",
+    "title": "GoogleのTPU、121エクサフロップスで前世代比2倍の帯域幅実現",
+    "category": "ツール更新",
     "source": "Google AI Blog",
-    "lede": "Googleがオーストリアのアルプス地域に初のデータセンター建設を発表。欧州でのAI基盤強化戦略。",
+    "lede": "Google、AI専用チップTPUの最新世代スペック公開。10年以上前から開発を重ね、大規模数学演算を高速処理。",
     "keypoints": [
-      "アルプス地域初投資",
-      "欧州インフラ拡充戦略",
-      "地域データセンター需要対応",
-      "地政学的な基盤構築"
+      "TPUは10年以上前からAI専用設計",
+      "121エクサフロップスのコンピュート能力",
+      "前世代比で帯域幅が2倍に拡張",
+      "複雑な数学演算を超高速化"
     ],
-    "pull": "AI大手によるグローバルデータセンター争い激化。地域別戦略が競争軸に。",
+    "pull": "「AIモデルは膨大な計算が必要。TPUはそれを超高速にこなす」",
     "links": [
-      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/"
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/what-is-a-tpu/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Era、AI小型デバイス向けソフトプラットフォームで$11M調達",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "EraがAI対応眼鏡・リング・ペンダント向けソフトウェアプラットフォームで$11M調達。Abstract VenturesとBoxGroupがリード。",
+    "keypoints": [
+      "多形態AIハードウェア対応が前提",
+      "ハードウェアメーカー向けのプラットフォーム提供",
+      "カスタム音声やデバイス知能追加が可能",
+      "アーティスト向けデモキットで試作品検証"
+    ],
+    "pull": "「スマートフォンに次ぐAIデバイスは単一形態ではなく多様化する」",
+    "links": [
+      "https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/"
     ],
     "likes": 0
   }
