@@ -2,6 +2,7 @@
    VIGIL — AI Morning Intelligence
    Design: Editorial paper × terminal dispatch × TREPRO brand
    Brand: #F10903 (TREPRO Red) / #F7F5F2 (paper) / #141311 (ink)
+   v2 — Dynamic interactions
    ============================================================== */
 
 :root {
@@ -16,6 +17,8 @@
   --highlight:    #FFE135;
   --mono-tint:    #3d3630;
   --max:          1320px;
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * { box-sizing: border-box; }
@@ -35,59 +38,132 @@ body {
   background-size: 4px 4px;
 }
 a { color: inherit; text-decoration: none; }
-a:hover { color: var(--accent); }
 img { max-width: 100%; display: block; }
 .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
 
-/* ---------- Dispatch ribbon ---------- */
+
+/* ============================================================
+   Dispatch ribbon — スクロールティッカー
+   ============================================================ */
 .dispatch {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--paper); background: var(--ink);
-  padding: 10px 0; border-bottom: 2px solid var(--ink);
+  padding: 10px 0; border-bottom: 2px solid var(--accent);
+  overflow: hidden;
 }
-.dispatch .row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.dispatch .row {
+  display: flex; gap: 24px; align-items: center;
+  animation: ticker 40s linear infinite;
+  white-space: nowrap;
+}
+.dispatch .row:hover { animation-play-state: paused; }
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* ティッカーは同じ内容を2連結してループさせるため、row内を2倍にする手法 */
 .dispatch .tick { color: var(--highlight); }
-.dispatch .sep { opacity: 0.35; }
-.dispatch .live { color: var(--accent); font-weight: 700; }
-.dispatch .live::before {
-  content: "●"; display: inline-block; margin-right: 6px;
-  animation: blink 2s steps(2, end) infinite;
+.dispatch .sep  { opacity: 0.35; }
+.dispatch .live {
+  color: var(--accent); font-weight: 700;
+  display: inline-flex; align-items: center; gap: 6px;
 }
-@keyframes blink { 50% { opacity: 0.2; } }
+.dispatch .live::before {
+  content: "●"; font-size: 8px;
+  animation: blink 1.4s steps(2, end) infinite;
+}
+@keyframes blink { 50% { opacity: 0.15; } }
 
-/* ---------- Masthead ---------- */
-.masthead { border-bottom: 1px solid var(--hair); padding: 28px 0 24px; }
-.masthead .row { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; }
+
+/* ============================================================
+   Masthead
+   ============================================================ */
+.masthead {
+  border-bottom: 1px solid var(--hair);
+  padding: 28px 0 24px;
+  position: sticky; top: 0; z-index: 200;
+  background: var(--paper);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.masthead::after {
+  content: "";
+  position: absolute; bottom: -1px; left: 0; width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.6s var(--ease-out);
+}
+.masthead:hover::after { width: 100%; }
+
+.masthead .row {
+  display: flex; align-items: baseline;
+  justify-content: space-between; gap: 32px;
+}
 .masthead .wordmark {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 700; font-size: 26px; letter-spacing: 0.12em; line-height: 1;
-  text-transform: uppercase;
+  font-weight: 700; font-size: 26px;
+  letter-spacing: 0.12em; line-height: 1; text-transform: uppercase;
+  transition: letter-spacing 0.25s var(--ease-out);
 }
+.masthead .wordmark:hover { letter-spacing: 0.22em; }
 .masthead .wordmark .bar {
   display: inline-block; width: 14px; height: 14px;
-  background: var(--accent); margin-right: 10px; transform: translateY(-1px);
+  background: var(--accent); margin-right: 10px;
+  transform: translateY(-1px);
+  transition: transform 0.25s var(--ease-spring), background 0.2s;
+}
+.masthead .wordmark:hover .bar {
+  transform: translateY(-1px) rotate(45deg);
+  background: var(--accent-deep);
 }
 .masthead .meta {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute);
 }
 .masthead nav a {
   font-family: "JetBrains Mono", monospace;
   font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-  margin-left: 22px; padding-bottom: 2px; border-bottom: 1px solid transparent;
+  margin-left: 22px; padding-bottom: 2px;
+  position: relative;
 }
-.masthead nav a:hover { border-bottom-color: var(--accent); }
+.masthead nav a::after {
+  content: ""; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.25s var(--ease-out);
+}
+.masthead nav a:hover { color: var(--accent); }
+.masthead nav a:hover::after { transform: scaleX(1); }
+
+/* ハンバーガー */
 .nav-toggle {
   display: none; width: 44px; height: 44px; padding: 0; background: none;
   border: 1px solid var(--ink); cursor: pointer;
-  align-items: center; justify-content: center; flex-direction: column; gap: 5px; flex-shrink: 0;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 5px; flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
 }
-.nav-toggle-bar { width: 18px; height: 2px; background: var(--ink); display: block; }
+.nav-toggle:hover { background: var(--ink); }
+.nav-toggle:hover .nav-toggle-bar { background: var(--paper); }
+.nav-toggle-bar {
+  width: 18px; height: 2px; background: var(--ink); display: block;
+  transition: background 0.2s;
+}
 
-/* ---------- Hero ---------- */
-.hero { padding: 64px 0 56px; border-bottom: 1px solid var(--hair); }
-.hero .grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: end; margin-bottom: 40px; }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--hair);
+  overflow: hidden;
+}
+.hero .grid {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 48px; align-items: end; margin-bottom: 40px;
+}
 .hero .eyebrow {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -99,7 +175,16 @@ img { max-width: 100%; display: block; }
   font-weight: 700; line-height: 0.92; letter-spacing: -0.02em;
   text-transform: uppercase; margin: 0;
 }
-.hero .aside { padding: 28px; border: 1px solid var(--hair); background: var(--paper-deep); }
+.hero .aside {
+  padding: 28px; border: 1px solid var(--hair);
+  background: var(--paper-deep);
+  transition: border-color 0.25s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.hero .aside:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(20,19,17,0.08);
+}
 .hero .aside p { margin: 0 0 12px; color: var(--ink-soft); font-size: 14px; }
 .hero .aside p:last-child { margin: 0; }
 .hero-strap {
@@ -108,65 +193,197 @@ img { max-width: 100%; display: block; }
   font-family: "JetBrains Mono", monospace;
   font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute);
 }
-.hero-strap .k { color: var(--ink); font-weight: 700; font-size: 20px; margin-right: 6px; }
+.hero-strap .k {
+  color: var(--ink); font-weight: 700; font-size: 20px; margin-right: 6px;
+  display: inline-block;
+  transition: color 0.2s, transform 0.3s var(--ease-spring);
+}
+.hero-strap > span:hover .k { color: var(--accent); transform: scale(1.15); }
 
-/* ---------- Section ---------- */
+
+/* ============================================================
+   Section
+   ============================================================ */
 .section { padding: 64px 0; border-bottom: 1px solid var(--hair); }
-.section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; }
+.section-head {
+  display: flex; align-items: baseline;
+  justify-content: space-between; margin-bottom: 40px;
+}
 .section-head .title .en {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
-  display: block; margin-bottom: 8px;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--mute); display: block; margin-bottom: 8px;
 }
 .section-head .title h2 { margin: 0; font-size: 28px; font-weight: 700; }
 
-/* ---------- News card (daily topic) ---------- */
-.daily-topic { padding: 56px 0; border-bottom: 1px solid var(--paper-deep); }
-.daily-topic .container { display: grid; grid-template-columns: 80px 1fr 260px; gap: 40px; }
+
+/* ============================================================
+   Daily topic card — スクロールフェードイン
+   ============================================================ */
+.daily-topic {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--paper-deep);
+  position: relative;
+  /* フェードイン初期状態 */
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out),
+              border-left-color 0.2s;
+}
+.daily-topic.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ホバーで左ボーダーが伸びる */
+.daily-topic::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 3px; height: 0;
+  background: var(--accent);
+  transition: height 0.4s var(--ease-out);
+}
+.daily-topic:hover::before { height: 100%; }
+
+.daily-topic .container {
+  display: grid;
+  grid-template-columns: 80px 1fr 260px;
+  gap: 40px;
+}
+
+/* トピック番号 */
 .numeral {
   font-family: "JetBrains Mono", monospace;
-  font-size: 64px; font-weight: 700; line-height: 1; color: var(--paper-deep);
+  font-size: 64px; font-weight: 700; line-height: 1;
+  color: var(--paper-deep);
   position: relative; top: -8px;
+  transition: color 0.25s;
 }
+.daily-topic:hover .numeral { color: var(--accent); }
 .numeral .ord {
   display: block; font-size: 9px; letter-spacing: 0.16em;
   color: var(--mute); margin-top: 8px; line-height: 1.4;
   white-space: nowrap;
+  transition: color 0.25s;
 }
+.daily-topic:hover .numeral .ord { color: var(--accent-deep); }
+
+/* カテゴリライン */
 .cat-line {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 16px;
 }
 .cat-line .sep { color: var(--mute); margin: 0 8px; }
-.main h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin: 0 0 20px; }
-.slide-img {
-  margin: 24px 0; border: 1px solid var(--paper-deep); overflow: hidden;
-  cursor: pointer; transition: border-color 0.2s;
+
+/* 見出し */
+.main h2 {
+  font-size: 26px; font-weight: 700; line-height: 1.3;
+  margin: 0 0 20px;
+  transition: color 0.2s;
 }
-.slide-img:hover { border-color: var(--accent); }
-.slide-img img { width: 100%; height: auto; display: block; }
-.lede { font-size: 16px; line-height: 1.7; margin: 0 0 28px; color: var(--ink-soft); }
-.main h3 { font-size: 12px; font-family: "JetBrains Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; margin: 28px 0 12px; color: var(--mute); }
+.daily-topic:hover .main h2 { color: var(--accent-deep); }
+
+
+/* ============================================================
+   スライド画像 — ズーム＋ライトボックス
+   ============================================================ */
+.slide-img {
+  margin: 24px 0;
+  border: 1px solid var(--paper-deep);
+  overflow: hidden;
+  cursor: zoom-in;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.3s var(--ease-out);
+}
+.slide-img::after {
+  content: "ZOOM ⊕";
+  position: absolute; bottom: 12px; right: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  color: var(--paper); background: rgba(20,19,17,0.72);
+  padding: 4px 8px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.2s, transform 0.2s var(--ease-out);
+}
+.slide-img:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(20,19,17,0.12);
+}
+.slide-img:hover::after { opacity: 1; transform: translateY(0); }
+.slide-img img {
+  width: 100%; height: auto; display: block;
+  transform-origin: center;
+  transition: transform 0.5s var(--ease-out);
+}
+.slide-img:hover img { transform: scale(1.025); }
+
+
+/* ============================================================
+   リード文 / キーポイント / プル
+   ============================================================ */
+.lede {
+  font-size: 16px; line-height: 1.7;
+  margin: 0 0 28px; color: var(--ink-soft);
+}
+.main h3 {
+  font-size: 12px; font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin: 28px 0 12px; color: var(--mute);
+}
+
+/* キーポイントリスト */
 .keypoints { list-style: none; padding: 0; margin: 0 0 28px; }
 .keypoints li {
   padding: 12px 16px 12px 48px; margin-bottom: 2px;
-  background: var(--paper-deep); border-left: 2px solid var(--paper-deep);
+  background: var(--paper-deep);
+  border-left: 2px solid transparent;
   position: relative; font-size: 14px; line-height: 1.6;
-  transition: border-color 0.15s;
+  cursor: default;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease-spring);
 }
-.keypoints li:hover { border-left-color: var(--accent); }
+.keypoints li:hover {
+  background: #e6e0d4;
+  border-left-color: var(--accent);
+  transform: translateX(4px);
+}
 .keypoints li::before {
   content: attr(data-i);
   position: absolute; left: 16px; top: 12px;
   font-family: "JetBrains Mono", monospace;
   font-size: 10px; color: var(--accent); letter-spacing: 0.1em;
+  transition: transform 0.2s var(--ease-spring);
 }
+.keypoints li:hover::before { transform: scale(1.3); }
+
+/* ポップアップツールチップ（キーポイント拡大） */
+.keypoints li::after {
+  content: attr(data-i) "  " attr(data-tip);
+  position: absolute; left: 50%; bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(6px);
+  background: var(--ink); color: var(--paper);
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: 0.08em; line-height: 1.5;
+  padding: 8px 14px; white-space: nowrap;
+  pointer-events: none; z-index: 100;
+  opacity: 0; transition: opacity 0.18s, transform 0.18s var(--ease-out);
+}
+/* data-tip がある要素だけポップアップ表示 */
+.keypoints li[data-tip]:hover::after {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
+/* プルクォート */
 .pull {
   padding: 20px 24px; border-left: 3px solid var(--accent);
   background: var(--paper-deep); font-size: 14px; line-height: 1.7;
   color: var(--ink-soft); font-style: italic; margin-top: 28px;
+  transition: border-left-width 0.2s, padding-left 0.2s, background 0.2s;
 }
+.pull:hover {
+  border-left-width: 6px; padding-left: 21px;
+  background: #e6e0d4;
+}
+
+
+/* ============================================================
+   サイドバー
+   ============================================================ */
 .side { font-size: 13px; }
 .side dl { margin: 0; }
 .side dt {
@@ -176,64 +393,161 @@ img { max-width: 100%; display: block; }
 }
 .side dt:first-child { margin-top: 0; }
 .side dd { margin: 0; word-break: break-all; }
-.likes { font-family: "JetBrains Mono", monospace; font-size: 28px; font-weight: 700; color: var(--accent); }
-.likes-label { font-size: 11px; color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; }
+.side dd a {
+  position: relative; display: inline;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0 1px; background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s var(--ease-out), color 0.2s;
+}
+.side dd a:hover { color: var(--accent); background-size: 100% 1px; }
 
-/* ---------- Daily head ---------- */
+.likes {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px; font-weight: 700; color: var(--accent);
+  display: inline-block;
+  transition: transform 0.3s var(--ease-spring);
+}
+.side:hover .likes { transform: scale(1.08); }
+.likes-label {
+  font-size: 11px; color: var(--mute);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+
+/* ============================================================
+   Daily head（日付大文字ページトップ）
+   ============================================================ */
 .daily-head { padding: 56px 0 40px; border-bottom: 1px solid var(--hair); }
 .date-huge {
   font-family: "JetBrains Mono", monospace;
   font-size: clamp(48px, 10vw, 112px);
-  font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; margin: 0 0 24px;
+  font-weight: 700; line-height: 0.9;
+  letter-spacing: -0.03em; margin: 0 0 24px;
 }
 .date-huge .dot { color: var(--accent); }
 .strap {
   display: flex; gap: 32px; flex-wrap: wrap;
   font-family: "JetBrains Mono", monospace;
-  font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+  font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
 }
 .strap .count { color: var(--ink); font-weight: 700; }
 
-/* ---------- Archive grid ---------- */
-.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+
+/* ============================================================
+   Archive grid — リフトカード
+   ============================================================ */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px;
+}
 .archive-card {
   padding: 24px; background: var(--paper-deep);
   display: flex; flex-direction: column; gap: 8px;
-  transition: background 0.15s;
+  position: relative; overflow: hidden;
+  transition: background 0.2s, transform 0.3s var(--ease-out),
+              box-shadow 0.3s var(--ease-out);
 }
-.archive-card:hover { background: #e5dfd5; }
+.archive-card::before {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.archive-card:hover {
+  background: #e5dfd5;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(20,19,17,0.10);
+  z-index: 1;
+}
+.archive-card:hover::before { transform: scaleX(1); }
 .archive-card .d {
   font-family: "JetBrains Mono", monospace;
   font-size: 22px; font-weight: 700;
+  transition: color 0.2s;
 }
-.archive-card .n { font-size: 12px; color: var(--mute); font-family: "JetBrains Mono", monospace; letter-spacing: 0.1em; text-transform: uppercase; }
-.archive-card .topics { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
-
-/* ---------- Footer ---------- */
-footer {
-  padding: 48px 0; border-top: 1px solid var(--hair);
+.archive-card:hover .d { color: var(--accent); }
+.archive-card .n {
+  font-size: 12px; color: var(--mute);
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
-footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-footer .brand { color: var(--ink); font-weight: 700; font-size: 13px; }
+.archive-card .topics {
+  font-size: 13px; color: var(--ink-soft); margin-top: 4px;
+}
 
-/* ---------- Lightbox ---------- */
-.lightbox-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(20,19,17,0.92); z-index: 1000;
-  align-items: center; justify-content: center; padding: 24px;
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 48px 0; border-top: 2px solid var(--ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
 }
-.lightbox-overlay.is-open { display: flex; }
-.lightbox-overlay img { max-width: 100%; max-height: 90vh; object-fit: contain; }
+footer .row {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+footer .brand {
+  color: var(--ink); font-weight: 700; font-size: 13px;
+  transition: color 0.2s;
+}
+footer .brand:hover { color: var(--accent); }
+
+
+/* ============================================================
+   Lightbox — スムーズオープン
+   ============================================================ */
+.lightbox-overlay {
+  display: flex; align-items: center; justify-content: center;
+  position: fixed; inset: 0; padding: 24px;
+  background: rgba(20,19,17,0.0);
+  z-index: 1000;
+  pointer-events: none;
+  transition: background 0.3s;
+}
+.lightbox-overlay.is-open {
+  background: rgba(20,19,17,0.92);
+  pointer-events: auto;
+}
+.lightbox-overlay img {
+  max-width: 100%; max-height: 90vh; object-fit: contain;
+  opacity: 0; transform: scale(0.93);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+.lightbox-overlay.is-open img {
+  opacity: 1; transform: scale(1);
+}
 .lightbox-close {
   position: absolute; top: 20px; right: 24px;
-  font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 0.1em;
-  color: var(--paper); cursor: pointer; background: none; border: none;
-  text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px; letter-spacing: 0.1em;
+  color: var(--paper); cursor: pointer;
+  background: none; border: 1px solid rgba(247,245,242,0.25);
+  text-transform: uppercase; padding: 6px 14px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.lightbox-close:hover {
+  background: var(--accent); border-color: var(--accent);
 }
 
-/* ---------- Responsive ---------- */
+
+/* ============================================================
+   Scroll fade-in observer — JS で .is-visible を付与
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   Responsive
+   ============================================================ */
 @media (max-width: 900px) {
   .hero .grid { grid-template-columns: 1fr; }
   .hero .aside { display: none; }
@@ -248,5 +562,6 @@ footer .brand { color: var(--ink); font-weight: 700; font-size: 13px; }
   }
   .main-nav.is-open { display: flex; flex-direction: column; gap: 16px; }
   .main-nav a { margin-left: 0; }
-  .masthead { position: relative; }
+  .masthead { position: sticky; }
+  .dispatch .row { animation: none; }
 }

@@ -131,19 +131,44 @@
 </div>
 <script>
 (function(){
+  /* --- Lightbox --- */
   var overlay=document.getElementById('lightbox');
   var img=document.getElementById('lightbox-img');
   var close=document.getElementById('lightbox-close');
   document.querySelectorAll('.zoom-image').forEach(function(el){
     el.addEventListener('click',function(){
-      img.src=el.dataset.src; img.alt=el.dataset.alt||'';
+      img.src='';
       overlay.classList.add('is-open');
+      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; }, 20);
     });
   });
-  function closeBox(){overlay.classList.remove('is-open');img.src='';}
+  function closeBox(){
+    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    setTimeout(function(){
+      overlay.classList.remove('is-open');
+      img.src=''; img.style.opacity=''; img.style.transform='';
+    }, 300);
+  }
   close.addEventListener('click',closeBox);
   overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+
+  /* --- Scroll fade-in --- */
+  var topics = document.querySelectorAll('.daily-topic');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+      });
+    },{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    topics.forEach(function(el){ io.observe(el); });
+  } else {
+    topics.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* --- Dispatch ticker duplicate --- */
+  var row = document.querySelector('.dispatch .row');
+  if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
 })();
 </script>
 
