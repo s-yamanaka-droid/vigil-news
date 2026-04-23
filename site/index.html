@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VIGIL — AI Morning Intelligence</title>
+<meta name="description" content="山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+<div class="dispatch">
+  <div class="container row">
+    <span class="tick">VIGIL №0423</span>
+    <span class="sep">/</span>
+    <span>2026-04-23</span>
+    <span class="sep">/</span>
+    <span>MORNING EDITION</span>
+    <span class="sep">/</span>
+    <span>8 ITEMS</span>
+    <span class="sep">/</span>
+    <span>BUILD 20260423.0715</span>
+    <span class="sep">/</span>
+    <span class="live">LIVE</span>
+    <span class="sep">/</span>
+    <span>CURATED BY 山中秀斗</span>
+  </div>
+</div>
+<header class="masthead">
+  <div class="container row">
+    <a href="./" class="wordmark"><span class="bar"></span>VIGIL</a>
+    <button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="main-nav">
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+    </button>
+    <nav class="main-nav" id="main-nav">
+      <a href="./">HOME</a>
+      <a href="./news/2026-04-23/">TODAY</a>
+      <a href="./#archive">ARCHIVE</a>
+      <a href="./#about">ABOUT</a>
+</nav>
+    <div class="meta">JST · 07:15 · THU</div>
+  </div>
+</header>
+<script>
+(function(){
+  var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
+  if(!btn||!nav)return;
+  function setOpen(o){btn.setAttribute('aria-expanded',o?'true':'false');nav.classList.toggle('is-open',o);}
+  btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
+})();
+</script>
+
+<section class="hero">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="eyebrow">MORNING DISPATCH <span class="dot">·</span> 2026-04-23 <span class="dot">·</span> ISSUE N°0423</div>
+        <h1>VIGIL<br><span style="font-size:0.45em;letter-spacing:0.08em;color:var(--mute);">AI INTELLIGENCE</span></h1>
+      </div>
+      <aside class="aside">
+        <p>山中秀斗が毎朝整理する AI 業界のモーニングディスパッチ。</p>
+        <p>ニュース・ツール・論文・良質な情報を、朝刊として一枚に。</p>
+      </aside>
+    </div>
+    <div class="hero-strap">
+      <span><span class="k">08</span>TODAY</span>
+      <span><span class="k">1</span>DAYS</span>
+      <span>SINCE 2026-04-23</span>
+      <span>07:15 JST DAILY</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="today">
+  <div class="container">
+    <div class="section-head">
+      <div class="title">
+        <span class="en">§01 · Today's Dispatch</span>
+        <h2>本日のAIニュース</h2>
+      </div>
+      <a href="./news/2026-04-23/" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">ALL 8 ITEMS →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="archive">
+  <div class="container">
+    <div class="section-head">
+      <div class="title">
+        <span class="en">§02 · Archive</span>
+        <h2>過去のディスパッチ</h2>
+      </div>
+    </div>
+    <div class="archive-grid">
+    <a href="./news/2026-04-23/" class="archive-card">
+      <div class="d">2026-04-23</div>
+      <div class="n">THU · MORNING DISPATCH</div>
+    </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="title">
+        <span class="en">§03 · About</span>
+        <h2>VIGILについて</h2>
+      </div>
+    </div>
+    <p style="max-width:640px;color:var(--ink-soft);">毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
+    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute);">PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <span class="brand">VIGIL</span>
+    <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
+    <span>2026-04-23</span>
+  </div>
+</footer>
+
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
+  <img src="" id="lightbox-img" alt="" />
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('lightbox');
+  var img=document.getElementById('lightbox-img');
+  var close=document.getElementById('lightbox-close');
+  document.querySelectorAll('.zoom-image').forEach(function(el){
+    el.addEventListener('click',function(){
+      img.src=el.dataset.src; img.alt=el.dataset.alt||'';
+      overlay.classList.add('is-open');
+    });
+  });
+  function closeBox(){overlay.classList.remove('is-open');img.src='';}
+  close.addEventListener('click',closeBox);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+})();
+</script>
+
+</body>
+</html>
