@@ -7,39 +7,30 @@
 <meta name="description" content="2026-04-23 の VIGIL モーニングディスパッチ — 8本のAI業界ニュース。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css" />
 </head>
 <body>
-<div class="dispatch">
-  <div class="container row">
-    <span class="tick">VIGIL №0423</span>
-    <span class="sep">/</span>
-    <span>2026-04-23</span>
-    <span class="sep">/</span>
-    <span>MORNING EDITION</span>
-    <span class="sep">/</span>
-    <span>8 ITEMS</span>
-    <span class="sep">/</span>
-    <span>BUILD 20260423.0715</span>
-    <span class="sep">/</span>
-    <span class="live">LIVE</span>
-    <span class="sep">/</span>
-    <span>CURATED BY 山中秀斗</span>
-  </div>
-</div>
+<div class="dispatch"><div class="container row"><span class="tick">VIGIL №0423</span><span class="sep">/</span><span>2026-04-23</span><span class="sep">/</span><span>MORNING EDITION</span><span class="sep">/</span><span>8 ITEMS</span><span class="sep">/</span><span>BUILD 20260423.0715</span><span class="sep">/</span><span class="live">LIVE</span><span class="sep">/</span><span>CURATED BY 山中秀斗</span></div></div>
 <header class="masthead">
   <div class="container row">
-    <a href="../../" class="wordmark"><span class="bar"></span>VIGIL</a>
-    <button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+    <a href="../../" class="wordmark">
+      <span class="dot-red"></span>VIGIL
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニュー"
+            aria-expanded="false" aria-controls="main-nav">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
     <nav class="main-nav" id="main-nav">
-      <a href="../../">HOME</a>
       <a href="../../news/2026-04-23/">TODAY</a>
       <a href="../../#archive">ARCHIVE</a>
+      <a href="../../#archive">BRIEFINGS</a>
+      <a href="../../#about">SOURCES</a>
       <a href="../../#about">ABOUT</a>
-</nav>
+    </nav>
+    <a href="#" class="subscribe-btn">SUBSCRIBE · 07:15 DAILY →</a>
     <div class="meta">JST · 07:15 · THU</div>
   </div>
 </header>
@@ -47,7 +38,10 @@
 (function(){
   var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
   if(!btn||!nav)return;
-  function setOpen(o){btn.setAttribute('aria-expanded',o?'true':'false');nav.classList.toggle('is-open',o);}
+  function setOpen(o){
+    btn.setAttribute('aria-expanded',o?'true':'false');
+    nav.classList.toggle('is-open',o);
+  }
   btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
@@ -56,8 +50,9 @@
 
 <section class="daily-head">
   <div class="container">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">
-      MORNING DISPATCH · THU · APRIL 23, 2026
+    <div class="hero-meta-line">
+      MORNING DISPATCH
+      <span class="sep">//</span> THU · APRIL 23, 2026
     </div>
     <h1 class="date-huge">2026<span class="dot">.</span>04<span class="dot">.</span>23</h1>
     <div class="strap">
@@ -100,7 +95,6 @@
         <dd>ツール更新</dd>
         <dt>LINKS</dt>
         <dd><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt">https://openai.com/index/introducing-workspace-agents-i…</a></dd>
-        <dd><a href="https://openai.com/index/speeding-up-agentic-workflows-with-websockets">https://openai.com/index/speeding-up-agentic-workflows-…</a></dd>
       </dl>
     </aside>
   </div>
@@ -373,41 +367,42 @@
 <script>
 (function(){
   /* --- Lightbox --- */
-  var overlay=document.getElementById('lightbox');
-  var img=document.getElementById('lightbox-img');
-  var close=document.getElementById('lightbox-close');
+  var overlay = document.getElementById('lightbox');
+  var img     = document.getElementById('lightbox-img');
+  var close   = document.getElementById('lightbox-close');
+
   document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click',function(){
-      img.src='';
+    el.addEventListener('click', function(){
+      img.src = '';
       overlay.classList.add('is-open');
-      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; }, 20);
+      setTimeout(function(){ img.src = el.dataset.src; img.alt = el.dataset.alt || ''; }, 20);
     });
   });
   function closeBox(){
-    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    img.style.opacity = '0'; img.style.transform = 'scale(0.93)';
     setTimeout(function(){
       overlay.classList.remove('is-open');
-      img.src=''; img.style.opacity=''; img.style.transform='';
+      img.src = ''; img.style.opacity = ''; img.style.transform = '';
     }, 300);
   }
-  close.addEventListener('click',closeBox);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+  close.addEventListener('click', closeBox);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeBox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeBox(); });
 
-  /* --- Scroll fade-in --- */
+  /* --- Scroll fade-in (.daily-topic) --- */
   var topics = document.querySelectorAll('.daily-topic');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
       });
-    },{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold: 0.07, rootMargin: '0px 0px -32px 0px'});
     topics.forEach(function(el){ io.observe(el); });
   } else {
     topics.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* --- Dispatch ticker duplicate --- */
+  /* --- Dispatch ticker: seamless duplicate --- */
   var row = document.querySelector('.dispatch .row');
   if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
 })();
