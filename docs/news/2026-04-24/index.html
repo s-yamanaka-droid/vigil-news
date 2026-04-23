@@ -4,173 +4,393 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>2026-04-24 Morning Dispatch — VIGIL</title>
-<meta name="description" content="2026-04-24 の VIGIL モーニングディスパッチ — 3本のAI業界ニュース。" />
+<meta name="description" content="2026-04-24 の VIGIL モーニングディスパッチ — 8本のAI業界ニュース。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/vigil.css" />
 </head>
 <body>
-<div class="dispatch"><div class="container row"><span class="tick">VIGIL №0424</span><span class="sep">/</span><span>2026-04-24</span><span class="sep">/</span><span>MORNING EDITION</span><span class="sep">/</span><span>3 ITEMS</span><span class="sep">/</span><span>BUILD 20260424.0715</span><span class="sep">/</span><span class="live">LIVE</span><span class="sep">/</span><span>CURATED BY 山中秀斗</span></div></div>
-<header class="masthead">
-  <div class="container row">
-    <a href="../../" class="wordmark">
-      <span class="dot-red"></span>VIGIL
-    </a>
-    <button class="nav-toggle" type="button" aria-label="メニュー"
-            aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav class="main-nav" id="main-nav">
-      <a href="../../news/2026-04-24/">TODAY</a>
-      <a href="../../#archive">ARCHIVE</a>
-      <a href="../../#archive">BRIEFINGS</a>
-      <a href="../../#about">SOURCES</a>
-      <a href="../../#about">ABOUT</a>
-    </nav>
-    <a href="#" class="subscribe-btn">SUBSCRIBE · 07:15 DAILY →</a>
-    <div class="meta">JST · 07:15 · FRI</div>
+<style>
+.date-huge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:clamp(48px,10vw,112px);line-height:.9;letter-spacing:-.03em;margin:8px 0 20px;}
+.date-huge .dot{color:var(--red)}
+.strap{display:flex;gap:28px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+.strap .count{color:var(--ink);font-weight:700}
+.container{max-width:1400px;margin:0 auto;padding:0 40px}
+.daily-topic{padding:52px 0;border-bottom:1px solid var(--rule);position:relative;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.daily-topic.is-visible{opacity:1;transform:none}
+.daily-topic::before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--red);transition:height .4s}
+.daily-topic:hover::before{height:100%}
+.daily-topic .container{display:grid;grid-template-columns:72px 1fr 240px;gap:36px}
+.numeral{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:64px;line-height:1;color:var(--rule-2);position:relative;top:-6px;transition:color .2s}
+.daily-topic:hover .numeral{color:var(--red)}
+.numeral .ord{display:block;font-size:9px;letter-spacing:.16em;color:var(--mute);margin-top:8px;line-height:1.4;white-space:nowrap}
+.cat-line{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.cat-line .sep{color:var(--mute);margin:0 8px}
+.main h2{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;line-height:1.3;margin:0 0 18px;letter-spacing:-.01em}
+.lede{font-family:'Noto Serif JP',serif;font-size:16px;line-height:1.75;margin:0 0 24px;color:var(--ink-2)}
+.main h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:24px 0 10px;color:var(--mute)}
+.keypoints{list-style:none;padding:0;margin:0 0 24px}
+.keypoints li{padding:10px 14px 10px 44px;margin-bottom:2px;background:var(--paper-2);border-left:2px solid transparent;position:relative;font-size:14px;line-height:1.6;transition:border-color .15s,transform .2s}
+.keypoints li:hover{border-left-color:var(--red);transform:translateX(4px)}
+.keypoints li::before{content:attr(data-i);position:absolute;left:14px;top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em}
+.pull{padding:18px 22px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-top:24px;transition:border-left-width .2s,padding-left .2s}
+.pull:hover{border-left-width:6px;padding-left:19px}
+.slide-img{margin:20px 0;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;position:relative;transition:border-color .2s}
+.slide-img:hover{border-color:var(--red)}
+.slide-img img{width:100%;display:block;transition:transform .5s}
+.slide-img:hover img{transform:scale(1.02)}
+.side{font-size:13px}
+.side dl{margin:0}
+.side dt{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:18px 0 4px}
+.side dt:first-child{margin-top:0}
+.side dd{margin:0;word-break:break-all}
+.side dd a:hover{color:var(--red)}
+.likes{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:28px;color:var(--red)}
+.likes-label{font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.lightbox-overlay{display:flex;align-items:center;justify-content:center;position:fixed;inset:0;padding:24px;background:rgba(14,13,11,0);z-index:1000;pointer-events:none;transition:background .3s}
+.lightbox-overlay.is-open{background:rgba(14,13,11,.93);pointer-events:auto}
+.lightbox-overlay img{max-width:100%;max-height:90vh;object-fit:contain;opacity:0;transform:scale(.93);transition:opacity .35s,transform .35s}
+.lightbox-overlay.is-open img{opacity:1;transform:scale(1)}
+.lightbox-close{position:absolute;top:20px;right:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F7F5F2;cursor:pointer;background:none;border:1px solid rgba(247,245,242,.3);padding:6px 14px;transition:background .2s}
+.lightbox-close:hover{background:var(--red)}
+@media(max-width:900px){.daily-topic .container{grid-template-columns:1fr}.numeral{font-size:36px}.side{border-top:1px solid var(--rule);padding-top:20px}}
+</style>
+<div class="dispatch">
+  <span class="tick">VIGIL</span>
+  <span class="sep">/</span>
+  <span>№0424</span>
+  <span class="sep">/</span>
+  <span>2026-04-24</span>
+  <span class="sep">/</span>
+  <span>MORNING EDITION</span>
+  <span class="sep">/</span>
+  <span>8 ITEMS</span>
+  <span class="sep">/</span>
+  <span class="live"><span class="dot"></span>LIVE</span>
+  <div class="right">
+    <span class="jst"><b>07:15</b> JST</span>
+    <span>FRI</span>
   </div>
-</header>
-<script>
-(function(){
-  var btn=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
-  if(!btn||!nav)return;
-  function setOpen(o){
-    btn.setAttribute('aria-expanded',o?'true':'false');
-    nav.classList.toggle('is-open',o);
-  }
-  btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
-  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setOpen(false);});});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
-})();
-</script>
-
-<section class="daily-head">
-  <div class="container">
-    <div class="hero-meta-line">
-      MORNING DISPATCH
-      <span class="sep">//</span> FRI · APRIL 24, 2026
-    </div>
-    <h1 class="date-huge">2026<span class="dot">.</span>04<span class="dot">.</span>24</h1>
-    <div class="strap">
-      <span><span class="count">03</span>&nbsp;ITEMS</span>
-      <span>AI MORNING INTELLIGENCE</span>
-    </div>
+</div>
+<nav class="main">
+  <div class="brand"><em>●</em>VIGIL</div>
+  <ul>
+    <li><a href="../../">HOME</a></li>
+    <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="../../#archive">ARCHIVE</a></li>
+    <li><a href="../../#about">ABOUT</a></li>
+  </ul>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+</nav>
+<div class="hero-wrap">
+  <div class="edition-line">
+    MORNING DISPATCH
+    <span class="sep">//</span>
+    FRIDAY, APRIL 24, 2026
+    <span class="sep">//</span>
+    ISSUE N°0424
   </div>
-</section>
-
+  <h1 class="date-huge">2026<span class="dot">.</span>04<span class="dot">.</span>24</h1>
+  <div class="strap">
+    <span><span class="count">08</span>&nbsp;ITEMS</span>
+    <span>AI MORNING INTELLIGENCE</span>
+  </div>
+</div>
 
 <article class="daily-topic" id="topic-1">
   <div class="container">
-    <aside class="numeral">01<span class="ord">TOPIC 01 · @OPENAI</span></aside>
+    <aside class="numeral">01<span class="ord">TOPIC 01 · OPENAI BLOG</span></aside>
     <div class="main">
       <div class="cat-line">
-        新モデル発表 <span class="sep">/</span> @OpenAI <span class="sep">/</span> NEWS
+        ツール更新 <span class="sep">/</span> OpenAI Blog <span class="sep">/</span> NEWS
       </div>
-      <h2>ChatGPT Images 2.0 発表 — 文字・UIが崩れない「thinking-level」画像モデル</h2>
-
-      <p class="lede">OpenAIが新世代画像生成モデル「ChatGPT Images 2.0」（内部コード名 telepathy）を正式発表。最大2K解像度で、細かい文字・UI要素・複雑なレイアウトを崩さずに描画できる推論型モデル。</p>
+      <h2>OpenAI、医療専門家向け無料ChatGPT提供開始</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_1.png" data-alt="OpenAI、医療専門家向け無料ChatGPT提供開始" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_1.png" alt="OpenAI、医療専門家向け無料ChatGPT提供開始" loading="lazy" />
+      </div>
+      <p class="lede">OpenAIが検証済みの米国医師・看護師・薬剤師向けにChatGPTを無料化し、臨床記録作成や研究支援を実現。</p>
       <h3>キーポイント</h3>
       <ul class="keypoints">
-        <li data-i="01">最大2K解像度・文字・UI・密度の高い構図でも破綻しにくい</li>
-        <li data-i="02">"thinking"（推論）で指示追従性が大幅向上</li>
-        <li data-i="03">ChatGPT（Proプラン$200含む）で即日利用可能</li>
+        <li data-i="01">医療専門家向け無料提供開始</li>
+        <li data-i="02">臨床ケア・文書作成・研究に対応</li>
+        <li data-i="03">米国の医療者が対象</li>
+        <li data-i="04">検証プロセスによる信頼性確保</li>
       </ul>
-      <div class="pull">Sam Altmanは「OpenAI過去最高のリリース」と評価。</div>
+      <div class="pull">医療現場でのAI活用を加速させ、専門家の負担軽減を実現する戦略的展開。</div>
     </div>
     <aside class="side">
       <dl>
-        <dt>ENGAGEMENT</dt>
-        <dd><span class="likes">21,440</span><div class="likes-label">likes on X</div></dd>
+
         <dt>SOURCE</dt>
-        <dd>@OpenAI</dd>
+        <dd>OpenAI Blog</dd>
         <dt>PUBLISHED</dt>
         <dd>2026-04-24</dd>
         <dt>CATEGORY</dt>
-        <dd>新モデル発表</dd>
+        <dd>ツール更新</dd>
         <dt>LINKS</dt>
-        <dd><a href="https://openai.com/index/chatgpt-images-2">https://openai.com/index/chatgpt-images-2</a></dd>
+        <dd><a href="https://openai.com/index/making-chatgpt-better-for-clinicians">https://openai.com/index/making-chatgpt-better-for-clin…</a></dd>
       </dl>
     </aside>
   </div>
 </article>
 <article class="daily-topic" id="topic-2">
   <div class="container">
-    <aside class="numeral">02<span class="ord">TOPIC 02 · @SAMA</span></aside>
+    <aside class="numeral">02<span class="ord">TOPIC 02 · OPENAI BLOG</span></aside>
     <div class="main">
       <div class="cat-line">
-        ツール更新 <span class="sep">/</span> @sama <span class="sep">/</span> NEWS
+        新モデル発表 <span class="sep">/</span> OpenAI Blog <span class="sep">/</span> NEWS
       </div>
-      <h2>OpenAI Codex、MAU 4M突破+レート上限リセット</h2>
-
-      <p class="lede">Codexでタスクを中断していた人は、今週もう一度踏み込めるタイミング。受講生向けには「今週はCodexを使い倒すチャンス」として伝えられるタイムセンシティブ情報。</p>
+      <h2>OpenAI、ワークスペースエージェント正式リリース</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_2.png" data-alt="OpenAI、ワークスペースエージェント正式リリース" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_2.png" alt="OpenAI、ワークスペースエージェント正式リリース" loading="lazy" />
+      </div>
+      <p class="lede">ChatGPTにコードキサー搭載のエージェント機能を統合。複雑なワークフロー自動化とツール連携を実現。</p>
       <h3>キーポイント</h3>
       <ul class="keypoints">
-        <li data-i="01">レート上限全アカウント一斉リセット</li>
-        <li data-i="02">MAU 4M突破、長時間エージェント運用が定着</li>
+        <li data-i="01">クラウドベースのエージェント機能</li>
+        <li data-i="02">複数ツール統合による業務自動化</li>
+        <li data-i="03">チームレベルでのスケーリング対応</li>
+        <li data-i="04">セキュアな運用環境</li>
       </ul>
-      <div class="pull">MAU急増の背景にはChronicleメモリ・Mac連携・Computer Useなどの大型アップデート。</div>
+      <div class="pull">エンタープライズ向けのAIエージェントが実務化段階へ。業務効率化の新局面。</div>
     </div>
     <aside class="side">
       <dl>
-        <dt>ENGAGEMENT</dt>
-        <dd><span class="likes">23,499</span><div class="likes-label">likes on X</div></dd>
+
         <dt>SOURCE</dt>
-        <dd>@sama</dd>
+        <dd>OpenAI Blog</dd>
         <dt>PUBLISHED</dt>
         <dd>2026-04-24</dd>
         <dt>CATEGORY</dt>
-        <dd>ツール更新</dd>
+        <dd>新モデル発表</dd>
         <dt>LINKS</dt>
-        <dd><a href="https://openai.com/codex">https://openai.com/codex</a></dd>
+        <dd><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt">https://openai.com/index/introducing-workspace-agents-i…</a></dd>
+        <dd><a href="https://openai.com/academy/workspace-agents">https://openai.com/academy/workspace-agents</a></dd>
       </dl>
     </aside>
   </div>
 </article>
 <article class="daily-topic" id="topic-3">
   <div class="container">
-    <aside class="numeral">03<span class="ord">TOPIC 03 · @CURSOR_AI</span></aside>
+    <aside class="numeral">03<span class="ord">TOPIC 03 · GOOGLE AI BLOG</span></aside>
     <div class="main">
       <div class="cat-line">
-        業界動向 <span class="sep">/</span> @cursor_ai <span class="sep">/</span> NEWS
+        新モデル発表 <span class="sep">/</span> Google AI Blog <span class="sep">/</span> NEWS
       </div>
-      <h2>Cursor × SpaceX 提携 — Composerを「現実の難コード」で強化</h2>
-
-      <p class="lede">Cursor Composerの完成度が上がると従量課金を回避しつつ高速という選択肢が現実になる。コスト重視派には中期的に重要な材料。</p>
+      <h2>Google、AI時代向けTPU8T/8i発表</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_3.png" data-alt="Google、AI時代向けTPU8T/8i発表" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_3.png" alt="Google、AI時代向けTPU8T/8i発表" loading="lazy" />
+      </div>
+      <p class="lede">Googleが第8世代TPUの2つの専用チップを発表。エージェント型AI向けの処理最適化を実現。</p>
       <h3>キーポイント</h3>
       <ul class="keypoints">
-        <li data-i="01">Composerモデルを実運用コードで再訓練</li>
-        <li data-i="02">従来APIコスト回避の現実解に</li>
+        <li data-i="01">第8世代TPU2種類発表</li>
+        <li data-i="02">エージェント型AI専用最適化</li>
+        <li data-i="03">クラウドネクスト2026で公開</li>
+        <li data-i="04">AI推論効率向上</li>
       </ul>
-      <div class="pull">実際のSpaceXコードベースで訓練することで、エッジケースへの対応力が向上。</div>
+      <div class="pull">専用TPUによるエージェント型AI時代への本格対応。インフラの競争が加速。</div>
     </div>
     <aside class="side">
       <dl>
-        <dt>ENGAGEMENT</dt>
-        <dd><span class="likes">11,483</span><div class="likes-label">likes on X</div></dd>
+
         <dt>SOURCE</dt>
-        <dd>@cursor_ai</dd>
+        <dd>Google AI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-24</dd>
+        <dt>CATEGORY</dt>
+        <dd>新モデル発表</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/">https://blog.google/innovation-and-ai/infrastructure-an…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-4">
+  <div class="container">
+    <aside class="numeral">04<span class="ord">TOPIC 04 · TECHCRUNCH</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> TechCrunch <span class="sep">/</span> NEWS
+      </div>
+      <h2>Eraが1100万ドル調達、AIウェアラブル向けプラットフォーム展開</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_4.png" data-alt="Eraが1100万ドル調達、AIウェアラブル向けプラットフォーム展開" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_4.png" alt="Eraが1100万ドル調達、AIウェアラブル向けプラットフォーム展開" loading="lazy" />
+      </div>
+      <p class="lede">AIハードウェア向けソフトウェアプラットフォームのEraが1100万ドル資金調達。眼鏡やリングなど多様なフォームファクター対応。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">1100万ドルの資金調達実施</li>
+        <li data-i="02">眼鏡・リング・ペンダント型対応</li>
+        <li data-i="03">複数フォームファクター戦略</li>
+        <li data-i="04">AIウェアラブル市場拡大</li>
+      </ul>
+      <div class="pull">AIハードウェアの多様化時代へ。統一プラットフォームの必要性が現実化。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>TechCrunch</dd>
         <dt>PUBLISHED</dt>
         <dd>2026-04-24</dd>
         <dt>CATEGORY</dt>
         <dd>業界動向</dd>
         <dt>LINKS</dt>
-        <dd><a href="https://cursor.com">https://cursor.com</a></dd>
+        <dd><a href="https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/">https://techcrunch.com/2026/04/23/era-computer-raises-1…</a></dd>
       </dl>
     </aside>
   </div>
 </article>
+<article class="daily-topic" id="topic-5">
+  <div class="container">
+    <aside class="numeral">05<span class="ord">TOPIC 05 · MIT TECHNOLOGY REVIEW</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> MIT Technology Review <span class="sep">/</span> NEWS
+      </div>
+      <h2>企業AI導入にはデータ基盤整備が必須</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_5.png" data-alt="企業AI導入にはデータ基盤整備が必須" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_5.png" alt="企業AI導入にはデータ基盤整備が必須" loading="lazy" />
+      </div>
+      <p class="lede">MITレビューが指摘。エンタープライズAI展開にはコパイロット・エージェント導入前のデータ基盤構築が鍵。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">データ基盤の重要性を強調</li>
+        <li data-i="02">サプライチェーン・金融対応</li>
+        <li data-i="03">実験段階から実運用へ移行</li>
+        <li data-i="04">構造的な基盤整備が必須</li>
+      </ul>
+      <div class="pull">AI導入成功の70%はデータ基盤。基礎設備の見直しが企業競争力を左右する。</div>
+    </div>
+    <aside class="side">
+      <dl>
 
-<footer>
-  <div class="container row">
-    <span class="brand">VIGIL</span>
-    <span>AI Morning Intelligence — 山中秀斗 / TREPRO</span>
-    <span>2026-04-24 DISPATCH</span>
+        <dt>SOURCE</dt>
+        <dd>MIT Technology Review</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-24</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/">https://www.technologyreview.com/2026/04/22/1135295/ai-…</a></dd>
+      </dl>
+    </aside>
   </div>
-</footer>
+</article>
+<article class="daily-topic" id="topic-6">
+  <div class="container">
+    <aside class="numeral">06<span class="ord">TOPIC 06 · ZENN</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> Zenn <span class="sep">/</span> NEWS
+      </div>
+      <h2>AI駆動開発が実務化、生産性3倍化の現実</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_6.png" data-alt="AI駆動開発が実務化、生産性3倍化の現実" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_6.png" alt="AI駆動開発が実務化、生産性3倍化の現実" loading="lazy" />
+      </div>
+      <p class="lede">日本企業事例。エンジニア1人がAIエージェント従えて従来3人チームの仕事完遂。実装からレビューまでAI化進展。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">3人チーム相当の業務を1人化</li>
+        <li data-i="02">コード実装・テスト・要件定義AI対応</li>
+        <li data-i="03">1年で開発スタイル大幅変化</li>
+        <li data-i="04">レビュー・要件定義に人間介入</li>
+      </ul>
+      <div class="pull">AI駆動開発で生産性3倍。ただし人間の役割は品質判断へシフト必須。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>Zenn</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-24</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://zenn.dev/dely_jp/articles/a686fcca32ba41">https://zenn.dev/dely_jp/articles/a686fcca32ba41</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-7">
+  <div class="container">
+    <aside class="numeral">07<span class="ord">TOPIC 07 · MIT TECHNOLOGY REVIEW</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        その他 <span class="sep">/</span> MIT Technology Review <span class="sep">/</span> NEWS
+      </div>
+      <h2>生成AI詐欺が急増、セキュリティ課題顕在化</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_7.png" data-alt="生成AI詐欺が急増、セキュリティ課題顕在化" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_7.png" alt="生成AI詐欺が急増、セキュリティ課題顕在化" loading="lazy" />
+      </div>
+      <p class="lede">ChatGPT公開以来、生成AIを悪用した詐欺が急増。テキスト生成能力の負の側面が社会課題化。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">詐欺悪用が急増傾向</li>
+        <li data-i="02">大量テキスト生成の危険性</li>
+        <li data-i="03">セキュリティ対策重要化</li>
+        <li data-i="04">規制議論の加速</li>
+      </ul>
+      <div class="pull">AI民主化がもたらした光と影。セキュリティ対応が企業責任の中心課題に。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>MIT Technology Review</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-24</dd>
+        <dt>CATEGORY</dt>
+        <dd>その他</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://www.technologyreview.com/2026/04/21/1135647/supercharged-scams-ai-artificial-intelligence/">https://www.technologyreview.com/2026/04/21/1135647/sup…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-8">
+  <div class="container">
+    <aside class="numeral">08<span class="ord">TOPIC 08 · GOOGLE AI BLOG</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> Google AI Blog <span class="sep">/</span> NEWS
+      </div>
+      <h2>Googleがオーストリアにアルプス初データセンター投資</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-24/topic_8.png" data-alt="Googleがオーストリアにアルプス初データセンター投資" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-24/topic_8.png" alt="Googleがオーストリアにアルプス初データセンター投資" loading="lazy" />
+      </div>
+      <p class="lede">Googleがオーストリアのアルプス地域に初のデータセンター建設を発表。欧州でのAI基盤強化戦略。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">アルプス地域初投資</li>
+        <li data-i="02">欧州インフラ拡充戦略</li>
+        <li data-i="03">地域データセンター需要対応</li>
+        <li data-i="04">地政学的な基盤構築</li>
+      </ul>
+      <div class="pull">AI大手によるグローバルデータセンター争い激化。地域別戦略が競争軸に。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>Google AI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-24</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/">https://blog.google/innovation-and-ai/infrastructure-an…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<div class="colophon">
+  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="right">2026-04-24 DISPATCH</div>
+</div>
 
 <div class="lightbox-overlay" id="lightbox">
   <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
@@ -178,45 +398,46 @@
 </div>
 <script>
 (function(){
-  /* --- Lightbox --- */
-  var overlay = document.getElementById('lightbox');
-  var img     = document.getElementById('lightbox-img');
-  var close   = document.getElementById('lightbox-close');
-
+  var overlay=document.getElementById('lightbox');
+  var img=document.getElementById('lightbox-img');
+  var close=document.getElementById('lightbox-close');
   document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click', function(){
-      img.src = '';
+    el.addEventListener('click',function(){
+      img.src='';
       overlay.classList.add('is-open');
-      setTimeout(function(){ img.src = el.dataset.src; img.alt = el.dataset.alt || ''; }, 20);
+      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; },20);
     });
   });
   function closeBox(){
-    img.style.opacity = '0'; img.style.transform = 'scale(0.93)';
-    setTimeout(function(){
-      overlay.classList.remove('is-open');
-      img.src = ''; img.style.opacity = ''; img.style.transform = '';
-    }, 300);
+    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    setTimeout(function(){ overlay.classList.remove('is-open'); img.src=''; img.style.opacity=''; img.style.transform=''; },300);
   }
-  close.addEventListener('click', closeBox);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeBox(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeBox(); });
+  close.addEventListener('click',closeBox);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
 
-  /* --- Scroll fade-in (.daily-topic) --- */
-  var topics = document.querySelectorAll('.daily-topic');
+  /* scroll fade-in */
+  var topics=document.querySelectorAll('.daily-topic');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
-      });
-    }, {threshold: 0.07, rootMargin: '0px 0px -32px 0px'});
-    topics.forEach(function(el){ io.observe(el); });
-  } else {
-    topics.forEach(function(el){ el.classList.add('is-visible'); });
-  }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+    topics.forEach(function(el){io.observe(el);});
+  } else { topics.forEach(function(el){el.classList.add('is-visible');}); }
 
-  /* --- Dispatch ticker: seamless duplicate --- */
-  var row = document.querySelector('.dispatch .row');
-  if(row){ row.parentNode.appendChild(row.cloneNode(true)); }
+  /* dispatch ticker */
+  var row=document.querySelector('.dispatch');
+  if(row && row.dataset.ticker!=='off'){
+    var inner=row.innerHTML;
+    row.innerHTML=inner+inner;
+    var pos=0,spd=0.4;
+    (function tick(){
+      pos+=spd;
+      if(pos>=row.scrollWidth/2)pos=0;
+      row.scrollLeft=pos;
+      requestAnimationFrame(tick);
+    })();
+  }
 })();
 </script>
 

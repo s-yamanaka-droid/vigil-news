@@ -1,0 +1,130 @@
+[
+  {
+    "title": "OpenAIがワークスペースエージェント機能をChatGPTに導入",
+    "category": "ツール更新",
+    "source": "OpenAI Blog",
+    "lede": "ChatGPTにCodex駆動のワークスペースエージェントが統合され、複雑なワークフロー自動化とクラウド実行によるチーム作業の効率化が実現。",
+    "keypoints": [
+      "Codex駆動エージェントがワークフロー自動化を実現",
+      "複数ツール連携でチーム作業をスケール",
+      "クラウド実行で安全なデータ管理",
+      "WebSockets活用で遅延短縮を達成"
+    ],
+    "pull": "エージェント時代の到来により、企業はツール統合による作業自動化で生産性向上を実現できる段階に突入した。",
+    "links": [
+      "https://openai.com/index/introducing-workspace-agents-in-chatgpt"
+    ]
+  },
+  {
+    "title": "OpenAI、医療従事者向けChatGPT無料提供を開始",
+    "category": "業界動向",
+    "source": "OpenAI Blog",
+    "lede": "米国の医師・看護師・薬剤師に対しChatGPT for Cliniciansを無料提供し、臨床業務や医療文書作成、研究支援を推進。",
+    "keypoints": [
+      "医療従事者に無料アクセス提供",
+      "臨床ケアと文書作成に対応",
+      "検証済み専門家対象",
+      "医療研究を支援"
+    ],
+    "pull": "医療分野でのAI活用が実務レベルへ移行し、診療の効率化と質向上が加速する。",
+    "links": [
+      "https://openai.com/index/making-chatgpt-better-for-clinicians"
+    ]
+  },
+  {
+    "title": "Googleが次世代TPU 8T/8iを発表、エージェント時代へ対応",
+    "category": "新モデル発表",
+    "source": "Google AI Blog",
+    "lede": "Google Cloud Next 2026でTPUの第8世代として専用TPU 8T/8iが発表され、エージェント型AIワークロードの高速化を実現。",
+    "keypoints": [
+      "エージェント用途の特化設計",
+      "第8世代TPUで性能向上",
+      "高スループット推論に対応",
+      "クラウド基盤の強化"
+    ],
+    "pull": "インフラ面でエージェントAIに最適化した専用ハードウェアが登場し、大規模展開が加速する。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
+    ]
+  },
+  {
+    "title": "Googleが新AI Modeを搭載したChrome提供開始",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "ChromeにAI Mode機能が追加され、AIを活用したWebブラウジング体験で検索から情報活用まで統合。",
+    "keypoints": [
+      "AI統合ブラウジング機能",
+      "検索連携で情報取得効率化",
+      "リアルタイムWeb検索",
+      "新しい探索方法を提供"
+    ],
+    "pull": "ブラウザレベルでのAI統合により、Webの情報活用体験が根本的に変わる時代が到来。",
+    "links": [
+      "https://blog.google/products-and-platforms/products/search/ai-mode-chrome/"
+    ]
+  },
+  {
+    "title": "GoogleがWorkspaceにAIインターン機能を実装",
+    "category": "ツール更新",
+    "source": "TechCrunch AI",
+    "lede": "Google WorkspaceにWorkspace Intelligenceが統合され、自動化された業務支援機能でオフィスワークの効率を大幅向上。",
+    "keypoints": [
+      "Workspace Intelligence搭載",
+      "自動化された業務関数を実装",
+      "ドキュメント・スプシへの統合",
+      "チーム生産性を向上"
+    ],
+    "pull": "エンタープライズツールへのAI統合で、事務作業の自動化が企業の標準機能となる。",
+    "links": [
+      "https://techcrunch.com/2026/04/22/google-updates-workspace-to-make-ai-your-new-office-intern/"
+    ]
+  },
+  {
+    "title": "企業AI導入に必要な「データファブリック」基盤の重要性が浮上",
+    "category": "業界動向",
+    "source": "MIT Tech Review AI",
+    "lede": "AI導入が実験段階から実運用へ移行する中、コパイロットやエージェント展開に不可欠なデータ基盤構築の課題が明確化。",
+    "keypoints": [
+      "実運用段階へ急速に移行中",
+      "金融・サプライチェーン展開加速",
+      "データ統合基盤が課題に",
+      "予測システム導入増加"
+    ],
+    "pull": "エージェントAIの実装には強固なデータ基盤が必須となり、企業のIT戦略が抜本的に変わる。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
+    ]
+  },
+  {
+    "title": "TeslaがAI投資を拡大、2026年の設備投資を25億ドルに増加",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "Teslaが2026年の設備投資計画を過去比3倍の25億ドルに拡大し、AI・自動運転開発への投資加速を宣言。",
+    "keypoints": [
+      "設備投資を大幅増加",
+      "過去比3倍の投資規模",
+      "AI・自動運転が重点",
+      "年間フリーキャッシュフロー負化"
+    ],
+    "pull": "テック企業がAI開発に過去最大級の投資を実行し、業界再編の勢いが加速する。",
+    "links": [
+      "https://techcrunch.com/2026/04/22/tesla-just-increased-its-capex-to-25b-heres-where-the-money-is-going/"
+    ]
+  },
+  {
+    "title": "XがGrokキュレーションによるAI駆動カスタムフィードを展開",
+    "category": "ツール更新",
+    "source": "TechCrunch AI",
+    "lede": "XがコミュニティをGrok駆動のAIカスタムタイムラインに置き換え、個人化されたフィード体験と広告新枠を実装。",
+    "keypoints": [
+      "AI駆動のカスタムタイムライン実装",
+      "Grokによる自動キュレーション",
+      "コミュニティ機能を置き換え",
+      "広告新枠を追加"
+    ],
+    "pull": "SNS企業がAIキュレーション時代へシフトし、ユーザー体験と収益化の新モデルが構築される。",
+    "links": [
+      "https://techcrunch.com/2026/04/22/hands-on-with-xs-new-ai-powered-custom-feeds/"
+    ]
+  }
+]

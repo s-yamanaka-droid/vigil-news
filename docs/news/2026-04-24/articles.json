@@ -1,0 +1,139 @@
+[
+  {
+    "title": "OpenAI、医療専門家向け無料ChatGPT提供開始",
+    "category": "ツール更新",
+    "source": "OpenAI Blog",
+    "lede": "OpenAIが検証済みの米国医師・看護師・薬剤師向けにChatGPTを無料化し、臨床記録作成や研究支援を実現。",
+    "keypoints": [
+      "医療専門家向け無料提供開始",
+      "臨床ケア・文書作成・研究に対応",
+      "米国の医療者が対象",
+      "検証プロセスによる信頼性確保"
+    ],
+    "pull": "医療現場でのAI活用を加速させ、専門家の負担軽減を実現する戦略的展開。",
+    "links": [
+      "https://openai.com/index/making-chatgpt-better-for-clinicians"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "OpenAI、ワークスペースエージェント正式リリース",
+    "category": "新モデル発表",
+    "source": "OpenAI Blog",
+    "lede": "ChatGPTにコードキサー搭載のエージェント機能を統合。複雑なワークフロー自動化とツール連携を実現。",
+    "keypoints": [
+      "クラウドベースのエージェント機能",
+      "複数ツール統合による業務自動化",
+      "チームレベルでのスケーリング対応",
+      "セキュアな運用環境"
+    ],
+    "pull": "エンタープライズ向けのAIエージェントが実務化段階へ。業務効率化の新局面。",
+    "links": [
+      "https://openai.com/index/introducing-workspace-agents-in-chatgpt",
+      "https://openai.com/academy/workspace-agents"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Google、AI時代向けTPU8T/8i発表",
+    "category": "新モデル発表",
+    "source": "Google AI Blog",
+    "lede": "Googleが第8世代TPUの2つの専用チップを発表。エージェント型AI向けの処理最適化を実現。",
+    "keypoints": [
+      "第8世代TPU2種類発表",
+      "エージェント型AI専用最適化",
+      "クラウドネクスト2026で公開",
+      "AI推論効率向上"
+    ],
+    "pull": "専用TPUによるエージェント型AI時代への本格対応。インフラの競争が加速。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Eraが1100万ドル調達、AIウェアラブル向けプラットフォーム展開",
+    "category": "業界動向",
+    "source": "TechCrunch",
+    "lede": "AIハードウェア向けソフトウェアプラットフォームのEraが1100万ドル資金調達。眼鏡やリングなど多様なフォームファクター対応。",
+    "keypoints": [
+      "1100万ドルの資金調達実施",
+      "眼鏡・リング・ペンダント型対応",
+      "複数フォームファクター戦略",
+      "AIウェアラブル市場拡大"
+    ],
+    "pull": "AIハードウェアの多様化時代へ。統一プラットフォームの必要性が現実化。",
+    "links": [
+      "https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "企業AI導入にはデータ基盤整備が必須",
+    "category": "業界動向",
+    "source": "MIT Technology Review",
+    "lede": "MITレビューが指摘。エンタープライズAI展開にはコパイロット・エージェント導入前のデータ基盤構築が鍵。",
+    "keypoints": [
+      "データ基盤の重要性を強調",
+      "サプライチェーン・金融対応",
+      "実験段階から実運用へ移行",
+      "構造的な基盤整備が必須"
+    ],
+    "pull": "AI導入成功の70%はデータ基盤。基礎設備の見直しが企業競争力を左右する。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "AI駆動開発が実務化、生産性3倍化の現実",
+    "category": "業界動向",
+    "source": "Zenn",
+    "lede": "日本企業事例。エンジニア1人がAIエージェント従えて従来3人チームの仕事完遂。実装からレビューまでAI化進展。",
+    "keypoints": [
+      "3人チーム相当の業務を1人化",
+      "コード実装・テスト・要件定義AI対応",
+      "1年で開発スタイル大幅変化",
+      "レビュー・要件定義に人間介入"
+    ],
+    "pull": "AI駆動開発で生産性3倍。ただし人間の役割は品質判断へシフト必須。",
+    "links": [
+      "https://zenn.dev/dely_jp/articles/a686fcca32ba41"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "生成AI詐欺が急増、セキュリティ課題顕在化",
+    "category": "その他",
+    "source": "MIT Technology Review",
+    "lede": "ChatGPT公開以来、生成AIを悪用した詐欺が急増。テキスト生成能力の負の側面が社会課題化。",
+    "keypoints": [
+      "詐欺悪用が急増傾向",
+      "大量テキスト生成の危険性",
+      "セキュリティ対策重要化",
+      "規制議論の加速"
+    ],
+    "pull": "AI民主化がもたらした光と影。セキュリティ対応が企業責任の中心課題に。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135647/supercharged-scams-ai-artificial-intelligence/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Googleがオーストリアにアルプス初データセンター投資",
+    "category": "業界動向",
+    "source": "Google AI Blog",
+    "lede": "Googleがオーストリアのアルプス地域に初のデータセンター建設を発表。欧州でのAI基盤強化戦略。",
+    "keypoints": [
+      "アルプス地域初投資",
+      "欧州インフラ拡充戦略",
+      "地域データセンター需要対応",
+      "地政学的な基盤構築"
+    ],
+    "pull": "AI大手によるグローバルデータセンター争い激化。地域別戦略が競争軸に。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/"
+    ],
+    "likes": 0
+  }
+]
