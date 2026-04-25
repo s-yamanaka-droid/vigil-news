@@ -1,0 +1,138 @@
+[
+  {
+    "title": "OpenAI、GPT-5.5を発表—コード・研究・データ分析に特化",
+    "category": "新モデル発表",
+    "source": "OpenAI Blog",
+    "lede": "OpenAIが最新モデルGPT-5.5をリリース。GPT-5.4と同じレイテンシながら高い知能を実現し、コード作成から複雑なマルチステップタスクまで対応。",
+    "keypoints": [
+      "GPT-5.4と同等のレスポンス速度を維持しながら大幅な性能向上",
+      "エージェント的コーディング・コンピュータ利用・知識業務で特に強化",
+      "複数ステップの曖昧なタスクを一度に処理可能",
+      "トークン効率が向上し、同一タスクで消費量削減"
+    ],
+    "pull": "GPT-5.5は『計画・ツール利用・自己チェック・曖昧さの継続実行』を可能にし、ユーザーが各ステップを管理する必要がなくなった。",
+    "links": [
+      "https://openai.com/index/introducing-gpt-5-5"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "GoogleがAnthropicに最大400億ドル投資—AI競争激化",
+    "category": "業界動向",
+    "source": "TechCrunch",
+    "lede": "GoogleはAnthropicへの投資を最大400億ドル（現金100億ドル即時+条件付き300億ドル）に拡大。Mythosの限定公開に対応する計算資源確保が狙い。",
+    "keypoints": [
+      "Anthropic評価額350億ドル、100億ドルを即時投資",
+      "パフォーマンス達成時に追加300億ドル",
+      "Mythos（サイバーセキュリティ重視モデル）限定配布への対応",
+      "OpenAIとの計算リソース獲得競争がさらに加速"
+    ],
+    "pull": "AI企業の競争は『モデル性能』から『計算資源とエコシステムの独占』へシフト。大型資本投入で優位を確保する局面へ。",
+    "links": [
+      "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Googleが専用TPUを発表—エージェントAI向けに最適化",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "Google第8世代TPUとしてTPU 8i（推論）とTPU 8t（学習）を発表。マルチステップワークフロー処理能力を大幅強化。",
+    "keypoints": [
+      "TPU 8i：エージェント推論に最適化、複雑なタスク処理を高速化",
+      "TPU 8t：大規模モデル学習用、シングルメモリプール対応",
+      "推論応答速度改善でエージェントのUX向上に直結",
+      "プール化インフラが敏捷性高いAI展開を可能に"
+    ],
+    "pull": "TPU 8の登場で、単一デバイス上でエージェントが『推論→計画→実行→検証』のループを高速回転できる環境が成熟。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Googleが豪州のオーストリアに初データセンター—地域投資拡大",
+    "category": "業界動向",
+    "source": "Google AI Blog",
+    "lede": "Googleがクロンシュトルフにオーストリア初のデータセンターを建設。100直接雇用、AI・デジタル需要増に対応。",
+    "keypoints": [
+      "クロンシュトルフに設置、100直接雇用創出",
+      "欧州全域のデジタルインフラ投資の一環",
+      "グリーン化対応：太陽光パネル・排熱回収・河川水質向上基金",
+      "地元大学とのスキル育成パートナーシップ"
+    ],
+    "pull": "Googleの地政学的インフラ投資は、単なる容量確保ではなく『地域AI産業育成』と『エネルギー移行』を並行推進する戦略。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "ComfyUI、5億ドル評価で3000万ドル調達—ノードベース生成制御",
+    "category": "ツール更新",
+    "source": "TechCrunch",
+    "lede": "クリエイターがAI画像・動画・音声生成を細粒度制御するComfyUIが5億ドル評価で3000万ドル調達。Craft Venturesがリード。",
+    "keypoints": [
+      "ノードベースワークフロー：生成プロセスの各ステップを細かく制御",
+      "Midjourney・DALL-Eの『60～80%どまり問題』を解決",
+      "2023年オープンソース開始、2024年Series A後の加速成長",
+      "クリエイティブプロ層からの強い需要実績"
+    ],
+    "pull": "『プロンプト→一括生成』から『ノード設計→段階制御』へ。生成AIが『職人道具』へ進化する市場成熟の証。",
+    "links": [
+      "https://techcrunch.com/2026/04/24/comfyui-hits-500m-valuation-as-creators-seek-more-control-over-ai-generated-media/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "中国DeepSeek、V4プレビュー公開—大規模コンテキスト処理に対応",
+    "category": "新モデル発表",
+    "source": "MIT Technology Review",
+    "lede": "DeepSeekが次世代フラグシップモデルV4をプレビュー公開。大幅なコンテキストウィンドウ拡張と効率化が特徴。前作R1は限定リソースで業界を驚かせた。",
+    "keypoints": [
+      "V4は前世代比で大幅なコンテキスト処理能力向上",
+      "R1（2025年1月）の成功に続く重要リリース",
+      "オープンソース提供、中国AI企業による波及効果",
+      "米中政府スクリューティニー下での戦略的リリース"
+    ],
+    "pull": "DeepSeekは『限定リソース下での性能追求』という哲学を貫き、グローバルAI競争の『効率性ベンチマーク』として機能。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "ThinkingMachinesがGoogle・Nvidiaと提携—タレント争奪も激化",
+    "category": "業界動向",
+    "source": "TechCrunch",
+    "lede": "AI新興企業ThinkingMachinesがGoogleの数十億ドル規模クラウド契約を獲得。GB300チップへのアクセス権でAnthropicと同等インフラ地位へ。",
+    "keypoints": [
+      "Google Cloudと数十億ドル契約、Nvidia GB300チップアクセス",
+      "Anthropic・Metaと同じインフラ階層に昇格",
+      "Meta出身者複数名を次々採用（コア人材争奪）",
+      "双方向の人材流動、PyTorch共同開発者Chintalaも合流"
+    ],
+    "pull": "計算資源の寡占化により、一流スタートアップが『インフラ階層』で大企業と対等化。人材争奪も資本差より機会差で決まる時代へ。",
+    "links": [
+      "https://techcrunch.com/2026/04/24/metas-loss-is-thinking-machines-gain/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "OpenAI、Codexの自動化・エージェント機能を拡大",
+    "category": "ツール更新",
+    "source": "OpenAI Blog",
+    "lede": "Codexに定期実行・トリガー機能を追加。週報作成・朝ブリーフ・継続タスク管理をスケジュール自動化。ユーザーの手間を大幅削減。",
+    "keypoints": [
+      "スケジュール・トリガーベースの自動実行",
+      "継続的コンテキスト保持で段階的タスク処理可能",
+      "週次レポート・日次サマリー・ファイル監視に活用",
+      "会話内容を起点に自動化を設定可能"
+    ],
+    "pull": "『相談から自動化へ』。Codexはチャットボット段階を卒業し、ユーザー代理の『常勤アシスタント』へ進化。",
+    "links": [
+      "https://openai.com/academy/codex-automations"
+    ],
+    "likes": 0
+  }
+]
