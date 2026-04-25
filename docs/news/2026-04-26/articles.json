@@ -1,0 +1,138 @@
+[
+  {
+    "title": "OpenAIがGPT-5.5を発表、コード生成と推論能力を大幅強化",
+    "category": "新モデル発表",
+    "source": "OpenAI Blog",
+    "lede": "OpenAIが最新モデルGPT-5.5をリリース。GPT-5.4と同等の速度を保ちながら、コード作成やデータ分析などの複雑なタスク処理能力を飛躍的に向上させた。",
+    "keypoints": [
+      "コード生成・デバッグ、オンライン調査、データ分析を高精度で実行",
+      "複数ステップのタスクを自動計画・実行・検証する自律的処理が強化",
+      "トークン消費量大幅削減で効率性も向上",
+      "推論・コード生成・知識業務での性能が特に顕著"
+    ],
+    "pull": "GPT-5.5はメッシーなマルチパートタスクを与えると、計画・実行・検証を自動で進める自律的なAIへの進化を象徴する。",
+    "links": [
+      "https://openai.com/index/introducing-gpt-5-5"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Anthropicがエージェント間取引の実験で186件の成立取引を実現",
+    "category": "研究",
+    "source": "TechCrunch AI",
+    "lede": "AnthropicがAIエージェント同士が買い手・売り手となるマーケットプレイス実験を実施。4000ドル超の取引成功から、エージェントの能力差による不平等が生じる可能性を指摘。",
+    "keypoints": [
+      "69人の従業員を参加者とした実験で186件、4000ドル超の取引を実行",
+      "より高度なモデル使用ユーザーが客観的に良い成果を獲得",
+      "能力差があっても利用者が自身の不利を認識できない可能性を発見",
+      "エージェント初期指示はセール成立率や交渉価格に影響しない"
+    ],
+    "pull": "エージェント品質の差が自動的に不平等を生む仕組みが浮き彫りに。AIシステムの透明性と公平性の設計が急務。",
+    "links": [
+      "https://techcrunch.com/2026/04/25/anthropic-created-a-test-marketplace-for-agent-on-agent-commerce/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "GoogleがTPU 8i/8tを発表、エージェント時代対応の新チップ",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "Googleが第8世代TPUの2モデルを発表。TPU 8iはエージェント向け高速推論に特化、TPU 8tは大規模モデル訓練用に設計。",
+    "keypoints": [
+      "TPU 8i：マルチステップワークフローの計画・実行を高速化",
+      "TPU 8t：単一の大規模メモリプールで最複雑モデルを訓練可能",
+      "前世代比で倍の帯域幅を実現、121エクサフロップスの演算性能",
+      "エージェントAIを大規模展開するための基盤インフラ"
+    ],
+    "pull": "自律型AIエージェントの実用化に向け、推論と訓練の両面で専門化したチップ戦略。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "DeepSeekがV4プレビュー公開、長文処理能力を大幅向上",
+    "category": "新モデル発表",
+    "source": "MIT Tech Review AI",
+    "lede": "中国のDeepSeekがV4プレビューを発表。新設計により大量テキスト処理が効率化。オープンソース化され、R1以来の重大リリース。",
+    "keypoints": [
+      "前世代比で大幅に長いプロンプト処理が可能に",
+      "オープンソース化で誰でも利用・改変可能",
+      "R1の高効率トレーニングを継承したアプローチ",
+      "中国AI産業の対外発信と米中AI競争の重要な動き"
+    ],
+    "pull": "DeepSeekはR1で業界を驚かせたが、V4はその性能の維持・拡張にとどまる保守的リリース。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "CohereがAleph Alphaを買収、欧州AI主権の構想",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "カナダのCohereがドイツのAleph Alphaを買収。Lidl親会社の600億円投資で評価額200億ドルの企業へ。米国主導のAI産業に対抗する欧州戦略。",
+    "keypoints": [
+      "Schwarz Group（Lidl親会社）が500百万ユーロを構造ファイナンス",
+      "評価額が従来の68億ドルから200億ドルへ大幅上昇",
+      "ソブリンAI提供が目標、米プレイヤーへの依存低減",
+      "欧州データ主権と独自AIエコシステム構築の野心"
+    ],
+    "pull": "小売大手による戦略的投資でAI開発の地政学的分断が加速。",
+    "links": [
+      "https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Googleがオーストリア初データセンター開設、欧州投資加速",
+    "category": "業界動向",
+    "source": "Google AI Blog",
+    "lede": "GoogleがオーストリアのKronstorfにデータセンターを開設。100雇用創出と地域の水質改善基金設立で、欧州AI競争力強化に貢献。",
+    "keypoints": [
+      "オーストリア初データセンター、直接雇用100人",
+      "再生可能エネルギーと排熱利用で地域エネルギー転換に貢献",
+      "Upper Austria大学と協力し140,000人以上のAI人材育成実績",
+      "欧州全体のデジタル競争力向上が目標"
+    ],
+    "pull": "AIインフラの地域展開を通じ、欧州の対米依存構造を段階的に転換。",
+    "links": [
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "エンタープライズAI、高品質データファブリックが成功の鍵",
+    "category": "その他",
+    "source": "MIT Tech Review AI",
+    "lede": "企業におけるAI導入は、モデル性能より『データの文脈理解』が成否を決定。ビジネス判断を支える統合データ基盤の重要性が浮き彫りに。",
+    "keypoints": [
+      "2025年末時点で500%が3事業以上でAI活用中",
+      "スピード重視では判断ミスが増加、投資回収が損なわれる",
+      "データファブリック導入で安全かつ大規模展開が可能に",
+      "自律型システム時代、文脈層の構築が急務"
+    ],
+    "pull": "速度だけのAIは返って経営リスク。ビジネス文脈を内蔵したデータ基盤設計が企業価値を左右する。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Prompt Cache活用で Claude 利用コストを84%削減可能",
+    "category": "ツール更新",
+    "source": "Zenn AI",
+    "lede": "Claude Sonnet 4.5でPrompt Cache機能を使うと、100Kトークンの長文コンテキストで20ターン対話を84%低コストで実行可能。",
+    "keypoints": [
+      "キャッシュ読み込みは通常の10分の1の価格（$0.30/M tokens）",
+      "初回書き込みは通常の1.25倍（$3.75/M tokens）で以降ほぼ無料",
+      "損益分岐点はわずか2ターン目で成立",
+      "設定不要、Claude Code が自動マーカー配置"
+    ],
+    "pull": "入力の先頭が同じならキャッシュ再利用で劇的コスト削減。階層構造の理解で『意図的な最適化』へ転換。",
+    "links": [
+      "https://zenn.dev/ruralwritter/articles/4656b52b64a0ed"
+    ],
+    "likes": 0
+  }
+]
