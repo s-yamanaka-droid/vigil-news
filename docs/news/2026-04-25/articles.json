@@ -1,135 +1,135 @@
 [
   {
-    "title": "GoogleがAnthropicに最大400億ドル投資、生成AI競争が激化",
-    "category": "業界動向",
-    "source": "TechCrunch AI",
-    "lede": "Googleが最大400億ドルをAnthropicに投資。現在10億ドルを拠出し、パフォーマンス目標達成時に追加30億ドルを提供する計画。",
-    "keypoints": [
-      "10億ドル即時投資、残り30億ドルは条件付き",
-      "Anthropicの評価額は350億ドル",
-      "AI企業の計算リソース確保競争が加速",
-      "Mythos制限公開後の戦略的投資"
-    ],
-    "pull": "AI競争が投資規模の競争へ。GoogleはOpenAIとAnthropicという2つの主要企業に投資し、スタックを独占する戦略を展開。",
-    "links": [
-      "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "OpenAI、GPT-5.5発表。コード・研究・分析に対応",
+    "title": "OpenAIがGPT-5.5をリリース、コード作成や研究に特化",
     "category": "新モデル発表",
     "source": "OpenAI Blog",
-    "lede": "OpenAIが最新モデルGPT-5.5を発表。より高速で能力が高く、複雑なコーディング・研究・データ分析タスク向けに設計。",
+    "lede": "OpenAIは最新モデル「GPT-5.5」を発表。コード作成やデータ分析などの複雑タスクに対応し、処理速度はGPT-5.4と同等のまま高い推論能力を実現。",
     "keypoints": [
-      "GPT-5.5は前世代より高速化",
-      "複数ツール統合をサポート",
-      "コーディングと研究タスク最適化",
-      "プロフェッショナル向け新機能搭載"
+      "複数ステップのタスク自動実行可能、コード作成・デバッグに特化",
+      "GPT-5.4と同等のレイテンシで性能向上、トークン効率も向上",
+      "エージェント型コーディング・コンピュータ利用・知識作業で強みあり",
+      "APIで利用可能、最強のセーフガード実装"
     ],
-    "pull": "OpenAIの新モデルはツール統合と汎用性を強化。ビジネスユースの拡大を狙う開発方針が鮮明。",
+    "pull": "複雑なマルチステップタスクを与えられば、計画・実行・検証を自動で繰り返し、曖昧性も乗り越える新世代モデル",
     "links": [
       "https://openai.com/index/introducing-gpt-5-5"
     ],
     "likes": 0
   },
   {
-    "title": "DeepSeekがV4プレビュー公開、長文処理大幅改善",
-    "category": "新モデル発表",
-    "source": "MIT Tech Review AI",
-    "lede": "中国のDeepSeekが新旗艦モデルV4のプレビューを公開。前世代比で大幅に長いテキスト処理が可能に。オープンソース提供。",
+    "title": "GoogleがAnthropicに最大400億ドル投資を発表",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "GoogleはAnthropicに最大40億ドルを投資。初期10億ドルは350億ドル評価額で、残り30億ドルは性能目標達成時。AI企業の計算リソース確保競争が激化。",
     "keypoints": [
-      "V4は長文プロンプト処理に対応",
-      "設計改善で大量テキスト処理の効率化",
-      "R1以来の重要リリース",
-      "引き続きオープンソース戦略"
+      "初期10億ドル即座投資、評価額350億ドル（初期段階）",
+      "残り30億ドルは性能達成時の条件付き支払い",
+      "Anthropicの計算インフラ需要増加に対応",
+      "Mythos安定性確保とClaude利用制限対策も含む"
     ],
-    "pull": "DeepSeekはオープンウェイト戦略で競争力を維持。効率性と透明性の両立が中国勢の差別化要因。",
+    "pull": "AI企業のコンピュート確保競争が加速する中、GoogleはAnthropicへの大型投資で関係強化",
     "links": [
-      "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/"
+      "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"
     ],
     "likes": 0
   },
   {
-    "title": "Googleが第8世代TPU発表、エージェントAI向けに特化",
+    "title": "Google、AI専用チップTPU 8i・8tを発表、エージェント時代へ対応",
     "category": "ツール更新",
     "source": "Google AI Blog",
-    "lede": "Googleが自律AI向けに特化した2種類の第8世代TPUを発表。TPU 8iはエージェント推論、TPU 8tはモデル学習に最適化。",
+    "lede": "GoogleがTPUの第8世代を発表。TPU 8iはAIエージェント専用、TPU 8tはモデル訓練用。高速応答とエージェント時代の要求に対応。",
     "keypoints": [
-      "TPU 8iはAIエージェント推論用",
-      "TPU 8tは大規模モデル学習対応",
-      "単一メモリプール設計で複雑モデル対応",
-      "フルスタック基盤の一部"
+      "TPU 8i：AIエージェントの推論・計画・実行ワークフロー最適化",
+      "TPU 8t：大規模モデル訓練用、単一メモリプール統合",
+      "最新世代は121エクサフロップス処理能力、前世代の2倍の帯域幅",
+      "オーストリア初のデータセンター建設、100人の雇用創出"
     ],
-    "pull": "AI開発の計算ニーズが多様化。推論と学習に特化したハードウェアの棲み分けで効率化を実現。",
+    "pull": "自律AI エージェント時代に向け、推論と訓練を分化させた専用チップで業界をリード",
     "links": [
       "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
     ],
     "likes": 0
   },
   {
-    "title": "ComfyUI、5億ドル評価で3000万ドル資金調達",
+    "title": "ComfyUI、5億ドル評価で3000万ドル調達、AI制作ツールの地位確立",
     "category": "業界動向",
     "source": "TechCrunch AI",
-    "lede": "ノード型AIメディア生成ツールComfyUIが5億ドルの評価額で3000万ドルを資金調達。クリエイターの細粒度コントロール需要が拡大。",
+    "lede": "AI画像・動画・音声生成に細かい制御を提供するComfyUIが3000万ドルを調達、評価額5億ドル。クリエイター需要の高さを反映。",
     "keypoints": [
-      "5億ドル評価額で3000万ドル調達",
-      "Craft Venturesがリード投資",
-      "2023年のオープンソースプロジェクト発祥",
-      "プロンプト頼みから解放するニーズ"
+      "2023年オープンソース開始、2024年シリーズA（1900万ドル）から成長",
+      "ノードベースワークフロー、生成プロセスの細部制御を実現",
+      "Midjourney・DALL-Eと異なる、精密性を求めるプロの利用拡大",
+      "Craft Ventures主導、Pace Capital・Chemistry・TruArrowが参加"
     ],
-    "pull": "AIメディア生成は高精度よりコントロール性が差別化要因。クリエイター向けに特化したUIが市場を創出。",
+    "pull": "プロンプト主導ツールでは80%程度の仕上がりだが、ComfyUIなら残り20%を自在に調整可能",
     "links": [
       "https://techcrunch.com/2026/04/24/comfyui-hits-500m-valuation-as-creators-seek-more-control-over-ai-generated-media/"
     ],
     "likes": 0
   },
   {
-    "title": "Google、オーストリア初のアルプス拠点にデータセンター建設へ",
-    "category": "業界動向",
-    "source": "Google AI Blog",
-    "lede": "Googleがクロンシュトルフにオーストリア初のデータセンター建設を発表。100雇用創出、サステナビリティと地域連携を重視。",
+    "title": "DeepSeek、V4モデルプレビュー公開、長文処理能力大幅向上",
+    "category": "新モデル発表",
+    "source": "MIT Tech Review AI",
+    "lede": "中国のDeepSeekがV4を公開。R1以来の大型リリース。オープンソース形式で、前世代より長いプロンプト処理が可能な新設計を搭載。",
     "keypoints": [
-      "オーストリア初のGoogle自社データセンター",
-      "100の直接雇用を創出",
-      "川の水質改善基金を設立",
-      "大学との教育パートナーシップ構築"
+      "オープンソース提供、誰でもダウンロード・修正可能",
+      "R1（推論モデル）発表後の本格的な新機能リリース",
+      "長文・大量テキスト処理の効率設計を新採用",
+      "米国・中国政府の監視下での人事変動から回復の動き"
     ],
-    "pull": "AI基盤整備が地政学的に分散。欧州での独立した計算能力確保とローカルコミットメントを同時実現。",
+    "pull": "R1で業界を驚かせたDeepSeekが、長文対応という実務的な課題に取り組む新段階へ",
     "links": [
-      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/"
+      "https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/"
     ],
     "likes": 0
   },
   {
-    "title": "Thinking Machines Lab、Meta人材の流出と流入が加速",
+    "title": "Thinking Machines Lab、Google Cloudと数十億ドル契約、Nvidia GB300チップアクセス",
     "category": "業界動向",
     "source": "TechCrunch AI",
-    "lede": "MetaからThinking Machines Labへの人材移動が活発化。TMLはGoogle・Nvidia・Anthropicと同等の基盤インフラを確保。",
+    "lede": "AI企業Thinking Machines LabがGoogle Cloudと大型契約、Nvidia最新GPU GB300へのアクセス権獲得。AnthropicやMetaと同等の計算インフラレベル。",
     "keypoints": [
-      "MetaからMLへのAI研究者流入",
-      "GoogleとのMulti-billion-dollar契約締結",
-      "最新Nvidia GB300チップへのアクセス",
-      "PyTorchなど著名研究者も参画"
+      "Google Cloud Nextで発表、数十億ドル規模の契約",
+      "Nvidia GB300チップへの初期アクセス企業の一つ",
+      "AnthropicとMetaと同じインフラ階層へ昇格",
+      "Meta出身者流入、PyTorch共同創設者も参画"
     ],
-    "pull": "スタートアップが主要研究者を確保。メタレベルの計算リソースアクセスが人材獲得の競争力に。",
+    "pull": "計算資源を争奪する時代、スタートアップもメガキャップと同等のインフラアクセスを確保",
     "links": [
       "https://techcrunch.com/2026/04/24/metas-loss-is-thinking-machines-gain/"
     ],
     "likes": 0
   },
   {
-    "title": "AI活用の鍵は'データファブリック'。エンタープライズは文脈理解が課題",
+    "title": "LLMsはもう「基礎技術」、LLMs+が次段階、効率化と自律性がカギ",
     "category": "研究",
     "source": "MIT Tech Review AI",
-    "lede": "企業向けAI導入の成功要因はモデル性能より'データファブリック'。ビジネス文脈の理解がAIの判断精度を左右する。",
+    "lede": "MIT Tech Reviewが「10 Things That Matter in AI」を発表。LLMは飽和段階へ、次は複雑マルチステップ問題を独力で解くLLMs+へ。",
     "keypoints": [
-      "データ品質・文脈がボトルネック",
-      "速度だけでは投資対効果出ない",
-      "経営判断に必要な'良い判断'が重要",
-      "3業務以上でAI活用が5割企業"
+      "Mixture-of-Experts、Transformers代替など効率化技術が進展",
+      "AIエージェントが数日〜数週間の単独作業を可能に必要",
+      "安価・高速実行がLLMs+の必須要件",
+      "ヒューマノイド訓練データ・深刻化するAI詐欺も並行課題"
     ],
-    "pull": "AI導入の失敗は技術ではなく組織設計。データと業務プロセスの統合設計が実装の分かれ目。",
+    "pull": "ChatGPT時代の「次」は定着段階のLLMを使い倒す時代、モデル革新よりハーネス設計で差がつく",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135645/llm-large-language-models-ai/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "エンタープライズAI成功の鍵は「データファブリック」、文脈理解がROIを左右",
+    "category": "業界動向",
+    "source": "MIT Tech Review AI",
+    "lede": "企業がAIを導入しても性能ボトルネックはモデルではなく、データの質と文脈。ビジネスロジックを組み込んだデータファブリック設計が成否を分ける。",
+    "keypoints": [
+      "企業の半数以上が3機能以上でAI導入（2025年末時点）",
+      "データ統合だけでなく「ビジネス文脈の理解」が必須",
+      "文脈なき高速判定は判断誤りを招く可能性",
+      "自律システム時代、データファブリックは コアインフラ化"
+    ],
+    "pull": "AIは速く結果を出すが、文脈なき速さは むしろ損失。良き判断こそがROIを生む",
     "links": [
       "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
     ],
