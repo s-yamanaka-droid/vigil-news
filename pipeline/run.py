@@ -12,7 +12,7 @@ RESEARCHER_PATH = Path.home() / "agents/cmo/x_agent"
 sys.path.insert(0, str(RESEARCHER_PATH))
 sys.path.insert(0, str(Path(__file__).parent))
 
-from researcher import fetch_latest
+from researcher import fetch_latest, mark_seen
 from generator import generate_articles
 from slide_maker import generate_slide
 from html_builder import build_daily_page, build_index, SITE_DIR
@@ -103,6 +103,12 @@ def run(date_str: str = None, dry_run: bool = False, skip_slides: bool = False, 
         log.info("6. [DRY RUN] SNS投稿スキップ")
     else:
         log.info("6. SNS投稿スキップ（--skip-social）")
+
+    # 7. 使用済みURLを登録（次回の重複スキップ用）
+    used_links = [a.get("links", [""])[0] for a in articles if a.get("links")]
+    raw_links  = [r.get("link","") for r in raw if r.get("link")]
+    mark_seen(list(set(used_links + raw_links)))
+    log.info(f"   既読URL登録: {len(set(used_links + raw_links))}件")
 
     log.info("=== 完了 ===")
 
