@@ -1,0 +1,138 @@
+[
+  {
+    "title": "Gemini 3.1 Flash TTS発表、70言語対応の音声生成モデル",
+    "category": "新モデル発表",
+    "source": "Google AI Blog",
+    "lede": "Googleが音声タグで表現力を制御できるAI音声生成モデル「Gemini 3.1 Flash TTS」を発表。70言語以上に対応し、SynthID透かしで生成音声を識別。",
+    "keypoints": [
+      "音声タグで話し方や速度を自然言語で制御可能",
+      "70言語以上のマルチリンガル対応",
+      "SynthID透かしで AI生成音声を識別",
+      "Google AI Studio、Vertex AI、Google Vidsで利用可能"
+    ],
+    "pull": "音声タグの導入により、開発者は複雑なプロンプトなしで表現力豊かな音声生成を細かく制御できる。",
+    "links": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Gemini、Google Photosと連携し個人写真を使った画像生成",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "GeminiアプリがGoogle Photosと連携し、ユーザーの個人写真を自動で活用した画像生成を実現。詳細プロンプト不要で自分や家族を含む画像を生成可能。",
+    "keypoints": [
+      "Google Photosと自動連携で個人コンテンツを活用",
+      "詳細プロンプト不要で利用可能",
+      "プライベート写真は学習に使用されない",
+      "AIプラス有料ユーザー向けにロールアウト中"
+    ],
+    "pull": "個人の好みと写真を自動認識することで、ユーザーは最小限の操作で高度にパーソナライズされた画像を生成できる。",
+    "links": [
+      "https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence-nano-banana/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "メイン州知事、データセンター許可モラトリアムを拒否",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "メイン州知事がL.D. 307法案に拒否権を行使。AI訓練用データセンター急増への懸念が高まる中、同州の特定プロジェクト例外を巡る政治判断。",
+    "keypoints": [
+      "州知事がデータセンター一時禁止法案に拒否権",
+      "ジェイ町の特定プロジェクト例外を主張",
+      "電力料金と環境への懸念が州議員らから指摘",
+      "全米初の州規模モラトリアムは実現せず"
+    ],
+    "pull": "知事は地域経済と環境政策のバランスを重視し、特定プロジェクトの除外を理由に拒否。AI基盤整備と規制の緊張が続く。",
+    "links": [
+      "https://techcrunch.com/2026/04/25/maines-governor-vetoes-data-center-moratorium/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "OpenAI幹部、銃撃事件被害者への謝罪文を発表",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "OpenAIのAltman CEOが、禁止アカウントの通報遅れで8人が犠牲となったカナダ銃撃事件に謝罪。安全プロトコル改善と当局との連携強化を表明。",
+    "keypoints": [
+      "6月に銃撃容疑者のアカウント禁止後、通報を控えた",
+      "事件後に当局と連携し安全プロトコル強化",
+      "カナダ当局との直接連絡体制を構築",
+      "CEOが被害者コミュニティへ公式謝罪"
+    ],
+    "pull": "AIプラットフォームの安全判断と通報タイミングの課題が浮き彫りに。プロトコル改善に向かうが、社会的責任の重さが問われている。",
+    "links": [
+      "https://techcrunch.com/2026/04/25/openai-ceo-apologizes-to-tumbler-ridge-community/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "生成AIが詐欺・犯罪を加速、AI対応の防御急務",
+    "category": "研究",
+    "source": "MIT Tech Review",
+    "lede": "AIツール普及に伴い、フィッシング・ディープフェイク・マルウェア改造などが低コストで大規模化。東南アジアの詐欺組織が精密攻撃を自動化。",
+    "keypoints": [
+      "フィッシング・ディープフェイク生成が自動化",
+      "マルウェア検出回避が容易に",
+      "ネットワーク脆弱性の自動探索が可能",
+      "東南アジアの詐欺センターが安価なAIを活用中"
+    ],
+    "pull": "生成AIは攻撃者のスキル要件を劇的に低下させる。防御側の多層検知と組織体制強化が喫緊の課題。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135647/supercharged-scams-ai-artificial-intelligence/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "ワールドモデル研究が加速、ロボティクスの基礎構築へ",
+    "category": "研究",
+    "source": "MIT Tech Review",
+    "lede": "Google DeepMind、Stanford、Meta出身者らがワールドモデル開発を加速。物理世界シミュレーションでロボットの知能化実現へ、OpenAIもSora終了後にシフト。",
+    "keypoints": [
+      "ワールドモデルがAI研究の次の焦点",
+      "Google DeepMind、Stanford、World Labsが推進",
+      "OpenAIがSora終了後に世界シミュレーション研究へ",
+      "LLMの限界を超える基盤技術として注目"
+    ],
+    "pull": "言語から物理世界へのAIの認識拡張。シミュレーション能力がロボット時代の必須基盤技術となりつつある。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135650/world-models-ai-artificial-intelligence/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "AIエージェント「責任経路工学」、判断の透明性確保が課題",
+    "category": "研究",
+    "source": "Zenn AI",
+    "lede": "AI自律実行が常態化する中、「責任の所在」だけでは不十分。判断・承認・実行・検証を一貫追跡する設計体系が必要との指摘。",
+    "keypoints": [
+      "責任を単一者に固定することは限界",
+      "AIの提案から実行まで経路全体を設計対象に",
+      "承認者の判断根拠と停止権を明示的に確保",
+      "失敗時の修復責任と証跡保全が重要"
+    ],
+    "pull": "AIエージェント運用では、人間が経由した判断が組織へ戻れる構造が必須。責任経路の設計と検証が組織ガバナンスの新課題。",
+    "links": [
+      "https://zenn.dev/dantarg/articles/responsibility-pathway-engineering"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "多機能AIエージェント「オーケストレーション」で複雑業務を自動化",
+    "category": "ツール更新",
+    "source": "MIT Tech Review",
+    "lede": "OpenClaw以降、複数エージェントを協調させる「マルチエージェントオーケストレーション」が現実化。Anthropic、Nvidia、Tencentが実装を加速。",
+    "keypoints": [
+      "複数エージェント協調で複雑業務に対応",
+      "Claude Codeで数十の部分エージェント並行実行",
+      "Nvidiaら大手企業が実装を競う",
+      "医薬品開発やスケーラブル自動化に応用"
+    ],
+    "pull": "単一エージェントの限界を超え、分業・並列化により人間レベルの複雑業務を自動化。組織内AIの統合型パフォーマンス時代へ。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/21/1135654/agent-orchestration-ai-artificial-intelligence/"
+    ],
+    "likes": 0
+  }
+]
