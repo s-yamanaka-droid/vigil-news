@@ -60,9 +60,22 @@ def generate_slide(
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {
-            "responseModalities": ["IMAGE", "TEXT"],
-            "imageGenerationConfig": {"imageSize": size},
+            "responseModalities": ["IMAGE"],
+            "imageConfig": {
+                "aspectRatio": "16:9",
+                "imageSize": size,
+            },
+            "thinkingConfig": {
+                "thinkingLevel": "High",
+                "includeThoughts": False,
+            },
         },
+        "safetySettings": [
+            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_ONLY_HIGH"},
+            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_ONLY_HIGH"},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_ONLY_HIGH"},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_ONLY_HIGH"},
+        ],
     }
 
     url = f"{API_BASE}/{MODEL_ID}:generateContent?key={API_KEY}"

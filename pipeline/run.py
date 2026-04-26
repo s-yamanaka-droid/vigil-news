@@ -17,6 +17,7 @@ from generator import generate_articles
 from slide_maker import generate_slide
 from html_builder import build_daily_page, build_index, SITE_DIR
 from deploy import git_push
+from social_poster import post_dispatch
 
 LOG_DIR = Path(__file__).parent.parent / "logs"
 LOG_DIR.mkdir(exist_ok=True)
@@ -31,14 +32,14 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-def run(date_str: str = None, dry_run: bool = False, skip_slides: bool = False):
+def run(date_str: str = None, dry_run: bool = False, skip_slides: bool = False, skip_social: bool = False):
     date_str = date_str or datetime.now().strftime("%Y-%m-%d")
     log.info(f"=== VIGIL {date_str} ===")
 
-    # 1. RSS収集
-    log.info("1. RSS収集")
-    raw = fetch_latest(max_per_feed=4)
-    log.info(f"   {len(raw)}件取得")
+    # 1. RSS収集（元記事本文も取得）
+    log.info("1. RSS収集 + 本文取得")
+    raw = fetch_latest(max_per_feed=4, fetch_body=True)
+    log.info(f"   {len(raw)}件取得（本文付き）")
 
     # 2. Haiku要約
     log.info("2. 記事生成（Haiku）")
@@ -93,12 +94,21 @@ def run(date_str: str = None, dry_run: bool = False, skip_slides: bool = False):
         log.info(f"   {'✓ 完了' if ok else '✗ 失敗'}")
     else:
         log.info("5. [DRY RUN] push スキップ")
-        log.info(f"   サイトプレビュー: {SITE_DIR}/index.html")
+
+    # 6. SNS投稿（Threads のみ / X は有料APIのためスキップ）
+    if not dry_run and not skip_social:
+        log.info("6. SNS投稿（Threads）")
+        post_dispatch(articles, date_str, post_x=False, post_threads=True)
+    elif dry_run:
+        log.info("6. [DRY RUN] SNS投稿スキップ")
+    else:
+        log.info("6. SNS投稿スキップ（--skip-social）")
 
     log.info("=== 完了 ===")
 
 
 if __name__ == "__main__":
-    dry = "--dry" in sys.argv
-    skip = "--skip-slides" in sys.argv
-    run(dry_run=dry, skip_slides=skip)
+    dry          = "--dry" in sys.argv
+    skip         = "--skip-slides" in sys.argv
+    skip_social  = "--skip-social" in sys.argv
+    run(dry_run=dry, skip_slides=skip, skip_social=skip_social)

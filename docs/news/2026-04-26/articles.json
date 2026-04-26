@@ -134,5 +134,90 @@
       "https://zenn.dev/ruralwritter/articles/4656b52b64a0ed"
     ],
     "likes": 0
+  },
+  {
+    "title": "GPT-5.5でスライド画像をPPTXに再現するプロンプト公開",
+    "category": "ツール更新",
+    "source": "@suh_sunaneko",
+    "lede": "GPT-5.5のマルチモーダル理解とCodex系コード生成力を組み合わせ、スライド画像から編集可能なPPTXを再現するプロンプトが公開。分解→再現→比較→修正の4ステップが核心。",
+    "keypoints": [
+      "『分解→再現→レンダリング比較→修正』を最低1サイクル必須",
+      "SVG禁止・全体画像化禁止、テキストは編集可能ボックスで出力",
+      "装飾は図形で再現、アイコンはPNG/JPEG切り出しで対応",
+      "nanobananaの『ゼロ生成』とは対照的な『既存スライド再現』用途"
+    ],
+    "pull": "ゼロからではなく既存デザインを忠実に編集可能形式へ変換する、実務直結のプロンプト設計。",
+    "links": [
+      "https://x.com/suh_sunaneko/status/2047821127461069293"
+    ],
+    "likes": 2842
+  },
+  {
+    "title": "Claude Managed Agents Memory がPublic Betaに",
+    "category": "ツール更新",
+    "source": "Anthropic Blog",
+    "lede": "Claude Managed AgentsのMemory機能がPublic Betaへ。エージェントがセッション越しに学習する公式メモリ層を提供。ファイル形式で保存され、開発者がAPIでエクスポート・管理可能。",
+    "keypoints": [
+      "性能と柔軟性を両立する『Intelligence-Optimized Memory Layer』を採用",
+      "メモリはファイルとして保存、APIでエクスポート・削除可能",
+      "セッションをまたいでエージェントが継続学習・記憶保持",
+      "開発者が完全制御できる透明性の高い設計"
+    ],
+    "pull": "記憶を開発者がAPIで完全制御できる設計は、エンタープライズ利用の信頼性担保に直結する。",
+    "links": [
+      "https://claude.com/blog/claude-managed-agents-memory"
+    ],
+    "likes": 8851
+  },
+  {
+    "title": "OpenAI Codex Auto-reviewモード公開、2段階安全チェック搭載",
+    "category": "ツール更新",
+    "source": "@OpenAIDevs",
+    "lede": "CodexにAuto-reviewモードが追加。長時間タスクを中断なく実行しつつ、高リスクなステップは別エージェントが文脈付きで安全性をチェックする2段構成を採用。",
+    "keypoints": [
+      "承認回数を抑えながら長時間タスクを継続実行",
+      "テスト・ビルド・自動化フローなどに対応",
+      "高リスクステップは別エージェントが安全性を審査してから実行",
+      "文脈を保持したまま安全チェックを差し込む2段構成"
+    ],
+    "pull": "承認の手間とリスクを同時に削減する構造は、エージェントの実務展開における信頼性設計の新標準となりうる。",
+    "links": [
+      "https://x.com/OpenAIDevs/status/2047436655863464011"
+    ],
+    "likes": 3188
+  },
+  {
+    "title": "Claude Connectors を全プランで一般提供、日常タスクを1会話で完結",
+    "category": "ツール更新",
+    "source": "Anthropic Blog",
+    "lede": "ClaudeのConnectorsをWeb/Desktop/Mobile全プランで公開。旅程計画・食材注文・レストラン予約・プレイリスト選曲まで、1つの会話の中で横断実行できる。",
+    "keypoints": [
+      "Web・Desktop・Mobile（beta）の全プランで利用可能",
+      "旅程計画、食材注文、レストラン予約、音楽選曲をカバー",
+      "公式コネクタディレクトリで提供、拡張性あり",
+      "1会話でデッキ作成から日常タスクまでを統合処理"
+    ],
+    "pull": "コネクタが生活に溶け込むほど、Claudeは単なるチャットツールからパーソナルオペレーターへと変貌する。",
+    "links": [
+      "https://claude.com/blog/connectors-for-everyday-life/"
+    ],
+    "likes": 920
+  },
+  {
+    "title": "Cursor 3.2、並列WorktreesとMulti-rootワークスペースで大刷新",
+    "category": "ツール更新",
+    "source": "@cursor_ai",
+    "lede": "Cursor 3.2がAgents Windowを大幅刷新。並列Worktreesで複数ブランチをbackground同時実行、Multi-rootでクロスリポジトリ作業を1セッションで扱えるようになった。",
+    "keypoints": [
+      "並列Worktreesで異なるブランチをbackgroundで同時実行",
+      "ワンクリックでbackgroundエージェントをforegroundに昇格",
+      "Multi-rootワークスペースで複数フォルダにまたがる作業が可能",
+      "クロスリポジトリ対応で大規模プロジェクトの管理が劇的に改善"
+    ],
+    "pull": "並列とクロスリポ対応は、エージェントが単一の会話を超えて組織横断的に動く時代への布石。",
+    "links": [
+      "https://x.com/cursor_ai/status/2047764652977958938"
+    ],
+    "likes": 212
   }
 ]
