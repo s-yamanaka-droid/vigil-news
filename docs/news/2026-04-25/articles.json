@@ -1,22 +1,5 @@
 [
   {
-    "title": "OpenAIがGPT-5.5をリリース、コード作成や研究に特化",
-    "category": "新モデル発表",
-    "source": "OpenAI Blog",
-    "lede": "OpenAIは最新モデル「GPT-5.5」を発表。コード作成やデータ分析などの複雑タスクに対応し、処理速度はGPT-5.4と同等のまま高い推論能力を実現。",
-    "keypoints": [
-      "複数ステップのタスク自動実行可能、コード作成・デバッグに特化",
-      "GPT-5.4と同等のレイテンシで性能向上、トークン効率も向上",
-      "エージェント型コーディング・コンピュータ利用・知識作業で強みあり",
-      "APIで利用可能、最強のセーフガード実装"
-    ],
-    "pull": "複雑なマルチステップタスクを与えられば、計画・実行・検証を自動で繰り返し、曖昧性も乗り越える新世代モデル",
-    "links": [
-      "https://openai.com/index/introducing-gpt-5-5"
-    ],
-    "likes": 0
-  },
-  {
     "title": "GoogleがAnthropicに最大400億ドル投資を発表",
     "category": "業界動向",
     "source": "TechCrunch AI",
@@ -30,23 +13,6 @@
     "pull": "AI企業のコンピュート確保競争が加速する中、GoogleはAnthropicへの大型投資で関係強化",
     "links": [
       "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "Google、AI専用チップTPU 8i・8tを発表、エージェント時代へ対応",
-    "category": "ツール更新",
-    "source": "Google AI Blog",
-    "lede": "GoogleがTPUの第8世代を発表。TPU 8iはAIエージェント専用、TPU 8tはモデル訓練用。高速応答とエージェント時代の要求に対応。",
-    "keypoints": [
-      "TPU 8i：AIエージェントの推論・計画・実行ワークフロー最適化",
-      "TPU 8t：大規模モデル訓練用、単一メモリプール統合",
-      "最新世代は121エクサフロップス処理能力、前世代の2倍の帯域幅",
-      "オーストリア初のデータセンター建設、100人の雇用創出"
-    ],
-    "pull": "自律AI エージェント時代に向け、推論と訓練を分化させた専用チップで業界をリード",
-    "links": [
-      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
     ],
     "likes": 0
   },
@@ -115,23 +81,6 @@
     "pull": "ChatGPT時代の「次」は定着段階のLLMを使い倒す時代、モデル革新よりハーネス設計で差がつく",
     "links": [
       "https://www.technologyreview.com/2026/04/21/1135645/llm-large-language-models-ai/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "エンタープライズAI成功の鍵は「データファブリック」、文脈理解がROIを左右",
-    "category": "業界動向",
-    "source": "MIT Tech Review AI",
-    "lede": "企業がAIを導入しても性能ボトルネックはモデルではなく、データの質と文脈。ビジネスロジックを組み込んだデータファブリック設計が成否を分ける。",
-    "keypoints": [
-      "企業の半数以上が3機能以上でAI導入（2025年末時点）",
-      "データ統合だけでなく「ビジネス文脈の理解」が必須",
-      "文脈なき高速判定は判断誤りを招く可能性",
-      "自律システム時代、データファブリックは コアインフラ化"
-    ],
-    "pull": "AIは速く結果を出すが、文脈なき速さは むしろ損失。良き判断こそがROIを生む",
-    "links": [
-      "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
     ],
     "likes": 0
   }

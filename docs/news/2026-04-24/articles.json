@@ -17,23 +17,6 @@
     "likes": 0
   },
   {
-    "title": "Google、第8世代TPU「8i」「8t」を発表しAIエージェント時代へ対応",
-    "category": "新モデル発表",
-    "source": "Google AI Blog",
-    "lede": "GoogleがAIエージェント向けに特化した2種類のTPU（8i・8t）を発表。複数ステップのワークフロー実行を高速化。",
-    "keypoints": [
-      "TPU 8iはAIエージェントの推論・計画・実行を最適化",
-      "TPU 8tは大規模モデル学習に対応する単一メモリプール",
-      "エージェントAI大衆化の基盤インフラ整備",
-      "121エクサフロップスのコンピュート能力"
-    ],
-    "pull": "「推論を早く、計画を立てられ、実行できる──エージェントには複数ステップの動作が不可欠」",
-    "links": [
-      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/"
-    ],
-    "likes": 0
-  },
-  {
     "title": "Sierra、AI統合企業Fragment買収で フランス展開を強化",
     "category": "業界動向",
     "source": "TechCrunch AI",
@@ -81,40 +64,6 @@
     "pull": "「キャンペーン管理の時間を減らし、ビジネス成長に集中できる」",
     "links": [
       "https://blog.google/products/ads-commerce/ads-advisor-google-ads/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "エンタープライズAI成功の鍵は「データファブリック」--SAP分析",
-    "category": "業界動向",
-    "source": "MIT Tech Review AI",
-    "lede": "AIが組織に浸透する中、成功の障壁はモデル性能ではなくデータの品質と文脈化。ビジネスコンテキストなしの高速判断は危険。",
-    "keypoints": [
-      "AIの成功率はデータ文脈化に依存",
-      "コンテキストなし高速判断はROI損失の原因",
-      "データファブリックは統合以上の機能が必須",
-      "年末までに半数企業が3機能以上にAI導入"
-    ],
-    "pull": "「スピード無き判断は害になる。判断品質がROIを生む」（SAP CPO Irfan Khan）",
-    "links": [
-      "https://www.technologyreview.com/2026/04/22/1135295/ai-needs-a-strong-data-fabric-to-deliver-business-value/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "GoogleのTPU、121エクサフロップスで前世代比2倍の帯域幅実現",
-    "category": "ツール更新",
-    "source": "Google AI Blog",
-    "lede": "Google、AI専用チップTPUの最新世代スペック公開。10年以上前から開発を重ね、大規模数学演算を高速処理。",
-    "keypoints": [
-      "TPUは10年以上前からAI専用設計",
-      "121エクサフロップスのコンピュート能力",
-      "前世代比で帯域幅が2倍に拡張",
-      "複雑な数学演算を超高速化"
-    ],
-    "pull": "「AIモデルは膨大な計算が必要。TPUはそれを超高速にこなす」",
-    "links": [
-      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/what-is-a-tpu/"
     ],
     "likes": 0
   },
