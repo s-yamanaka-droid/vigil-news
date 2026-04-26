@@ -30,19 +30,128 @@ FONTS_DETAIL = (
 )
 
 INTERACTIVE_JS = """
+<!-- Article Modal -->
+<div id="article-modal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(14,13,11,0);transition:background .3s;pointer-events:none;">
+  <div id="modal-box" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);opacity:0;transition:transform .3s,opacity .3s;background:var(--paper);border:1px solid var(--rule-2);max-width:700px;width:calc(100% - 48px);max-height:88vh;overflow-y:auto;padding:0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:1;">
+      <span id="modal-cat" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)"></span>
+      <button id="modal-close" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--rule-2);padding:5px 12px;cursor:pointer;color:var(--ink);transition:background .2s,color .2s;">✕ CLOSE</button>
+    </div>
+    <div style="padding:28px 32px 32px;">
+      <h2 id="modal-title" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;line-height:1.35;margin:0 0 16px;"></h2>
+      <p id="modal-lede" style="font-family:'Noto Serif JP',serif;font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 22px;"></p>
+      <div id="modal-kp" style="margin:0 0 22px;"></div>
+      <div id="modal-pull" style="padding:14px 18px;border-left:3px solid var(--red);background:var(--paper-2);font-size:13px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <span id="modal-src" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:.08em;"></span>
+        <a id="modal-link" href="#" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--paper);background:var(--ink);padding:9px 20px;text-decoration:none;transition:background .2s;">FULL ARTICLE →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image Lightbox -->
 <div class="lightbox-overlay" id="lightbox">
   <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
   <img src="" id="lightbox-img" alt="" />
 </div>
+
 <script>
 (function(){
+  /* ── modal ── */
+  var modal=document.getElementById('article-modal');
+  var box=document.getElementById('modal-box');
+  var mclose=document.getElementById('modal-close');
+
+  function openModal(card){
+    var d=card.dataset;
+    document.getElementById('modal-cat').textContent=d.category||'';
+    document.getElementById('modal-title').textContent=d.title||'';
+    document.getElementById('modal-lede').textContent=d.lede||'';
+    document.getElementById('modal-src').textContent=d.source||'';
+    var linkEl=document.getElementById('modal-link');
+    linkEl.href=d.link||'#';
+
+    /* keypoints */
+    var kpEl=document.getElementById('modal-kp');
+    kpEl.innerHTML='';
+    try{
+      var kps=JSON.parse(d.keypoints||'[]');
+      if(kps.length){
+        var ul=document.createElement('ul');
+        ul.style.cssText='list-style:none;padding:0;margin:0;';
+        kps.forEach(function(kp,i){
+          var li=document.createElement('li');
+          li.style.cssText='padding:9px 12px 9px 38px;margin-bottom:2px;background:var(--paper-2);position:relative;font-size:13px;line-height:1.6;border-left:2px solid transparent;transition:border-color .15s;';
+          li.onmouseenter=function(){this.style.borderLeftColor='var(--red)';}; li.onmouseleave=function(){this.style.borderLeftColor='transparent';};
+          var num=document.createElement('span');
+          num.style.cssText='position:absolute;left:12px;top:9px;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--red);';
+          num.textContent=String(i+1).padStart(2,'0');
+          li.appendChild(num); li.appendChild(document.createTextNode(kp));
+          ul.appendChild(li);
+        });
+        kpEl.appendChild(ul);
+      }
+    }catch(e){}
+
+    /* pull */
+    var pullEl=document.getElementById('modal-pull');
+    if(d.pull){pullEl.textContent=d.pull;pullEl.style.display='block';}
+    else{pullEl.style.display='none';}
+
+    modal.style.display='flex'; modal.style.alignItems='center'; modal.style.justifyContent='center';
+    modal.style.pointerEvents='auto';
+    requestAnimationFrame(function(){
+      modal.style.background='rgba(14,13,11,.88)';
+      box.style.opacity='1'; box.style.transform='translate(-50%,-50%) scale(1)';
+    });
+    document.body.style.overflow='hidden';
+  }
+
+  function closeModal(){
+    modal.style.background='rgba(14,13,11,0)';
+    box.style.opacity='0'; box.style.transform='translate(-50%,-48%) scale(.97)';
+    setTimeout(function(){modal.style.display='none';modal.style.pointerEvents='none';},300);
+    document.body.style.overflow='';
+  }
+
+  mclose.addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  document.getElementById('modal-close').onmouseover=function(){this.style.background='var(--red)';this.style.color='#fff';this.style.borderColor='var(--red)';};
+  document.getElementById('modal-close').onmouseout=function(){this.style.background='';this.style.color='var(--ink)';this.style.borderColor='var(--rule-2)';};
+
+  /* tcard click → modal */
+  document.querySelectorAll('.tcard[data-title]').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(e){
+      if(e.target.tagName==='A')return;
+      openModal(card);
+    });
+  });
+
+  /* ── category filter ── */
+  document.querySelectorAll('.filter-pill').forEach(function(pill){
+    pill.addEventListener('click',function(){
+      var cat=pill.dataset.cat;
+      document.querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      document.querySelectorAll('.tcard').forEach(function(c){
+        if(!cat||c.dataset.category===cat||cat==='ALL'){
+          c.style.opacity='1'; c.style.pointerEvents=''; c.style.transform='';
+        } else {
+          c.style.opacity='.2'; c.style.pointerEvents='none'; c.style.transform='scale(.97)';
+        }
+      });
+    });
+  });
+
+  /* ── image lightbox ── */
   var overlay=document.getElementById('lightbox');
   var img=document.getElementById('lightbox-img');
   var close=document.getElementById('lightbox-close');
   document.querySelectorAll('.zoom-image').forEach(function(el){
-    el.addEventListener('click',function(){
-      img.src='';
-      overlay.classList.add('is-open');
+    el.addEventListener('click',function(e){e.stopPropagation();
+      img.src=''; overlay.classList.add('is-open');
       setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; },20);
     });
   });
@@ -52,29 +161,23 @@ INTERACTIVE_JS = """
   }
   close.addEventListener('click',closeBox);
   overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeBox();closeModal();}});
 
-  /* scroll fade-in */
-  var topics=document.querySelectorAll('.daily-topic');
+  /* ── scroll fade-in: both .daily-topic and .tcard ── */
+  var fadeEls=document.querySelectorAll('.daily-topic, .tcard');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
-    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
-    topics.forEach(function(el){io.observe(el);});
-  } else { topics.forEach(function(el){el.classList.add('is-visible');}); }
+    },{threshold:0.05,rootMargin:'0px 0px -24px 0px'});
+    fadeEls.forEach(function(el){io.observe(el);});
+  } else { fadeEls.forEach(function(el){el.classList.add('is-visible');}); }
 
-  /* dispatch ticker */
+  /* ── dispatch ticker ── */
   var row=document.querySelector('.dispatch');
   if(row && row.dataset.ticker!=='off'){
-    var inner=row.innerHTML;
-    row.innerHTML=inner+inner;
+    var inner=row.innerHTML; row.innerHTML=inner+inner;
     var pos=0,spd=0.4;
-    (function tick(){
-      pos+=spd;
-      if(pos>=row.scrollWidth/2)pos=0;
-      row.scrollLeft=pos;
-      requestAnimationFrame(tick);
-    })();
+    (function tick(){pos+=spd;if(pos>=row.scrollWidth/2)pos=0;row.scrollLeft=pos;requestAnimationFrame(tick);})();
   }
 })();
 </script>
@@ -222,6 +325,10 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
         f'<span class="pill{"  red" if i==0 else ""}">{c}</span>'
         for i, c in enumerate(categories[:4])
     )
+    # カテゴリフィルターボタン
+    filter_btns = '<button class="filter-pill active" data-cat="ALL" style="font-family:\'JetBrains Mono\',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:var(--ink);color:var(--paper);cursor:pointer;transition:all .15s;text-transform:uppercase;">ALL</button>'
+    for cat in categories:
+        filter_btns += f'<button class="filter-pill" data-cat="{cat}" style="font-family:\'JetBrains Mono\',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;">{cat}</button>'
 
     section_today = f"""<div class="section-head" id="today">
   <span class="kicker">§01</span>
@@ -234,6 +341,9 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
   {pills}
   <div class="bar"></div>
   <span>{today_str}</span>
+</div>
+<div style="max-width:1400px;margin:0 auto;padding:0 40px 20px;display:flex;gap:8px;flex-wrap:wrap;">
+  {filter_btns}
 </div>"""
 
     # ── today cards grid ──
@@ -320,7 +430,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
         "山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。",
         "./assets/vigil.css",
         FONTS_VIGIL,
-    ) + f"""
+    ) + INDEX_CSS + f"""
 {dispatch}
 {nav}
 {hero}
@@ -353,9 +463,21 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
         slide_rel  = f"{img_root}/topic_{i}.png"
         slide_exists = (img_dir / f"topic_{i}.png").exists()
 
+        import json as _json
+        kp_json = _json.dumps(a.get("keypoints", []), ensure_ascii=False).replace('"', '&quot;')
+        pull_esc = a.get("pull","").replace('"','&quot;')
+        data_attrs = (
+            f'data-title="{title.replace(chr(34), "&quot;")}" '
+            f'data-category="{category}" '
+            f'data-source="{source}" '
+            f'data-lede="{lede.replace(chr(34), "&quot;")}" '
+            f'data-keypoints="{kp_json}" '
+            f'data-pull="{pull_esc}" '
+            f'data-link="{detail_url}"'
+        )
+
         if i == 1:
             # ── Lead card (2×2, dark background) ──
-            # 画像はfull表示、テキストオーバーレイは最小限（chip行のみ）
             if slide_exists:
                 slide_html = f"""    <a href="{detail_url}" class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;">
       <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy" />
@@ -374,7 +496,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
       </div>
     </div>"""
 
-            html += f"""  <div class="tcard lead">
+            html += f"""  <div class="tcard lead" {data_attrs}>
     <div class="tl">
       <span class="n">01</span>
       <span class="cat">{category}</span>
@@ -391,7 +513,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
 """
         else:
             # ── Regular card — 画像なし（vigil.css 仕様通り）──
-            html += f"""  <div class="tcard">
+            html += f"""  <div class="tcard" {data_attrs}>
     <div class="tl">
       <span class="n">{str(i).zfill(2)}</span>
       <span class="cat">{category}</span>
@@ -554,6 +676,24 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
     out_path.write_text(html, encoding="utf-8")
     return out_path
 
+
+# インデックスページ専用インタラクションCSS
+INDEX_CSS = """
+<style>
+/* tcard フェードイン */
+.tcard{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s,box-shadow .2s,outline .15s;}
+.tcard.is-visible{opacity:1;transform:none;}
+.tcard[data-title]{cursor:pointer;}
+.tcard[data-title]:hover{box-shadow:0 6px 28px rgba(0,0,0,.08);outline:2px solid var(--red);}
+.tcard[data-title]:hover .go{color:var(--red);}
+.tcard[data-title]:hover h3{color:var(--red);}
+h3{transition:color .15s;}
+/* フィルター active */
+.filter-pill.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important;}
+.filter-pill:hover{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;}
+/* カテゴリ遷移 */
+.tcard{transition:opacity .45s,transform .45s,box-shadow .2s,outline .15s;}
+</style>"""
 
 # vigil.css にない detail ページ専用スタイル（inline で追加）
 DAILY_CSS = """
