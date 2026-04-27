@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>2026-04-28 Morning Dispatch — VIGIL</title>
+<meta name="description" content="2026-04-28 の VIGIL モーニングディスパッチ — 8本のAI業界ニュース。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/vigil.css" />
+</head>
+<body>
+<style>
+.date-huge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:clamp(48px,10vw,112px);line-height:.9;letter-spacing:-.03em;margin:8px 0 20px;}
+.date-huge .dot{color:var(--red)}
+.strap{display:flex;gap:28px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+.strap .count{color:var(--ink);font-weight:700}
+.container{max-width:1400px;margin:0 auto;padding:0 40px}
+.daily-topic{padding:52px 0;border-bottom:1px solid var(--rule);position:relative;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.daily-topic.is-visible{opacity:1;transform:none}
+.daily-topic::before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--red);transition:height .4s}
+.daily-topic:hover::before{height:100%}
+.daily-topic .container{display:grid;grid-template-columns:72px 1fr 240px;gap:36px}
+.numeral{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:64px;line-height:1;color:var(--rule-2);position:relative;top:-6px;transition:color .2s}
+.daily-topic:hover .numeral{color:var(--red)}
+.numeral .ord{display:block;font-size:9px;letter-spacing:.16em;color:var(--mute);margin-top:8px;line-height:1.4;white-space:nowrap}
+.cat-line{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.cat-line .sep{color:var(--mute);margin:0 8px}
+.main h2{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:26px;line-height:1.3;margin:0 0 18px;letter-spacing:-.01em}
+.lede{font-family:'Noto Serif JP',serif;font-size:16px;line-height:1.75;margin:0 0 24px;color:var(--ink-2)}
+.main h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:24px 0 10px;color:var(--mute)}
+.keypoints{list-style:none;padding:0;margin:0 0 24px}
+.keypoints li{padding:10px 14px 10px 44px;margin-bottom:2px;background:var(--paper-2);border-left:2px solid transparent;position:relative;font-size:14px;line-height:1.6;transition:border-color .15s,transform .2s}
+.keypoints li:hover{border-left-color:var(--red);transform:translateX(4px)}
+.keypoints li::before{content:attr(data-i);position:absolute;left:14px;top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em}
+.pull{padding:18px 22px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-top:24px;transition:border-left-width .2s,padding-left .2s}
+.pull:hover{border-left-width:6px;padding-left:19px}
+.slide-img{margin:20px 0;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;position:relative;transition:border-color .2s}
+.slide-img:hover{border-color:var(--red)}
+.slide-img img{width:100%;display:block;transition:transform .5s}
+.slide-img:hover img{transform:scale(1.02)}
+.side{font-size:13px}
+.side dl{margin:0}
+.side dt{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:18px 0 4px}
+.side dt:first-child{margin-top:0}
+.side dd{margin:0;word-break:break-all}
+.side dd a:hover{color:var(--red)}
+.likes{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:28px;color:var(--red)}
+.likes-label{font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.lightbox-overlay{display:flex;align-items:center;justify-content:center;position:fixed;inset:0;padding:24px;background:rgba(14,13,11,0);z-index:1000;pointer-events:none;transition:background .3s}
+.lightbox-overlay.is-open{background:rgba(14,13,11,.93);pointer-events:auto}
+.lightbox-overlay img{max-width:100%;max-height:90vh;object-fit:contain;opacity:0;transform:scale(.93);transition:opacity .35s,transform .35s}
+.lightbox-overlay.is-open img{opacity:1;transform:scale(1)}
+.lightbox-close{position:absolute;top:20px;right:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F7F5F2;cursor:pointer;background:none;border:1px solid rgba(247,245,242,.3);padding:6px 14px;transition:background .2s}
+.lightbox-close:hover{background:var(--red)}
+@media(max-width:900px){.daily-topic .container{grid-template-columns:1fr}.numeral{font-size:36px}.side{border-top:1px solid var(--rule);padding-top:20px}}
+</style>
+<div class="dispatch">
+  <span class="tick">VIGIL</span>
+  <span class="sep">/</span>
+  <span>№0428</span>
+  <span class="sep">/</span>
+  <span>2026-04-28</span>
+  <span class="sep">/</span>
+  <span>MORNING EDITION</span>
+  <span class="sep">/</span>
+  <span>8 ITEMS</span>
+  <span class="sep">/</span>
+  <span class="live"><span class="dot"></span>LIVE</span>
+  <div class="right">
+    <span class="jst"><b>07:15</b> JST</span>
+    <span>TUE</span>
+  </div>
+</div>
+<nav class="main">
+  <div class="brand"><em>●</em>VIGIL</div>
+  <ul>
+    <li><a href="../../">HOME</a></li>
+    <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="../../#archive">ARCHIVE</a></li>
+    <li><a href="../../#about">ABOUT</a></li>
+  </ul>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+</nav>
+<div class="hero-wrap">
+  <div class="edition-line">
+    MORNING DISPATCH
+    <span class="sep">//</span>
+    TUESDAY, APRIL 28, 2026
+    <span class="sep">//</span>
+    ISSUE N°0428
+  </div>
+  <h1 class="date-huge">2026<span class="dot">.</span>04<span class="dot">.</span>28</h1>
+  <div class="strap">
+    <span><span class="count">08</span>&nbsp;ITEMS</span>
+    <span>AI MORNING INTELLIGENCE</span>
+  </div>
+</div>
+
+<article class="daily-topic" id="topic-1">
+  <div class="container">
+    <aside class="numeral">01<span class="ord">TOPIC 01 · OPENAI BLOG</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> OpenAI Blog <span class="sep">/</span> NEWS
+      </div>
+      <h2>OpenAI、FedRAMP Moderate認証を取得</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_1.png" data-alt="OpenAI、FedRAMP Moderate認証を取得" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_1.png" alt="OpenAI、FedRAMP Moderate認証を取得" loading="lazy" />
+      </div>
+      <p class="lede">OpenAIがChatGPT EnterprisとAPIでFedRAMP Moderate認証を取得し、米国連邦機関への安全なAI導入が可能に。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">ChatGPT EnterpriseとOpenAI APIがFedRAMP Moderate認証対応</li>
+        <li data-i="02">米国連邦政府機関での採用が促進される</li>
+        <li data-i="03">セキュリティ基準を満たすAIサービス提供</li>
+        <li data-i="04">政府部門でのAI活用の拡大に道</li>
+      </ul>
+      <div class="pull">FedRAMP認証により、OpenAIは政府機関レベルのセキュリティ要件を満たし、公的セクターへの本格参入を実現。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>OpenAI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://openai.com/index/openai-available-at-fedramp-moderate">https://openai.com/index/openai-available-at-fedramp-mo…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-2">
+  <div class="container">
+    <aside class="numeral">02<span class="ord">TOPIC 02 · TECHCRUNCH AI</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> TechCrunch AI <span class="sep">/</span> NEWS
+      </div>
+      <h2>OpenAI・Microsoft提携契約を改定、AWS展開が可能に</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_2.png" data-alt="OpenAI・Microsoft提携契約を改定、AWS展開が可能に" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_2.png" alt="OpenAI・Microsoft提携契約を改定、AWS展開が可能に" loading="lazy" />
+      </div>
+      <p class="lede">OpenAIがMicrosoftの独占権制限を解除され、AmazonのAWS上でもサービス展開可能に。2032年までの定義をつけ法的問題を解決。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">MicrosoftはNon-exclusive licenseに変更、2032年まで有効</li>
+        <li data-i="02">OpenAI製品がAWS含む全クラウド上で提供可能</li>
+        <li data-i="03">Azureが主要クラウドパートナー地位を維持</li>
+        <li data-i="04">$50B Amazon契約での法的課題が解決</li>
+      </ul>
+      <div class="pull">OpenAIとMicrosoftの利益相反を解決し、OpenAIはクラウド戦略の自由度を獲得。両社が勝者となる構図。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>TechCrunch AI</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/">https://techcrunch.com/2026/04/27/openai-ends-microsoft…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-3">
+  <div class="container">
+    <aside class="numeral">03<span class="ord">TOPIC 03 · OPENAI BLOG</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        ツール更新 <span class="sep">/</span> OpenAI Blog <span class="sep">/</span> NEWS
+      </div>
+      <h2>Symphony：Codexの自動オーケストレーションで500%の生産性向上</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_3.png" data-alt="Symphony：Codexの自動オーケストレーションで500%の生産性向上" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_3.png" alt="Symphony：Codexの自動オーケストレーションで500%の生産性向上" loading="lazy" />
+      </div>
+      <p class="lede">OpenAIがSymphonyというオープンソース仕様を発表。Linearなどのプロジェクト管理ツールをAIエージェントの制御プレーンに変え、PR着地数が500%増加。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">Issue trackerが自動的にAIエージェント制御プレーンに</li>
+        <li data-i="02">コンテキストスイッチングの削減で生産性大幅向上</li>
+        <li data-i="03">エージェントが継続実行、人間がレビュー</li>
+        <li data-i="04">オープンソース仕様で一般利用可能</li>
+      </ul>
+      <div class="pull">Symphonyは人間ドリブン開発からエージェント駆動開発へシフトさせ、エンジニア作業の中核を自動化。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>OpenAI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>ツール更新</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://openai.com/index/open-source-codex-orchestration-symphony">https://openai.com/index/open-source-codex-orchestratio…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-4">
+  <div class="container">
+    <aside class="numeral">04<span class="ord">TOPIC 04 · TECHCRUNCH AI</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        新モデル発表 <span class="sep">/</span> TechCrunch AI <span class="sep">/</span> NEWS
+      </div>
+      <h2>David Silver の Ineffable Intelligence が11億ドル調達</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_4.png" data-alt="David Silver の Ineffable Intelligence が11億ドル調達" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_4.png" alt="David Silver の Ineffable Intelligence が11億ドル調達" loading="lazy" />
+      </div>
+      <p class="lede">DeepMind元幹部David Silverが創設したIneffable Intelligenceが51億ドル評価で11億ドルを調達。人間データなしでAIが学習する「スーパーラーナー」開発を目指す。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">強化学習で人間データ無し学習を実現</li>
+        <li data-i="02">AlphaZeroなどの知見を活かした新企業</li>
+        <li data-i="03">大規模資金で競争力あるAIモデル開発</li>
+        <li data-i="04">LLM超越型AIの実現を目標</li>
+      </ul>
+      <div class="pull">Silver はチェス・囲碁で人間学習不要の学習成功をAI全般に拡張。データ依存からの脱却を狙う野心的チャレンジ。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>TechCrunch AI</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>新モデル発表</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://techcrunch.com/2026/04/27/deepminds-david-silver-just-raised-1-1b-to-build-an-ai-that-learns-without-human-data/">https://techcrunch.com/2026/04/27/deepminds-david-silve…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-5">
+  <div class="container">
+    <aside class="numeral">05<span class="ord">TOPIC 05 · GOOGLE AI BLOG</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        その他 <span class="sep">/</span> Google AI Blog <span class="sep">/</span> NEWS
+      </div>
+      <h2>Google・Kaggle、無料AI Agents集中講座を6月開講</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_5.png" data-alt="Google・Kaggle、無料AI Agents集中講座を6月開講" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_5.png" alt="Google・Kaggle、無料AI Agents集中講座を6月開講" loading="lazy" />
+      </div>
+      <p class="lede">GoogleとKaggleが6月15-19に無料5日間コース開催。自然言語ワークフローと実践的プロジェクトでプロダクション対応のAIエージェント構築を学習。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">無料5日間AI Agents集中コース</li>
+        <li data-i="02">自然言語ベースのエージェント開発</li>
+        <li data-i="03">ツール・API統合スキルを習得</li>
+        <li data-i="04">最終capstoneプロジェクト実装</li>
+      </ul>
+      <div class="pull">エンジニア向けAIエージェント教育プログラムで、実装スキルと業界トレンドを同時習得可能。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>Google AI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>その他</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/">https://blog.google/innovation-and-ai/technology/develo…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-6">
+  <div class="container">
+    <aside class="numeral">06<span class="ord">TOPIC 06 · TECHCRUNCH AI</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> TechCrunch AI <span class="sep">/</span> NEWS
+      </div>
+      <h2>中国がMetaのManus買収2000万ドルを禁止</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_6.png" data-alt="中国がMetaのManus買収2000万ドルを禁止" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_6.png" alt="中国がMetaのManus買収2000万ドルを禁止" loading="lazy" />
+      </div>
+      <p class="lede">中国の国家発展改革委員会がMetaのAIエージェント企業Manus買収を禁止。従業員既配置など複雑な状況で、AIエージェント領域での対立が深刻化。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">中国がAI企業買収を国家権限で禁止</li>
+        <li data-i="02">Manus創業者に出境禁止令、従業員既配置</li>
+        <li data-i="03">米中AI産業の対立が具体化</li>
+        <li data-i="04">Meta のAIエージェント野心に大打撃</li>
+      </ul>
+      <div class="pull">中国の規制は単なる安全保障ではなく、AI主権の重要性を示す象徴的決定。米国企業のAI産業買収に新たな障壁。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>TechCrunch AI</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/">https://techcrunch.com/2026/04/27/china-vetoes-metas-2b…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-7">
+  <div class="container">
+    <aside class="numeral">07<span class="ord">TOPIC 07 · GOOGLE AI BLOG</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        ツール更新 <span class="sep">/</span> Google AI Blog <span class="sep">/</span> NEWS
+      </div>
+      <h2>Chrome新機能Skillsで1クリックAIワークフロー化</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_7.png" data-alt="Chrome新機能Skillsで1クリックAIワークフロー化" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_7.png" alt="Chrome新機能Skillsで1クリックAIワークフロー化" loading="lazy" />
+      </div>
+      <p class="lede">GoogleがChromeでSkills機能を投入。保存したAIプロンプトを1クリックで再利用可能。複数タブやページ対応で日常業務の自動化を実現。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">AIプロンプトを保存・再利用可能なSkills</li>
+        <li data-i="02">/スラッシュコマンドで即座に実行</li>
+        <li data-i="03">複数タブへの一括適用で効率化</li>
+        <li data-i="04">カスタムワークフロー構築が容易</li>
+      </ul>
+      <div class="pull">繰り返し業務をPromptベースで自動化。Gemini統合でブラウザ内完結のAIワークフロー実現。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>Google AI Blog</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>ツール更新</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/">https://blog.google/products-and-platforms/products/chr…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<article class="daily-topic" id="topic-8">
+  <div class="container">
+    <aside class="numeral">08<span class="ord">TOPIC 08 · MIT TECH REVIEW AI</span></aside>
+    <div class="main">
+      <div class="cat-line">
+        業界動向 <span class="sep">/</span> MIT Tech Review AI <span class="sep">/</span> NEWS
+      </div>
+      <h2>エンタープライズAI導入の最大課題はデータインフラ</h2>
+      <div class="slide-img zoom-image" data-src="../../assets/images/2026-04-28/topic_8.png" data-alt="エンタープライズAI導入の最大課題はデータインフラ" role="button" tabindex="0">
+        <img src="../../assets/images/2026-04-28/topic_8.png" alt="エンタープライズAI導入の最大課題はデータインフラ" loading="lazy" />
+      </div>
+      <p class="lede">企業のAI活用がボトルネック直面。統一・ガバナンス・目的適応したデータインフラ整備なしには、AI導入は「ひどいAI」に。</p>
+      <h3>キーポイント</h3>
+      <ul class="keypoints">
+        <li data-i="01">AI野心とデータ実態のギャップが課題</li>
+        <li data-i="02">レガシーシステム・サイロ化が障害</li>
+        <li data-i="03">統一フォーマット・ガバナンスが必須</li>
+        <li data-i="04">データこそ競争優位性の源泉</li>
+      </ul>
+      <div class="pull">消費者AI成功の陰に隠れる企業AI困難。データスタック再構築なし、エンタープライズAIは成功しない。</div>
+    </div>
+    <aside class="side">
+      <dl>
+
+        <dt>SOURCE</dt>
+        <dd>MIT Tech Review AI</dd>
+        <dt>PUBLISHED</dt>
+        <dd>2026-04-28</dd>
+        <dt>CATEGORY</dt>
+        <dd>業界動向</dd>
+        <dt>LINKS</dt>
+        <dd><a href="https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/">https://www.technologyreview.com/2026/04/27/1136322/reb…</a></dd>
+      </dl>
+    </aside>
+  </div>
+</article>
+<div class="colophon">
+  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="right">2026-04-28 DISPATCH</div>
+</div>
+
+<!-- Article Modal -->
+<div id="article-modal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(14,13,11,0);transition:background .3s;pointer-events:none;">
+  <div id="modal-box" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);opacity:0;transition:transform .3s,opacity .3s;background:var(--paper);border:1px solid var(--rule-2);max-width:700px;width:calc(100% - 48px);max-height:88vh;overflow-y:auto;padding:0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:1;">
+      <span id="modal-cat" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)"></span>
+      <button id="modal-close" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--rule-2);padding:5px 12px;cursor:pointer;color:var(--ink);transition:background .2s,color .2s;">✕ CLOSE</button>
+    </div>
+    <div style="padding:28px 32px 32px;">
+      <h2 id="modal-title" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;line-height:1.35;margin:0 0 16px;"></h2>
+      <p id="modal-lede" style="font-family:'Noto Serif JP',serif;font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 22px;"></p>
+      <div id="modal-kp" style="margin:0 0 22px;"></div>
+      <div id="modal-pull" style="padding:14px 18px;border-left:3px solid var(--red);background:var(--paper-2);font-size:13px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <span id="modal-src" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:.08em;"></span>
+        <a id="modal-link" href="#" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--paper);background:var(--ink);padding:9px 20px;text-decoration:none;transition:background .2s;">FULL ARTICLE →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">× CLOSE</button>
+  <img src="" id="lightbox-img" alt="" />
+</div>
+
+<script>
+(function(){
+  /* ── modal ── */
+  var modal=document.getElementById('article-modal');
+  var box=document.getElementById('modal-box');
+  var mclose=document.getElementById('modal-close');
+
+  function openModal(card){
+    var d=card.dataset;
+    document.getElementById('modal-cat').textContent=d.category||'';
+    document.getElementById('modal-title').textContent=d.title||'';
+    document.getElementById('modal-lede').textContent=d.lede||'';
+    document.getElementById('modal-src').textContent=d.source||'';
+    var linkEl=document.getElementById('modal-link');
+    linkEl.href=d.link||'#';
+
+    /* keypoints */
+    var kpEl=document.getElementById('modal-kp');
+    kpEl.innerHTML='';
+    try{
+      var kps=JSON.parse(d.keypoints||'[]');
+      if(kps.length){
+        var ul=document.createElement('ul');
+        ul.style.cssText='list-style:none;padding:0;margin:0;';
+        kps.forEach(function(kp,i){
+          var li=document.createElement('li');
+          li.style.cssText='padding:9px 12px 9px 38px;margin-bottom:2px;background:var(--paper-2);position:relative;font-size:13px;line-height:1.6;border-left:2px solid transparent;transition:border-color .15s;';
+          li.onmouseenter=function(){this.style.borderLeftColor='var(--red)';}; li.onmouseleave=function(){this.style.borderLeftColor='transparent';};
+          var num=document.createElement('span');
+          num.style.cssText='position:absolute;left:12px;top:9px;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--red);';
+          num.textContent=String(i+1).padStart(2,'0');
+          li.appendChild(num); li.appendChild(document.createTextNode(kp));
+          ul.appendChild(li);
+        });
+        kpEl.appendChild(ul);
+      }
+    }catch(e){}
+
+    /* pull */
+    var pullEl=document.getElementById('modal-pull');
+    if(d.pull){pullEl.textContent=d.pull;pullEl.style.display='block';}
+    else{pullEl.style.display='none';}
+
+    modal.style.display='flex'; modal.style.alignItems='center'; modal.style.justifyContent='center';
+    modal.style.pointerEvents='auto';
+    requestAnimationFrame(function(){
+      modal.style.background='rgba(14,13,11,.88)';
+      box.style.opacity='1'; box.style.transform='translate(-50%,-50%) scale(1)';
+    });
+    document.body.style.overflow='hidden';
+  }
+
+  function closeModal(){
+    modal.style.background='rgba(14,13,11,0)';
+    box.style.opacity='0'; box.style.transform='translate(-50%,-48%) scale(.97)';
+    setTimeout(function(){modal.style.display='none';modal.style.pointerEvents='none';},300);
+    document.body.style.overflow='';
+  }
+
+  mclose.addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  document.getElementById('modal-close').onmouseover=function(){this.style.background='var(--red)';this.style.color='#fff';this.style.borderColor='var(--red)';};
+  document.getElementById('modal-close').onmouseout=function(){this.style.background='';this.style.color='var(--ink)';this.style.borderColor='var(--rule-2)';};
+
+  /* tcard click → modal */
+  document.querySelectorAll('.tcard[data-title]').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(e){
+      if(e.target.tagName==='A')return;
+      openModal(card);
+    });
+  });
+
+  /* ── category filter ── */
+  document.querySelectorAll('.filter-pill').forEach(function(pill){
+    pill.addEventListener('click',function(){
+      var cat=pill.dataset.cat;
+      document.querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      document.querySelectorAll('.tcard').forEach(function(c){
+        if(!cat||c.dataset.category===cat||cat==='ALL'){
+          c.style.opacity='1'; c.style.pointerEvents=''; c.style.transform='';
+        } else {
+          c.style.opacity='.2'; c.style.pointerEvents='none'; c.style.transform='scale(.97)';
+        }
+      });
+    });
+  });
+
+  /* ── image lightbox ── */
+  var overlay=document.getElementById('lightbox');
+  var img=document.getElementById('lightbox-img');
+  var close=document.getElementById('lightbox-close');
+  document.querySelectorAll('.zoom-image').forEach(function(el){
+    el.addEventListener('click',function(e){e.stopPropagation();
+      img.src=''; overlay.classList.add('is-open');
+      setTimeout(function(){ img.src=el.dataset.src; img.alt=el.dataset.alt||''; },20);
+    });
+  });
+  function closeBox(){
+    img.style.opacity='0'; img.style.transform='scale(0.93)';
+    setTimeout(function(){ overlay.classList.remove('is-open'); img.src=''; img.style.opacity=''; img.style.transform=''; },300);
+  }
+  close.addEventListener('click',closeBox);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeBox();closeModal();}});
+
+  /* ── scroll fade-in: both .daily-topic and .tcard ── */
+  var fadeEls=document.querySelectorAll('.daily-topic, .tcard');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
+    },{threshold:0.05,rootMargin:'0px 0px -24px 0px'});
+    fadeEls.forEach(function(el){io.observe(el);});
+  } else { fadeEls.forEach(function(el){el.classList.add('is-visible');}); }
+
+  /* ── dispatch ticker ── */
+  var row=document.querySelector('.dispatch');
+  if(row && row.dataset.ticker!=='off'){
+    var inner=row.innerHTML; row.innerHTML=inner+inner;
+    var pos=0,spd=0.4;
+    (function tick(){pos+=spd;if(pos>=row.scrollWidth/2)pos=0;row.scrollLeft=pos;requestAnimationFrame(tick);})();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+[
+  {
+    "title": "OpenAI、FedRAMP Moderate認証を取得",
+    "category": "業界動向",
+    "source": "OpenAI Blog",
+    "lede": "OpenAIがChatGPT EnterprisとAPIでFedRAMP Moderate認証を取得し、米国連邦機関への安全なAI導入が可能に。",
+    "keypoints": [
+      "ChatGPT EnterpriseとOpenAI APIがFedRAMP Moderate認証対応",
+      "米国連邦政府機関での採用が促進される",
+      "セキュリティ基準を満たすAIサービス提供",
+      "政府部門でのAI活用の拡大に道"
+    ],
+    "pull": "FedRAMP認証により、OpenAIは政府機関レベルのセキュリティ要件を満たし、公的セクターへの本格参入を実現。",
+    "links": [
+      "https://openai.com/index/openai-available-at-fedramp-moderate"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "OpenAI・Microsoft提携契約を改定、AWS展開が可能に",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "OpenAIがMicrosoftの独占権制限を解除され、AmazonのAWS上でもサービス展開可能に。2032年までの定義をつけ法的問題を解決。",
+    "keypoints": [
+      "MicrosoftはNon-exclusive licenseに変更、2032年まで有効",
+      "OpenAI製品がAWS含む全クラウド上で提供可能",
+      "Azureが主要クラウドパートナー地位を維持",
+      "$50B Amazon契約での法的課題が解決"
+    ],
+    "pull": "OpenAIとMicrosoftの利益相反を解決し、OpenAIはクラウド戦略の自由度を獲得。両社が勝者となる構図。",
+    "links": [
+      "https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Symphony：Codexの自動オーケストレーションで500%の生産性向上",
+    "category": "ツール更新",
+    "source": "OpenAI Blog",
+    "lede": "OpenAIがSymphonyというオープンソース仕様を発表。Linearなどのプロジェクト管理ツールをAIエージェントの制御プレーンに変え、PR着地数が500%増加。",
+    "keypoints": [
+      "Issue trackerが自動的にAIエージェント制御プレーンに",
+      "コンテキストスイッチングの削減で生産性大幅向上",
+      "エージェントが継続実行、人間がレビュー",
+      "オープンソース仕様で一般利用可能"
+    ],
+    "pull": "Symphonyは人間ドリブン開発からエージェント駆動開発へシフトさせ、エンジニア作業の中核を自動化。",
+    "links": [
+      "https://openai.com/index/open-source-codex-orchestration-symphony"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "David Silver の Ineffable Intelligence が11億ドル調達",
+    "category": "新モデル発表",
+    "source": "TechCrunch AI",
+    "lede": "DeepMind元幹部David Silverが創設したIneffable Intelligenceが51億ドル評価で11億ドルを調達。人間データなしでAIが学習する「スーパーラーナー」開発を目指す。",
+    "keypoints": [
+      "強化学習で人間データ無し学習を実現",
+      "AlphaZeroなどの知見を活かした新企業",
+      "大規模資金で競争力あるAIモデル開発",
+      "LLM超越型AIの実現を目標"
+    ],
+    "pull": "Silver はチェス・囲碁で人間学習不要の学習成功をAI全般に拡張。データ依存からの脱却を狙う野心的チャレンジ。",
+    "links": [
+      "https://techcrunch.com/2026/04/27/deepminds-david-silver-just-raised-1-1b-to-build-an-ai-that-learns-without-human-data/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Google・Kaggle、無料AI Agents集中講座を6月開講",
+    "category": "その他",
+    "source": "Google AI Blog",
+    "lede": "GoogleとKaggleが6月15-19に無料5日間コース開催。自然言語ワークフローと実践的プロジェクトでプロダクション対応のAIエージェント構築を学習。",
+    "keypoints": [
+      "無料5日間AI Agents集中コース",
+      "自然言語ベースのエージェント開発",
+      "ツール・API統合スキルを習得",
+      "最終capstoneプロジェクト実装"
+    ],
+    "pull": "エンジニア向けAIエージェント教育プログラムで、実装スキルと業界トレンドを同時習得可能。",
+    "links": [
+      "https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "中国がMetaのManus買収2000万ドルを禁止",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "中国の国家発展改革委員会がMetaのAIエージェント企業Manus買収を禁止。従業員既配置など複雑な状況で、AIエージェント領域での対立が深刻化。",
+    "keypoints": [
+      "中国がAI企業買収を国家権限で禁止",
+      "Manus創業者に出境禁止令、従業員既配置",
+      "米中AI産業の対立が具体化",
+      "Meta のAIエージェント野心に大打撃"
+    ],
+    "pull": "中国の規制は単なる安全保障ではなく、AI主権の重要性を示す象徴的決定。米国企業のAI産業買収に新たな障壁。",
+    "links": [
+      "https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Chrome新機能Skillsで1クリックAIワークフロー化",
+    "category": "ツール更新",
+    "source": "Google AI Blog",
+    "lede": "GoogleがChromeでSkills機能を投入。保存したAIプロンプトを1クリックで再利用可能。複数タブやページ対応で日常業務の自動化を実現。",
+    "keypoints": [
+      "AIプロンプトを保存・再利用可能なSkills",
+      "/スラッシュコマンドで即座に実行",
+      "複数タブへの一括適用で効率化",
+      "カスタムワークフロー構築が容易"
+    ],
+    "pull": "繰り返し業務をPromptベースで自動化。Gemini統合でブラウザ内完結のAIワークフロー実現。",
+    "links": [
+      "https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "エンタープライズAI導入の最大課題はデータインフラ",
+    "category": "業界動向",
+    "source": "MIT Tech Review AI",
+    "lede": "企業のAI活用がボトルネック直面。統一・ガバナンス・目的適応したデータインフラ整備なしには、AI導入は「ひどいAI」に。",
+    "keypoints": [
+      "AI野心とデータ実態のギャップが課題",
+      "レガシーシステム・サイロ化が障害",
+      "統一フォーマット・ガバナンスが必須",
+      "データこそ競争優位性の源泉"
+    ],
+    "pull": "消費者AI成功の陰に隠れる企業AI困難。データスタック再構築なし、エンタープライズAIは成功しない。",
+    "links": [
+      "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/"
+    ],
+    "likes": 0
+  }
+]
