@@ -163,8 +163,8 @@ INTERACTIVE_JS = """
   overlay.addEventListener('click',function(e){if(e.target===overlay)closeBox();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeBox();closeModal();}});
 
-  /* ── scroll fade-in: both .daily-topic and .tcard ── */
-  var fadeEls=document.querySelectorAll('.daily-topic, .tcard');
+  /* ── scroll fade-in: .daily-topic (デイリーページ専用) ── */
+  var fadeEls=document.querySelectorAll('.daily-topic');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});
@@ -680,19 +680,33 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 # インデックスページ専用インタラクションCSS
 INDEX_CSS = """
 <style>
-/* tcard フェードイン */
-.tcard{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s,box-shadow .2s,outline .15s;}
-.tcard.is-visible{opacity:1;transform:none;}
-.tcard[data-title]{cursor:pointer;}
-.tcard[data-title]:hover{box-shadow:0 6px 28px rgba(0,0,0,.08);outline:2px solid var(--red);}
+/* tcard — CSS アニメーション（JS不要・常に表示） */
+@keyframes card-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.tcard{animation:card-in .4s ease both;}
+.tcard.lead{animation-delay:.05s}
+.tcard:nth-child(2){animation-delay:.1s}
+.tcard:nth-child(3){animation-delay:.15s}
+.tcard:nth-child(4){animation-delay:.2s}
+.tcard:nth-child(5){animation-delay:.25s}
+.tcard:nth-child(6){animation-delay:.3s}
+.tcard:nth-child(7){animation-delay:.35s}
+.tcard:nth-child(8){animation-delay:.4s}
+.tcard:nth-child(9){animation-delay:.45s}
+.tcard:nth-child(10){animation-delay:.5s}
+.tcard:nth-child(11){animation-delay:.5s}
+.tcard:nth-child(12){animation-delay:.5s}
+.tcard:nth-child(13){animation-delay:.5s}
+/* ホバー */
+.tcard[data-title]{cursor:pointer;transition:box-shadow .2s,outline .15s;}
+.tcard[data-title]:hover{box-shadow:0 6px 28px rgba(0,0,0,.1);outline:2px solid var(--red);}
 .tcard[data-title]:hover .go{color:var(--red);}
+.tcard h3{transition:color .15s;}
 .tcard[data-title]:hover h3{color:var(--red);}
-h3{transition:color .15s;}
-/* フィルター active */
+/* フィルター */
 .filter-pill.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important;}
 .filter-pill:hover{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;}
-/* カテゴリ遷移 */
-.tcard{transition:opacity .45s,transform .45s,box-shadow .2s,outline .15s;}
+/* フィルタ遷移 */
+.tcard{transition:box-shadow .2s,outline .15s,opacity .3s,transform .3s;}
 </style>"""
 
 # vigil.css にない detail ページ専用スタイル（inline で追加）
