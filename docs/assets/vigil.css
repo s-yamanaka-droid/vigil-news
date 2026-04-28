@@ -164,17 +164,10 @@ nav.main .subscribe:hover { background: var(--ink); }
   letter-spacing: -.025em;
   line-height: .88;
   margin: 0;
-  text-transform: uppercase;
   color: var(--ink);
 }
-.hero .logo-block h1 .ai   { color: var(--red); font-style: normal; }
-.hero .logo-block h1 .r-sup {
-  color: var(--mute);
-  font-weight: 900;
-  font-size: 1em;
-  vertical-align: baseline;
-  letter-spacing: -.025em;
-}
+.hero .logo-block h1 .ai  { color: var(--red); font-style: normal; }
+.hero .logo-block h1 .r   { color: var(--mute); }
 .hero .logo-block .sub {
   font-family: var(--mono);
   font-size: 12px;

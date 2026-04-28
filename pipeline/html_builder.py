@@ -176,7 +176,7 @@ INTERACTIVE_JS = """
 """
 
 
-CSS_VER = "v3"
+CSS_VER = "v4"
 
 def _head(title, desc, css_path, fonts):
     return f"""<!DOCTYPE html>
@@ -257,7 +257,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
   </div>
   <div class="hero">
     <div class="logo-block">
-      <h1>NOW ON <em class="ai">AI</em><span class="r-sup">r</span></h1>
+      <h1>NOW ON <em class="ai">AI</em><span class="r">R</span></h1>
       <div class="sub"><b>AI MORNING INTELLIGENCE</b> · DAILY DISPATCH</div>
       <div class="tagline">
         AIの今を、毎朝<b>06:30 JST</b>に。<br>
