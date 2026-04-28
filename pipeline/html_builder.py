@@ -1,6 +1,6 @@
 """
-VIGIL — HTML Builder v4
-vigil.css (Claude Design) の DOM 構造に完全準拠
+Now on AIr — HTML Builder v5
+vigil.css (Jordan Chicago Design) の DOM 構造に完全準拠
 """
 from datetime import datetime
 from pathlib import Path
@@ -13,21 +13,19 @@ WEEKDAYS_LONG = ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","
 MONTHS_EN = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE",
              "JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"]
 
-# vigil.css が要求するフォント
+# Now on AIr — Jordan Chicago デザインシステム用フォント（全ページ共通）
 FONTS_VIGIL = (
-    "https://fonts.googleapis.com/css2?"
-    "family=JetBrains+Mono:wght@400;500;600;700;800&"
-    "family=Noto+Sans+JP:wght@400;500;700&"
-    "family=Noto+Serif+JP:wght@400;600;700&display=swap"
-)
-# detail ページ用フォント（Barlow Condensed も維持）
-FONTS_DETAIL = (
     "https://fonts.googleapis.com/css2?"
     "family=Barlow+Condensed:wght@600;700;800;900&"
     "family=JetBrains+Mono:wght@400;500;600;700;800&"
     "family=Noto+Sans+JP:wght@400;500;700&"
     "family=Noto+Serif+JP:wght@400;600;700&display=swap"
 )
+FONTS_DETAIL = FONTS_VIGIL  # 共通化
+
+# ブランドマーク HTML スニペット
+BRAND_NAV  = '<em class="dot-r">●</em>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span>'
+BRAND_FULL = 'Now on <span style="color:var(--red);font-style:normal;">AI</span><span style="color:var(--mute);font-size:.55em;vertical-align:middle;font-weight:700;">r</span>'
 
 INTERACTIVE_JS = """
 <!-- Article Modal -->
@@ -212,7 +210,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 
     # ── dispatch bar ──
     dispatch = f"""<div class="dispatch" data-ticker="on">
-  <span class="tick">VIGIL</span>
+  <span class="tick">NOW ON AIr</span>
   <span class="sep">/</span>
   <span>№{issue}</span>
   <span class="sep">/</span>
@@ -233,11 +231,10 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 
     # ── nav ──
     nav = f"""<nav class="main">
-  <div class="brand"><em>●</em>VIGIL</div>
+  <div class="brand">{BRAND_NAV}</div>
   <ul>
     <li><a href="./" class="active">TODAY</a></li>
     <li><a href="#archive">ARCHIVE</a></li>
-    <li><a href="#briefings">BRIEFINGS</a></li>
     <li><a href="#about">SOURCES</a></li>
     <li><a href="#about">ABOUT</a></li>
   </ul>
@@ -260,15 +257,15 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
     <span class="sep">//</span>
     <span>ISSUE N°{issue}</span>
     <span class="sep">//</span>
-    <span>CURATED BY VIGIL · AI MORNING INTELLIGENCE</span>
+    <span>AI MORNING INTELLIGENCE · DAILY DISPATCH</span>
   </div>
   <div class="hero">
     <div class="logo-block">
-      <h1>VIGIL<span class="dot">.</span></h1>
+      <h1>NOW ON <em class="ai">AI</em><span class="r-sup">r</span></h1>
       <div class="sub"><b>AI MORNING INTELLIGENCE</b> · DAILY DISPATCH</div>
       <div class="tagline">
-        AI業界で<b>昨夜起きたこと</b>を、毎朝<b>07:15 JST</b>に。<br>
-        ニュース・モデル発表・論文・注目のスレッドを、朝刊として一枚に。
+        AIの今を、毎朝<b>07:15 JST</b>に。<br>
+        ニュース・モデル発表・論文・注目スレッドを、<b>朝刊として一枚に。</b>
       </div>
     </div>
     <a href="./news/{today_str}/" class="today-cta">
@@ -390,11 +387,11 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
     section_about = f"""<div class="section-head" id="about">
   <span class="kicker">§03</span>
   <h2>About</h2>
-  <span class="jp">VIGILについて</span>
+  <span class="jp">Now on AIrについて</span>
 </div>
 <div class="about">
   <div class="card-about">
-    <h3>VIGIL — AI Morning Intelligence</h3>
+    <h3>NOW ON AIr — AI Morning Intelligence</h3>
     <p>毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
     <p>PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
     <div class="deliverbox">
@@ -421,12 +418,12 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 
     # ── colophon ──
     colophon = f"""<div class="colophon">
-  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="left"><b>Now on <span class="brand-ai">AI</span>r</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
   <div class="right">{today_str} · BUILD {dt.strftime('%Y%m%d')}.0715</div>
 </div>"""
 
     html = _head(
-        "VIGIL — AI Morning Intelligence",
+        "Now on AIr — AI Morning Intelligence",
         "山中秀斗が毎朝整理するAI業界のモーニングディスパッチ。",
         "./assets/vigil.css",
         FONTS_VIGIL,
@@ -482,7 +479,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
                 slide_html = f"""    <a href="{detail_url}" class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;">
       <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy" />
       <div class="sl-inner">
-        <div class="chip">VIGIL · SLIDE 01 / {len(articles):02d} <b>●</b></div>
+        <div class="chip">NOW ON AIr · SLIDE 01 / {len(articles):02d} <b>●</b></div>
         <div style="flex:1"></div>
         <div class="meta">{category.upper()} · {source.upper()}</div>
       </div>
@@ -490,7 +487,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
             else:
                 slide_html = f"""    <div class="slide">
       <div class="sl-inner">
-        <div class="chip">VIGIL · SLIDE 01 / {len(articles):02d} <b>●</b></div>
+        <div class="chip">NOW ON AIr · SLIDE 01 / {len(articles):02d} <b>●</b></div>
         <div class="bigt">{title[:24]}</div>
         <div class="meta">{category.upper()} · {source.upper()}</div>
       </div>
@@ -546,7 +543,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 
     # ── dispatch ──
     dispatch = f"""<div class="dispatch">
-  <span class="tick">VIGIL</span>
+  <span class="tick">NOW ON AIr</span>
   <span class="sep">/</span>
   <span>№{issue}</span>
   <span class="sep">/</span>
@@ -565,7 +562,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 
     # ── nav ──
     nav = f"""<nav class="main">
-  <div class="brand"><em>●</em>VIGIL</div>
+  <div class="brand">{BRAND_NAV}</div>
   <ul>
     <li><a href="../../">HOME</a></li>
     <li><a href="./" class="active">TODAY</a></li>
@@ -655,8 +652,8 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 </article>"""
 
     html = _head(
-        f"{date_str} Morning Dispatch — VIGIL",
-        f"{date_str} の VIGIL モーニングディスパッチ — {len(articles)}本のAI業界ニュース。",
+        f"{date_str} Morning Dispatch — Now on AIr",
+        f"{date_str} の Now on AIr モーニングディスパッチ — {len(articles)}本のAI業界ニュース。",
         "../../assets/vigil.css",
         FONTS_VIGIL,
     ) + DAILY_CSS + f"""
@@ -665,7 +662,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 {daily_head}
 {topics_html}
 <div class="colophon">
-  <div class="left"><b>VIGIL</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
+  <div class="left"><b>Now on <span class="brand-ai">AI</span>r</b> · AI Morning Intelligence · 山中秀斗 / TREPRO</div>
   <div class="right">{date_str} DISPATCH</div>
 </div>
 {INTERACTIVE_JS}
