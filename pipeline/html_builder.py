@@ -25,7 +25,7 @@ FONTS_DETAIL = FONTS_VIGIL  # 共通化
 
 # ブランドマーク HTML スニペット
 BRAND_NAV  = '<em class="dot-r">●</em>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span>'
-BRAND_FULL = 'Now on <span style="color:var(--red);font-style:normal;">AI</span><span style="color:var(--mute);font-size:.55em;vertical-align:middle;font-weight:700;">r</span>'
+BRAND_FULL = 'Now on <span style="color:var(--red);font-style:normal;">AI</span><span style="color:var(--mute);">r</span>'
 
 INTERACTIVE_JS = """
 <!-- Article Modal -->
@@ -176,6 +176,8 @@ INTERACTIVE_JS = """
 """
 
 
+CSS_VER = "v3"
+
 def _head(title, desc, css_path, fonts):
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -187,7 +189,7 @@ def _head(title, desc, css_path, fonts):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
-<link rel="stylesheet" href="{css_path}" />
+<link rel="stylesheet" href="{css_path}?{CSS_VER}" />
 </head>
 <body>"""
 
