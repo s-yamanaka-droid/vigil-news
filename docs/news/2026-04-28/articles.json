@@ -1,137 +1,139 @@
 [
   {
-    "title": "OpenAI、FedRAMP Moderate認証を取得",
+    "title": "OpenAI、Microsoft独占契約を解除—AWS等での販売が可能に",
     "category": "業界動向",
-    "source": "OpenAI Blog",
-    "lede": "OpenAIがChatGPT EnterprisとAPIでFedRAMP Moderate認証を取得し、米国連邦機関への安全なAI導入が可能に。",
+    "source": "Ars Technica / The Decoder",
+    "lede": "OpenAIとMicrosoftが独占契約を改定。OpenAIはAmazon Web Services等の他クラウド事業者を通じた製品販売が可能になり、業界の競争構図が変わる。",
     "keypoints": [
-      "ChatGPT EnterpriseとOpenAI APIがFedRAMP Moderate認証対応",
-      "米国連邦政府機関での採用が促進される",
-      "セキュリティ基準を満たすAIサービス提供",
-      "政府部門でのAI活用の拡大に道"
+      "OpenAIがAzure以外のクラウド事業者でも販売可能に",
+      "Microsoftの非独占ライセンスは2032年まで継続",
+      "AGI条項（人工汎用知能達成時の契約変更条項）を廃止",
+      "Azure は引き続き『プライマリパートナー』として位置づけ"
     ],
-    "pull": "FedRAMP認証により、OpenAIは政府機関レベルのセキュリティ要件を満たし、公的セクターへの本格参入を実現。",
+    "pull": "19年続いた独占契約の終了は、AIインフラ業界の権力構図を大きく変える。Microsoftの一強支配から、複数クラウドの競争時代へ。",
     "links": [
-      "https://openai.com/index/openai-available-at-fedramp-moderate"
+      "https://arstechnica.com/ai/2026/04/no-longer-exclusive-microsoft-agrees-to-let-openai-see-other-cloud-providers/",
+      "https://the-decoder.com/openai-and-microsoft-rewrite-their-deal-no-more-exclusivity-no-more-agi-clause/"
     ],
     "likes": 0
   },
   {
-    "title": "OpenAI・Microsoft提携契約を改定、AWS展開が可能に",
-    "category": "業界動向",
-    "source": "TechCrunch AI",
-    "lede": "OpenAIがMicrosoftの独占権制限を解除され、AmazonのAWS上でもサービス展開可能に。2032年までの定義をつけ法的問題を解決。",
-    "keypoints": [
-      "MicrosoftはNon-exclusive licenseに変更、2032年まで有効",
-      "OpenAI製品がAWS含む全クラウド上で提供可能",
-      "Azureが主要クラウドパートナー地位を維持",
-      "$50B Amazon契約での法的課題が解決"
-    ],
-    "pull": "OpenAIとMicrosoftの利益相反を解決し、OpenAIはクラウド戦略の自由度を獲得。両社が勝者となる構図。",
-    "links": [
-      "https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "Symphony：Codexの自動オーケストレーションで500%の生産性向上",
-    "category": "ツール更新",
-    "source": "OpenAI Blog",
-    "lede": "OpenAIがSymphonyというオープンソース仕様を発表。Linearなどのプロジェクト管理ツールをAIエージェントの制御プレーンに変え、PR着地数が500%増加。",
-    "keypoints": [
-      "Issue trackerが自動的にAIエージェント制御プレーンに",
-      "コンテキストスイッチングの削減で生産性大幅向上",
-      "エージェントが継続実行、人間がレビュー",
-      "オープンソース仕様で一般利用可能"
-    ],
-    "pull": "Symphonyは人間ドリブン開発からエージェント駆動開発へシフトさせ、エンジニア作業の中核を自動化。",
-    "links": [
-      "https://openai.com/index/open-source-codex-orchestration-symphony"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "David Silver の Ineffable Intelligence が11億ドル調達",
+    "title": "OpenAIがスマートフォン開発か—AI「エージェント」がアプリ代わりに",
     "category": "新モデル発表",
-    "source": "TechCrunch AI",
-    "lede": "DeepMind元幹部David Silverが創設したIneffable Intelligenceが51億ドル評価で11億ドルを調達。人間データなしでAIが学習する「スーパーラーナー」開発を目指す。",
+    "source": "TechCrunch",
+    "lede": "OpenAIがMediaTek・Qualcommと協力して独自スマートフォン開発か。従来のアプリではなく、AIが自動で複数タスクをこなす「エージェント」を搭載する構想。",
     "keypoints": [
-      "強化学習で人間データ無し学習を実現",
-      "AlphaZeroなどの知見を活かした新企業",
-      "大規模資金で競争力あるAIモデル開発",
-      "LLM超越型AIの実現を目標"
+      "MediaTek・Qualcommと専用チップ開発を計画中",
+      "アプリの代わりにAIエージェントがタスク実行",
+      "Apple・Googleのアプリ制限を回避できる",
+      "ユーザー行動データへのアクセス強化が狙い"
     ],
-    "pull": "Silver はチェス・囲碁で人間学習不要の学習成功をAI全般に拡張。データ依存からの脱却を狙う野心的チャレンジ。",
+    "pull": "スマートフォンの『アプリ時代の終焉』宣言。AIが文脈を理解し、ユーザーが指示する前に最適な行動を実行する端末へ。",
     "links": [
-      "https://techcrunch.com/2026/04/27/deepminds-david-silver-just-raised-1-1b-to-build-an-ai-that-learns-without-human-data/"
+      "https://techcrunch.com/2026/04/27/openai-could-be-making-a-phone-with-ai-agents-replacing-apps/"
     ],
     "likes": 0
   },
   {
-    "title": "Google・Kaggle、無料AI Agents集中講座を6月開講",
-    "category": "その他",
-    "source": "Google AI Blog",
-    "lede": "GoogleとKaggleが6月15-19に無料5日間コース開催。自然言語ワークフローと実践的プロジェクトでプロダクション対応のAIエージェント構築を学習。",
-    "keypoints": [
-      "無料5日間AI Agents集中コース",
-      "自然言語ベースのエージェント開発",
-      "ツール・API統合スキルを習得",
-      "最終capstoneプロジェクト実装"
-    ],
-    "pull": "エンジニア向けAIエージェント教育プログラムで、実装スキルと業界トレンドを同時習得可能。",
-    "links": [
-      "https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "中国がMetaのManus買収2000万ドルを禁止",
-    "category": "業界動向",
-    "source": "TechCrunch AI",
-    "lede": "中国の国家発展改革委員会がMetaのAIエージェント企業Manus買収を禁止。従業員既配置など複雑な状況で、AIエージェント領域での対立が深刻化。",
-    "keypoints": [
-      "中国がAI企業買収を国家権限で禁止",
-      "Manus創業者に出境禁止令、従業員既配置",
-      "米中AI産業の対立が具体化",
-      "Meta のAIエージェント野心に大打撃"
-    ],
-    "pull": "中国の規制は単なる安全保障ではなく、AI主権の重要性を示す象徴的決定。米国企業のAI産業買収に新たな障壁。",
-    "links": [
-      "https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/"
-    ],
-    "likes": 0
-  },
-  {
-    "title": "Chrome新機能Skillsで1クリックAIワークフロー化",
+    "title": "Salesforce新Slackbot—エージェント型AIが社内業務を自動化",
     "category": "ツール更新",
-    "source": "Google AI Blog",
-    "lede": "GoogleがChromeでSkills機能を投入。保存したAIプロンプトを1クリックで再利用可能。複数タブやページ対応で日常業務の自動化を実現。",
+    "source": "VentureBeat",
+    "lede": "Salesforceが社内チャットツール『Slackbot』をAIエージェント化。単なるアシスタントから、企業データ検索や文書作成、業務実行を自動でこなす『AIワーカー』へ進化。",
     "keypoints": [
-      "AIプロンプトを保存・再利用可能なSkills",
-      "/スラッシュコマンドで即座に実行",
-      "複数タブへの一括適用で効率化",
-      "カスタムワークフロー構築が容易"
+      "エンタープライズAIの新潮流『エージェント型』に対応",
+      "企業データ検索・文書起草・業務実行を自動化",
+      "Business+/Enterprise+以上で提供開始",
+      "従来比で『三輪車からポルシェへ』進化"
     ],
-    "pull": "繰り返し業務をPromptベースで自動化。Gemini統合でブラウザ内完結のAIワークフロー実現。",
+    "pull": "Slack が社員の『第二の脳』になる。単なる通知から、意思決定権を持つAIワーカーへの転換は、ホワイトカラー業務の構造変化を象徴。",
     "links": [
-      "https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/"
+      "https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and"
     ],
     "likes": 0
   },
   {
-    "title": "エンタープライズAI導入の最大課題はデータインフラ",
-    "category": "業界動向",
-    "source": "MIT Tech Review AI",
-    "lede": "企業のAI活用がボトルネック直面。統一・ガバナンス・目的適応したデータインフラ整備なしには、AI導入は「ひどいAI」に。",
+    "title": "DeepSeek-V4—100万トークン対応AIエージェントがオープンソース化",
+    "category": "新モデル発表",
+    "source": "Hugging Face",
+    "lede": "中国のDeepSeekがV4を発表。100万トークン（ChatGPTの20倍相当の文脈）で長時間の複雑なタスクをこなすエージェント向けAIをオープンソース化。商用AIの価格圧力に。",
     "keypoints": [
-      "AI野心とデータ実態のギャップが課題",
-      "レガシーシステム・サイロ化が障害",
-      "統一フォーマット・ガバナンスが必須",
-      "データこそ競争優位性の源泉"
+      "100万トークンの超長文脈対応（従来は数千トークン)",
+      "AIエージェント用に特化した設計・学習",
+      "オープンソース・商用利用可能",
+      "複数ステップのコーディングタスク実行に対応"
     ],
-    "pull": "消費者AI成功の陰に隠れる企業AI困難。データスタック再構築なし、エンタープライズAIは成功しない。",
+    "pull": "超長文脈が『容量から実用性へ』進化。長時間のエージェント実行でメモリ過負荷・停止する問題を根本解決。",
     "links": [
-      "https://www.technologyreview.com/2026/04/27/1136322/rebuilding-the-data-stack-for-ai/"
+      "https://huggingface.co/blog/deepseekv4"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Meta、衛星から宇宙太陽光発電—AI電力危機に対する大胆な投資",
+    "category": "業界動向",
+    "source": "The Decoder / TechCrunch",
+    "lede": "MetaがOverview Energy社と契約。衛星で集めた太陽光を赤外線に変換して地上に送り、データセンターの電力問題を解決する構想。ただし実用化は2030年以降。",
+    "keypoints": [
+      "最大1ギガワット（原子炉1基分相当）の太陽光供給契約",
+      "衛星収集→赤外線で送信→地上受信という新型システム",
+      "天候・時間帯に左右されない24時間発電",
+      "実用化は2030年以降、それまでは天然ガス・原子力に依存"
+    ],
+    "pull": "AIの電力需要は既に『地上のエネルギー危機』水準。宇宙発電への投資は、今後の競争優位性を左右する戦略的賭け。",
+    "links": [
+      "https://the-decoder.com/meta-wants-to-power-ai-data-centers-with-solar-energy-from-space/",
+      "https://techcrunch.com/2026/04/27/meta-inks-deal-for-solar-power-at-night-beamed-from-space/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Claude Code高額化に対抗—Blockの無料AIコーディングツール『Goose』が急速成長",
+    "category": "ツール更新",
+    "source": "VentureBeat",
+    "lede": "Anthropicの『Claude Code』（月額$20〜200）に対し、Square系のBlockが開発した無料AIコーディングツール『Goose』が注目。ローカル実行で機能はほぼ同等、データ独占もない。",
+    "keypoints": [
+      "月額料金なし・ローカル実行で完全オフライン対応",
+      "GitHub26,100スター、362人の開発者が参加",
+      "Claude Code と同等の自動コード記述・デバッグ・デプロイ機能",
+      "インターネット接続不要、飛行機内での作業も可能"
+    ],
+    "pull": "AIツールの『囲い込みモデル vs オープンモデル』の戦い。エンジニアの選択権は無料・透明・ローカル指向へ。",
+    "links": [
+      "https://venturebeat.com/infrastructure/claude-code-costs-up-to-usd200-a-month-goose-does-the-same-thing-for-free"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "医療用超音波画像をAIで革新—NVIDIAが生データから最適画像を自動生成",
+    "category": "研究",
+    "source": "Hugging Face",
+    "lede": "NVIDIAとSiemens Healthineersが開発した『NV-Raw2Insights-US』。超音波の生データからAIが直接高品質画像を生成。従来の手作業による画質調整が不要に。",
+    "keypoints": [
+      "生センサーデータ→AI直接処理で高精度画像化",
+      "音速一定という従来仮定を不要に",
+      "医師による手作業調整が激減",
+      "Siemens Healthineers の医療機器と統合"
+    ],
+    "pull": "医療診断の『職人技からAI自動化へ』転換。超音波診断の品質・効率が両立し、医療機関の業務負荷大幅軽減。",
+    "links": [
+      "https://huggingface.co/blog/nvidia/raw2insights-adaptive-ultrasound-imaging"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "OpenAI、プライバシー向上ツール『Privacy Filter』をオープンソース化",
+    "category": "ツール更新",
+    "source": "Hugging Face",
+    "lede": "OpenAIが個人情報検出ツール『Privacy Filter』をオープンソース化。メール・PDF・画像から個人情報（名前・住所・電話等）を自動マスク。企業向けPII対策に即活用可能。",
+    "keypoints": [
+      "8カテゴリの個人情報を自動検出・マスク処理",
+      "Apache 2.0ライセンス（商用利用可）",
+      "128K文脈でも高速処理（1.5Bパラメータ）",
+      "PDF・DOCX・画像・テキスト対応"
+    ],
+    "pull": "生成AIの普及に伴うデータ漏洩リスク対策が急務。無料ツール提供は企業のコンプライアンス負担を大幅軽減。",
+    "links": [
+      "https://huggingface.co/blog/openai-privacy-filter-web-apps"
     ],
     "likes": 0
   }

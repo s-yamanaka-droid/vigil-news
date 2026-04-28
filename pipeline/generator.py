@@ -5,8 +5,6 @@ VIGIL — Generator v2
 import json
 import anthropic
 
-client = anthropic.Anthropic()
-
 SYSTEM = """あなたはAI業界ニュースを「日本人ビジネスパーソン」に届ける専門編集者です。
 与えられた記事の【元記事本文】を一次情報として使い、ニュースサイト掲載用データをJSON配列で返してください。
 
@@ -42,6 +40,7 @@ SYSTEM = """あなたはAI業界ニュースを「日本人ビジネスパーソ
 
 
 def generate_articles(raw_articles: list[dict]) -> list[dict]:
+    client = anthropic.Anthropic()
     # 記事ごとに元本文を含めた情報を構築
     blocks = []
     for a in raw_articles[:24]:
