@@ -80,6 +80,26 @@
   background:var(--paper-2);font-size:13px;line-height:1.75;
   color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;
 }
+/* ── ビジネス活用ポイント ── */
+#modal-bizapp{display:none;margin-bottom:24px;}
+.bizapp-head{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:#fff;background:var(--red);
+  display:inline-block;padding:4px 10px;margin-bottom:12px;font-weight:700;
+}
+.bizapp-summary{
+  font-family:'Noto Serif JP',serif;font-size:14px;font-weight:700;
+  color:var(--ink);line-height:1.65;margin-bottom:12px;
+}
+.bizapp-actions{list-style:none;padding:0;margin:0;}
+.bizapp-actions li{
+  padding:9px 12px 9px 36px;margin-bottom:2px;
+  background:var(--paper-2);border-left:2px solid var(--red);
+  position:relative;font-size:12.5px;line-height:1.6;color:var(--ink-2);
+}
+.bizapp-actions li .ba-icon{
+  position:absolute;left:10px;top:9px;font-size:11px;
+}
 .modal-foot{
   display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:12px;padding-top:16px;border-top:1px solid var(--rule);
@@ -196,7 +216,7 @@
   <button class="filter-pill active" data-cat="ALL" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:var(--ink);color:var(--paper);cursor:pointer;transition:all .15s;text-transform:uppercase;">ALL</button><button class="filter-pill" data-cat="業界動向" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;">業界動向</button><button class="filter-pill" data-cat="新モデル発表" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;">新モデル発表</button><button class="filter-pill" data-cat="ツール更新" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;">ツール更新</button><button class="filter-pill" data-cat="研究" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;">研究</button>
 </div>
 <div class="today-grid">
-  <div class="tcard lead" data-title="OpenAI、Microsoft独占契約を解除—AWS等での販売が可能に" data-category="業界動向" data-source="Ars Technica / The Decoder" data-lede="OpenAIとMicrosoftが独占契約を改定。OpenAIはAmazon Web Services等の他クラウド事業者を通じた製品販売が可能になり、業界の競争構図が変わる。" data-keypoints="[&quot;OpenAIがAzure以外のクラウド事業者でも販売可能に&quot;, &quot;Microsoftの非独占ライセンスは2032年まで継続&quot;, &quot;AGI条項（人工汎用知能達成時の契約変更条項）を廃止&quot;, &quot;Azure は引き続き『プライマリパートナー』として位置づけ&quot;]" data-pull="19年続いた独占契約の終了は、AIインフラ業界の権力構図を大きく変える。Microsoftの一強支配から、複数クラウドの競争時代へ。" data-link="./news/2026-04-28/#topic-1">
+  <div class="tcard lead" data-title="OpenAI、Microsoft独占契約を解除—AWS等での販売が可能に" data-category="業界動向" data-source="Ars Technica / The Decoder" data-lede="OpenAIとMicrosoftが独占契約を改定。OpenAIはAmazon Web Services等の他クラウド事業者を通じた製品販売が可能になり、業界の競争構図が変わる。" data-keypoints="[&quot;OpenAIがAzure以外のクラウド事業者でも販売可能に&quot;, &quot;Microsoftの非独占ライセンスは2032年まで継続&quot;, &quot;AGI条項（人工汎用知能達成時の契約変更条項）を廃止&quot;, &quot;Azure は引き続き『プライマリパートナー』として位置づけ&quot;]" data-pull="19年続いた独占契約の終了は、AIインフラ業界の権力構図を大きく変える。Microsoftの一強支配から、複数クラウドの競争時代へ。" data-bizapp="{&quot;summary&quot;: &quot;クラウド選択肢が広がる。AWS等での OpenAI 導入で、Microsoft 独占回避・調達コスト比較が可能に。&quot;, &quot;actions&quot;: [&quot;Cursor で Claude 統合開発環境を AWS 上に構築し、Azure 依存を低減。&quot;, &quot;営業提案：中堅企業向けに『クラウド中立』な AI アシスタント導入を提案。&quot;, &quot;競合（Google Cloud・AWS）が OpenAI を正規販売できるようになり、シェア争奪戦が激化。&quot;]}" data-link="./news/2026-04-28/#topic-1">
     <div class="tl">
       <span class="n">01</span>
       <span class="cat">業界動向</span>
@@ -217,7 +237,7 @@
       <a href="./news/2026-04-28/#topic-1" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="OpenAIがスマートフォン開発か—AI「エージェント」がアプリ代わりに" data-category="新モデル発表" data-source="TechCrunch" data-lede="OpenAIがMediaTek・Qualcommと協力して独自スマートフォン開発か。従来のアプリではなく、AIが自動で複数タスクをこなす「エージェント」を搭載する構想。" data-keypoints="[&quot;MediaTek・Qualcommと専用チップ開発を計画中&quot;, &quot;アプリの代わりにAIエージェントがタスク実行&quot;, &quot;Apple・Googleのアプリ制限を回避できる&quot;, &quot;ユーザー行動データへのアクセス強化が狙い&quot;]" data-pull="スマートフォンの『アプリ時代の終焉』宣言。AIが文脈を理解し、ユーザーが指示する前に最適な行動を実行する端末へ。" data-link="./news/2026-04-28/#topic-2">
+  <div class="tcard" data-title="OpenAIがスマートフォン開発か—AI「エージェント」がアプリ代わりに" data-category="新モデル発表" data-source="TechCrunch" data-lede="OpenAIがMediaTek・Qualcommと協力して独自スマートフォン開発か。従来のアプリではなく、AIが自動で複数タスクをこなす「エージェント」を搭載する構想。" data-keypoints="[&quot;MediaTek・Qualcommと専用チップ開発を計画中&quot;, &quot;アプリの代わりにAIエージェントがタスク実行&quot;, &quot;Apple・Googleのアプリ制限を回避できる&quot;, &quot;ユーザー行動データへのアクセス強化が狙い&quot;]" data-pull="スマートフォンの『アプリ時代の終焉』宣言。AIが文脈を理解し、ユーザーが指示する前に最適な行動を実行する端末へ。" data-bizapp="{&quot;summary&quot;: &quot;AI エージェント専用端末の登場で、アプリ経由の業務自動化が新時代へ。企業の独立した AI 基盤構築が加速。&quot;, &quot;actions&quot;: [&quot;Claude を使った業務用 AI エージェント開発を独自端末で検証。&quot;, &quot;採用支援：OpenAI スマートフォンのエージェント機能を HR システムと連携し、応募者対応を自動化。&quot;, &quot;Apple・Google のアプリ支配が揺らぎ、ハードウェア・OS 選定軸が AI エージェント能力に。&quot;]}" data-link="./news/2026-04-28/#topic-2">
     <div class="tl">
       <span class="n">02</span>
       <span class="cat">新モデル発表</span>
@@ -229,7 +249,7 @@
       <a href="./news/2026-04-28/#topic-2" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="Salesforce新Slackbot—エージェント型AIが社内業務を自動化" data-category="ツール更新" data-source="VentureBeat" data-lede="Salesforceが社内チャットツール『Slackbot』をAIエージェント化。単なるアシスタントから、企業データ検索や文書作成、業務実行を自動でこなす『AIワーカー』へ進化。" data-keypoints="[&quot;エンタープライズAIの新潮流『エージェント型』に対応&quot;, &quot;企業データ検索・文書起草・業務実行を自動化&quot;, &quot;Business+/Enterprise+以上で提供開始&quot;, &quot;従来比で『三輪車からポルシェへ』進化&quot;]" data-pull="Slack が社員の『第二の脳』になる。単なる通知から、意思決定権を持つAIワーカーへの転換は、ホワイトカラー業務の構造変化を象徴。" data-link="./news/2026-04-28/#topic-3">
+  <div class="tcard" data-title="Salesforce新Slackbot—エージェント型AIが社内業務を自動化" data-category="ツール更新" data-source="VentureBeat" data-lede="Salesforceが社内チャットツール『Slackbot』をAIエージェント化。単なるアシスタントから、企業データ検索や文書作成、業務実行を自動でこなす『AIワーカー』へ進化。" data-keypoints="[&quot;エンタープライズAIの新潮流『エージェント型』に対応&quot;, &quot;企業データ検索・文書起草・業務実行を自動化&quot;, &quot;Business+/Enterprise+以上で提供開始&quot;, &quot;従来比で『三輪車からポルシェへ』進化&quot;]" data-pull="Slack が社員の『第二の脳』になる。単なる通知から、意思決定権を持つAIワーカーへの転換は、ホワイトカラー業務の構造変化を象徴。" data-bizapp="{&quot;summary&quot;: &quot;Slack が単なるチャットから『業務実行ツール』へ進化。社内業務の大幅自動化とコスト削減が可能。&quot;, &quot;actions&quot;: [&quot;Claude を Slack エージェント化し、契約書作成・データ検索・承認フロー自動実行を実装。&quot;, &quot;中小企業 DX：Slackbot で請求書作成・顧客データ検索・営業報告を自動化。&quot;, &quot;エージェント型 AI が主流化する中、Salesforce の早期対応で他社の RPA 置き換え加速。&quot;]}" data-link="./news/2026-04-28/#topic-3">
     <div class="tl">
       <span class="n">03</span>
       <span class="cat">ツール更新</span>
@@ -241,7 +261,7 @@
       <a href="./news/2026-04-28/#topic-3" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="DeepSeek-V4—100万トークン対応AIエージェントがオープンソース化" data-category="新モデル発表" data-source="Hugging Face" data-lede="中国のDeepSeekがV4を発表。100万トークン（ChatGPTの20倍相当の文脈）で長時間の複雑なタスクをこなすエージェント向けAIをオープンソース化。商用AIの価格圧力に。" data-keypoints="[&quot;100万トークンの超長文脈対応（従来は数千トークン)&quot;, &quot;AIエージェント用に特化した設計・学習&quot;, &quot;オープンソース・商用利用可能&quot;, &quot;複数ステップのコーディングタスク実行に対応&quot;]" data-pull="超長文脈が『容量から実用性へ』進化。長時間のエージェント実行でメモリ過負荷・停止する問題を根本解決。" data-link="./news/2026-04-28/#topic-4">
+  <div class="tcard" data-title="DeepSeek-V4—100万トークン対応AIエージェントがオープンソース化" data-category="新モデル発表" data-source="Hugging Face" data-lede="中国のDeepSeekがV4を発表。100万トークン（ChatGPTの20倍相当の文脈）で長時間の複雑なタスクをこなすエージェント向けAIをオープンソース化。商用AIの価格圧力に。" data-keypoints="[&quot;100万トークンの超長文脈対応（従来は数千トークン)&quot;, &quot;AIエージェント用に特化した設計・学習&quot;, &quot;オープンソース・商用利用可能&quot;, &quot;複数ステップのコーディングタスク実行に対応&quot;]" data-pull="超長文脈が『容量から実用性へ』進化。長時間のエージェント実行でメモリ過負荷・停止する問題を根本解決。" data-bizapp="{&quot;summary&quot;: &quot;安価な超高機能 AI がオープンソース化。商用 AI の価格競争が激化、自社構築・オンプレ導入が現実的に。&quot;, &quot;actions&quot;: [&quot;DeepSeek-V4 を Codex 代わりに自社サーバにデプロイ、複数工程のコード生成タスク自動化。&quot;, &quot;中小企業向け提案：月額コスト 0 で 100 万トークン対応 AI を導入、カスタマーサポート自動化。&quot;, &quot;中国製オープンソース AI が性能で OpenAI に対抗し、ベンダーロックイン構図が破壊。&quot;]}" data-link="./news/2026-04-28/#topic-4">
     <div class="tl">
       <span class="n">04</span>
       <span class="cat">新モデル発表</span>
@@ -253,7 +273,7 @@
       <a href="./news/2026-04-28/#topic-4" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="Meta、衛星から宇宙太陽光発電—AI電力危機に対する大胆な投資" data-category="業界動向" data-source="The Decoder / TechCrunch" data-lede="MetaがOverview Energy社と契約。衛星で集めた太陽光を赤外線に変換して地上に送り、データセンターの電力問題を解決する構想。ただし実用化は2030年以降。" data-keypoints="[&quot;最大1ギガワット（原子炉1基分相当）の太陽光供給契約&quot;, &quot;衛星収集→赤外線で送信→地上受信という新型システム&quot;, &quot;天候・時間帯に左右されない24時間発電&quot;, &quot;実用化は2030年以降、それまでは天然ガス・原子力に依存&quot;]" data-pull="AIの電力需要は既に『地上のエネルギー危機』水準。宇宙発電への投資は、今後の競争優位性を左右する戦略的賭け。" data-link="./news/2026-04-28/#topic-5">
+  <div class="tcard" data-title="Meta、衛星から宇宙太陽光発電—AI電力危機に対する大胆な投資" data-category="業界動向" data-source="The Decoder / TechCrunch" data-lede="MetaがOverview Energy社と契約。衛星で集めた太陽光を赤外線に変換して地上に送り、データセンターの電力問題を解決する構想。ただし実用化は2030年以降。" data-keypoints="[&quot;最大1ギガワット（原子炉1基分相当）の太陽光供給契約&quot;, &quot;衛星収集→赤外線で送信→地上受信という新型システム&quot;, &quot;天候・時間帯に左右されない24時間発電&quot;, &quot;実用化は2030年以降、それまでは天然ガス・原子力に依存&quot;]" data-pull="AIの電力需要は既に『地上のエネルギー危機』水準。宇宙発電への投資は、今後の競争優位性を左右する戦略的賭け。" data-bizapp="{&quot;summary&quot;: &quot;AI 電力危機が顕在化。データセンター運営コストが急騰する前に、電力調達戦略の再検討が必須。&quot;, &quot;actions&quot;: [&quot;Claude 運用の電力消費予測を立て、再生可能エネルギー確保計画に組み込む。&quot;, &quot;営業提案：企業向け『AI 導入時の電力コスト診断』サービスを開発。&quot;, &quot;AI インフラ需要急増で電力費が経営課題化。2030 年実用化まで、短期的電力確保が競争優位。&quot;]}" data-link="./news/2026-04-28/#topic-5">
     <div class="tl">
       <span class="n">05</span>
       <span class="cat">業界動向</span>
@@ -265,7 +285,7 @@
       <a href="./news/2026-04-28/#topic-5" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="Claude Code高額化に対抗—Blockの無料AIコーディングツール『Goose』が急速成長" data-category="ツール更新" data-source="VentureBeat" data-lede="Anthropicの『Claude Code』（月額$20〜200）に対し、Square系のBlockが開発した無料AIコーディングツール『Goose』が注目。ローカル実行で機能はほぼ同等、データ独占もない。" data-keypoints="[&quot;月額料金なし・ローカル実行で完全オフライン対応&quot;, &quot;GitHub26,100スター、362人の開発者が参加&quot;, &quot;Claude Code と同等の自動コード記述・デバッグ・デプロイ機能&quot;, &quot;インターネット接続不要、飛行機内での作業も可能&quot;]" data-pull="AIツールの『囲い込みモデル vs オープンモデル』の戦い。エンジニアの選択権は無料・透明・ローカル指向へ。" data-link="./news/2026-04-28/#topic-6">
+  <div class="tcard" data-title="Claude Code高額化に対抗—Blockの無料AIコーディングツール『Goose』が急速成長" data-category="ツール更新" data-source="VentureBeat" data-lede="Anthropicの『Claude Code』（月額$20〜200）に対し、Square系のBlockが開発した無料AIコーディングツール『Goose』が注目。ローカル実行で機能はほぼ同等、データ独占もない。" data-keypoints="[&quot;月額料金なし・ローカル実行で完全オフライン対応&quot;, &quot;GitHub26,100スター、362人の開発者が参加&quot;, &quot;Claude Code と同等の自動コード記述・デバッグ・デプロイ機能&quot;, &quot;インターネット接続不要、飛行機内での作業も可能&quot;]" data-pull="AIツールの『囲い込みモデル vs オープンモデル』の戦い。エンジニアの選択権は無料・透明・ローカル指向へ。" data-bizapp="{&quot;summary&quot;: &quot;無料・ローカル AI コーディングツールが有料サービスを脅かす。開発部門の外部ツール依存を低減できる。&quot;, &quot;actions&quot;: [&quot;Goose を Cursor 代わりに導入し、Claude 高額契約を削減。オフライン対応で情報漏洩リスク低減。&quot;, &quot;採用：プログラマーの生産性向上を無料ツールで実現し、教育投資に転換。&quot;, &quot;Anthropic の有料化戦略に対抗するオープンソース勢が躍進。ツール選択の自由度拡大が産業標準化。&quot;]}" data-link="./news/2026-04-28/#topic-6">
     <div class="tl">
       <span class="n">06</span>
       <span class="cat">ツール更新</span>
@@ -277,7 +297,7 @@
       <a href="./news/2026-04-28/#topic-6" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="医療用超音波画像をAIで革新—NVIDIAが生データから最適画像を自動生成" data-category="研究" data-source="Hugging Face" data-lede="NVIDIAとSiemens Healthineersが開発した『NV-Raw2Insights-US』。超音波の生データからAIが直接高品質画像を生成。従来の手作業による画質調整が不要に。" data-keypoints="[&quot;生センサーデータ→AI直接処理で高精度画像化&quot;, &quot;音速一定という従来仮定を不要に&quot;, &quot;医師による手作業調整が激減&quot;, &quot;Siemens Healthineers の医療機器と統合&quot;]" data-pull="医療診断の『職人技からAI自動化へ』転換。超音波診断の品質・効率が両立し、医療機関の業務負荷大幅軽減。" data-link="./news/2026-04-28/#topic-7">
+  <div class="tcard" data-title="医療用超音波画像をAIで革新—NVIDIAが生データから最適画像を自動生成" data-category="研究" data-source="Hugging Face" data-lede="NVIDIAとSiemens Healthineersが開発した『NV-Raw2Insights-US』。超音波の生データからAIが直接高品質画像を生成。従来の手作業による画質調整が不要に。" data-keypoints="[&quot;生センサーデータ→AI直接処理で高精度画像化&quot;, &quot;音速一定という従来仮定を不要に&quot;, &quot;医師による手作業調整が激減&quot;, &quot;Siemens Healthineers の医療機器と統合&quot;]" data-pull="医療診断の『職人技からAI自動化へ』転換。超音波診断の品質・効率が両立し、医療機関の業務負荷大幅軽減。" data-bizapp="{&quot;summary&quot;: &quot;医療画像の自動生成で診療の効率化・標準化が加速。医療機器メーカーの AI 統合が競争軸に。&quot;, &quot;actions&quot;: [&quot;NVIDIA モデルを医療 AI パイプラインに統合し、超音波検査の自動判定・レポート生成を実装。&quot;, &quot;医療機関向け提案：従来の手動調整工数を 70％削減し、医師の診断時間を確保。&quot;, &quot;医療用 AI が実用化段階に移行。Siemens など既設機器との相性が導入速度を左右。&quot;]}" data-link="./news/2026-04-28/#topic-7">
     <div class="tl">
       <span class="n">07</span>
       <span class="cat">研究</span>
@@ -289,7 +309,7 @@
       <a href="./news/2026-04-28/#topic-7" class="go">READ →</a>
     </div>
   </div>
-  <div class="tcard" data-title="OpenAI、プライバシー向上ツール『Privacy Filter』をオープンソース化" data-category="ツール更新" data-source="Hugging Face" data-lede="OpenAIが個人情報検出ツール『Privacy Filter』をオープンソース化。メール・PDF・画像から個人情報（名前・住所・電話等）を自動マスク。企業向けPII対策に即活用可能。" data-keypoints="[&quot;8カテゴリの個人情報を自動検出・マスク処理&quot;, &quot;Apache 2.0ライセンス（商用利用可）&quot;, &quot;128K文脈でも高速処理（1.5Bパラメータ）&quot;, &quot;PDF・DOCX・画像・テキスト対応&quot;]" data-pull="生成AIの普及に伴うデータ漏洩リスク対策が急務。無料ツール提供は企業のコンプライアンス負担を大幅軽減。" data-link="./news/2026-04-28/#topic-8">
+  <div class="tcard" data-title="OpenAI、プライバシー向上ツール『Privacy Filter』をオープンソース化" data-category="ツール更新" data-source="Hugging Face" data-lede="OpenAIが個人情報検出ツール『Privacy Filter』をオープンソース化。メール・PDF・画像から個人情報（名前・住所・電話等）を自動マスク。企業向けPII対策に即活用可能。" data-keypoints="[&quot;8カテゴリの個人情報を自動検出・マスク処理&quot;, &quot;Apache 2.0ライセンス（商用利用可）&quot;, &quot;128K文脈でも高速処理（1.5Bパラメータ）&quot;, &quot;PDF・DOCX・画像・テキスト対応&quot;]" data-pull="生成AIの普及に伴うデータ漏洩リスク対策が急務。無料ツール提供は企業のコンプライアンス負担を大幅軽減。" data-bizapp="{&quot;summary&quot;: &quot;個人情報自動検出ツールがオープン化。GDPR・個人情報保護法対応が低コストで実装可能に。&quot;, &quot;actions&quot;: [&quot;Privacy Filter を Cursor CI/CD パイプラインに組み込み、コミット前の PII 漏洩検出を自動化。&quot;, &quot;バックオフィス自動化：PDF・メール一括処理時に個人情報を自動マスク、コンプライアンスリスク軽減。&quot;, &quot;規制強化で PII 対策がコスト扱いから競争優位へ。オープンソース化で中小企業も対応可能。&quot;]}" data-link="./news/2026-04-28/#topic-8">
     <div class="tl">
       <span class="n">08</span>
       <span class="cat">ツール更新</span>
@@ -403,6 +423,11 @@
       <p id="modal-lede"></p>
       <div id="modal-kp"></div>
       <div id="modal-pull"></div>
+      <div id="modal-bizapp">
+        <div class="bizapp-head">💡 ビジネス活用ポイント</div>
+        <div class="bizapp-summary" id="modal-bizapp-summary"></div>
+        <ul class="bizapp-actions" id="modal-bizapp-actions"></ul>
+      </div>
       <div class="modal-foot">
         <span id="modal-src"></span>
         <a id="modal-link" href="#" target="_blank" rel="noopener">元記事を読む →</a>
@@ -456,6 +481,26 @@
     var pullEl=document.getElementById('modal-pull');
     if(d.pull){pullEl.textContent='「'+d.pull+'」';pullEl.style.display='block';}
     else{pullEl.style.display='none';}
+
+    /* bizapp */
+    var bizEl=document.getElementById('modal-bizapp');
+    try{
+      var biz=JSON.parse(d.bizapp||'null');
+      if(biz&&biz.summary){
+        document.getElementById('modal-bizapp-summary').textContent=biz.summary;
+        var baList=document.getElementById('modal-bizapp-actions');
+        baList.innerHTML='';
+        var icons=['🏢','🤝','👁'];
+        (biz.actions||[]).forEach(function(act,i){
+          var li=document.createElement('li');
+          var ic=document.createElement('span');
+          ic.className='ba-icon';ic.textContent=icons[i]||'→';
+          li.appendChild(ic);li.appendChild(document.createTextNode(act));
+          baList.appendChild(li);
+        });
+        bizEl.style.display='block';
+      } else { bizEl.style.display='none'; }
+    }catch(e){ bizEl.style.display='none'; }
 
     modal.style.display='flex';
     modal.style.pointerEvents='auto';

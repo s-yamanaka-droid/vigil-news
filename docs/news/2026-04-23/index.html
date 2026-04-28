@@ -36,6 +36,12 @@
 .keypoints li::before{content:attr(data-i);position:absolute;left:14px;top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em}
 .pull{padding:18px 22px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-top:24px;transition:border-left-width .2s,padding-left .2s}
 .pull:hover{border-left-width:6px;padding-left:19px}
+.bizapp-block{margin-top:28px;border:1px solid var(--red);padding:20px 22px;}
+.bizapp-block .biz-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#fff;background:var(--red);display:inline-block;padding:3px 10px;margin-bottom:12px;font-weight:700;}
+.bizapp-block .biz-summary{font-size:14px;font-weight:700;color:var(--ink);line-height:1.65;margin-bottom:10px;font-family:'Noto Serif JP',serif;}
+.bizapp-block ul{list-style:none;padding:0;margin:0;}
+.bizapp-block li{padding:8px 10px 8px 32px;margin-bottom:2px;background:var(--paper-2);border-left:2px solid var(--red);position:relative;font-size:13px;line-height:1.6;color:var(--ink-2);}
+.bizapp-block li .bi{position:absolute;left:8px;top:8px;font-size:12px;}
 .slide-img{margin:20px 0;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;position:relative;transition:border-color .2s}
 .slide-img:hover{border-color:var(--red)}
 .slide-img img{width:100%;display:block;transition:transform .5s}
@@ -59,7 +65,7 @@
 <div class="dispatch">
   <span class="tick">NOW ON AIr</span>
   <span class="sep">/</span>
-  <span>№0423</span>
+  <span>№0001</span>
   <span class="sep">/</span>
   <span>2026-04-23</span>
   <span class="sep">/</span>
@@ -89,7 +95,7 @@
     <span class="sep">//</span>
     THURSDAY, APRIL 23, 2026
     <span class="sep">//</span>
-    ISSUE N°0423
+    ISSUE N°0001
   </div>
   <h1 class="date-huge">2026<span class="dot">.</span>04<span class="dot">.</span>23</h1>
   <div class="strap">
@@ -118,6 +124,13 @@
         <li data-i="04">WebSockets活用で遅延短縮を達成</li>
       </ul>
       <div class="pull">エージェント時代の到来により、企業はツール統合による作業自動化で生産性向上を実現できる段階に突入した。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">ChatGPTのエージェント機能でルーチン業務を自動化、チーム生産性が向上する</div>
+        <ul>
+        <li><span class="bi">🏢</span>Codexエージェントで経費申請・稟議承認などのワークフロー自動化に活用</li>        <li><span class="bi">🤝</span>複数SaaS連携による請求書処理・顧客対応の自動化を営業・バックオフィスに提案</li>        <li><span class="bi">👁</span>OpenAIが標準装備、競合も追従必至のため早期導入で競争優位を確保</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -154,6 +167,13 @@
         <li data-i="04">医療研究を支援</li>
       </ul>
       <div class="pull">医療分野でのAI活用が実務レベルへ移行し、診療の効率化と質向上が加速する。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">医療従事者向けAI無料提供で医療機関の業務効率化と文書作成自動化が加速</div>
+        <ul>
+        <li><span class="bi">🏢</span>医療法人がChatGPT for Cliniciansで診療記録・処方箋作成を効率化</li>        <li><span class="bi">🤝</span>医療機関向けにAI導入コスト削減と診療業務DXの営業機会が拡大</li>        <li><span class="bi">👁</span>無料提供により医療現場のAI受容度が高まり、採用戦略としても活用可能</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -190,6 +210,13 @@
         <li data-i="04">クラウド基盤の強化</li>
       </ul>
       <div class="pull">インフラ面でエージェントAIに最適化した専用ハードウェアが登場し、大規模展開が加速する。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">エージェント向け次世代TPUの投入で、AI推論コストが大幅低下し事業採算性が改善</div>
+        <ul>
+        <li><span class="bi">🏢</span>Google Cloud導入企業がTPU 8T/8iで複数エージェント同時実行の低遅延化を実現</li>        <li><span class="bi">🤝</span>中小企業のAI導入支援にGoogle Cloudの価格優位性を営業ポイントに提案</li>        <li><span class="bi">👁</span>GoogleがAI基盤を強化、AWS・Azure対抗で価格競争が激化＝導入側に有利</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -226,6 +253,13 @@
         <li data-i="04">新しい探索方法を提供</li>
       </ul>
       <div class="pull">ブラウザレベルでのAI統合により、Webの情報活用体験が根本的に変わる時代が到来。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">Chrome AI Modeで検索から情報活用まで統合、営業・企画の情報収集が効率化</div>
+        <ul>
+        <li><span class="bi">🏢</span>Claude APIやCursorと併用し営業資料作成時の競合調査・市場情報取得を高速化</li>        <li><span class="bi">🤝</span>営業向けにブラウザネイティブなAI機能で競合分析・提案資料作成の時間短縮を提案</li>        <li><span class="bi">👁</span>Googleが標準提供、採用企業が急増すれば生産性ツールとしての市場地位が確定</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -262,6 +296,13 @@
         <li data-i="04">チーム生産性を向上</li>
       </ul>
       <div class="pull">エンタープライズツールへのAI統合で、事務作業の自動化が企業の標準機能となる。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">Workspace Intelligenceで定型業務自動化、バックオフィス工数を30～50%削減可能</div>
+        <ul>
+        <li><span class="bi">🏢</span>Workspace内で請求書・契約書処理、進捗レポート作成を自動化し事務負担軽減</li>        <li><span class="bi">🤝</span>中堅企業のバックオフィスDXに、Workspace統合型AI導入を営業・採用支援で提案</li>        <li><span class="bi">👁</span>Google標準搭載により導入ハードルが低下、BPO市場に競争圧力が増加</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -298,6 +339,13 @@
         <li data-i="04">予測システム導入増加</li>
       </ul>
       <div class="pull">エージェントAIの実装には強固なデータ基盤が必須となり、企業のIT戦略が抜本的に変わる。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">データファブリック構築が急務、今後のAI投資ROI最大化に不可欠な基盤整備</div>
+        <ul>
+        <li><span class="bi">🏢</span>Claudeの複雑分析能力を活かし、散在データの統合・品質検証業務の自動化に活用</li>        <li><span class="bi">🤝</span>金融・サプライチェーン企業にデータ基盤構築コンサル＋Codexエージェント導入を提案</li>        <li><span class="bi">👁</span>AI実運用段階で基盤投資が必須、データベース・DWH市場が大幅成長局面へ</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -334,6 +382,13 @@
         <li data-i="04">年間フリーキャッシュフロー負化</li>
       </ul>
       <div class="pull">テック企業がAI開発に過去最大級の投資を実行し、業界再編の勢いが加速する。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">Teslaの過去比3倍AI投資で業界全体の開発競争が加速、納入企業のビジネス拡大</div>
+        <ul>
+        <li><span class="bi">🏢</span>自動運転・AI開発企業がCursorで開発生産性向上、Teslaのような大型案件獲得へ</li>        <li><span class="bi">🤝</span>自動車部品・IT企業向けにTeslaの投資加速に伴う受注機会営業を展開</li>        <li><span class="bi">👁</span>競合も追従投資必至、AI・自動運転人材採用競争が激化＝給与水準上昇リスク</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -370,6 +425,13 @@
         <li data-i="04">広告新枠を追加</li>
       </ul>
       <div class="pull">SNS企業がAIキュレーション時代へシフトし、ユーザー体験と収益化の新モデルが構築される。</div>
+      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">Grok駆動フィードでSNS広告体験が変わり、新広告枠の価値評価が再構築される</div>
+        <ul>
+        <li><span class="bi">🏢</span>広告主向けにGrok最適化フォーマットでの運用改善、Claude併用分析を提案</li>        <li><span class="bi">🤝</span>X上の広告効果測定・予測にAIモデルを導入、マーケティング効率化を営業機会化</li>        <li><span class="bi">👁</span>XがSNS広告プラットフォーム機能を強化、運用代行・メディアバイ企業の差別化が必須</li>
+        </ul>
+      </div>
     </div>
     <aside class="side">
       <dl>
@@ -403,6 +465,11 @@
       <p id="modal-lede"></p>
       <div id="modal-kp"></div>
       <div id="modal-pull"></div>
+      <div id="modal-bizapp">
+        <div class="bizapp-head">💡 ビジネス活用ポイント</div>
+        <div class="bizapp-summary" id="modal-bizapp-summary"></div>
+        <ul class="bizapp-actions" id="modal-bizapp-actions"></ul>
+      </div>
       <div class="modal-foot">
         <span id="modal-src"></span>
         <a id="modal-link" href="#" target="_blank" rel="noopener">元記事を読む →</a>
@@ -456,6 +523,26 @@
     var pullEl=document.getElementById('modal-pull');
     if(d.pull){pullEl.textContent='「'+d.pull+'」';pullEl.style.display='block';}
     else{pullEl.style.display='none';}
+
+    /* bizapp */
+    var bizEl=document.getElementById('modal-bizapp');
+    try{
+      var biz=JSON.parse(d.bizapp||'null');
+      if(biz&&biz.summary){
+        document.getElementById('modal-bizapp-summary').textContent=biz.summary;
+        var baList=document.getElementById('modal-bizapp-actions');
+        baList.innerHTML='';
+        var icons=['🏢','🤝','👁'];
+        (biz.actions||[]).forEach(function(act,i){
+          var li=document.createElement('li');
+          var ic=document.createElement('span');
+          ic.className='ba-icon';ic.textContent=icons[i]||'→';
+          li.appendChild(ic);li.appendChild(document.createTextNode(act));
+          baList.appendChild(li);
+        });
+        bizEl.style.display='block';
+      } else { bizEl.style.display='none'; }
+    }catch(e){ bizEl.style.display='none'; }
 
     modal.style.display='flex';
     modal.style.pointerEvents='auto';
