@@ -680,33 +680,24 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 # インデックスページ専用インタラクションCSS
 INDEX_CSS = """
 <style>
-/* tcard — CSS アニメーション（JS不要・常に表示） */
-@keyframes card-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.tcard{animation:card-in .4s ease both;}
-.tcard.lead{animation-delay:.05s}
-.tcard:nth-child(2){animation-delay:.1s}
-.tcard:nth-child(3){animation-delay:.15s}
-.tcard:nth-child(4){animation-delay:.2s}
-.tcard:nth-child(5){animation-delay:.25s}
-.tcard:nth-child(6){animation-delay:.3s}
-.tcard:nth-child(7){animation-delay:.35s}
-.tcard:nth-child(8){animation-delay:.4s}
-.tcard:nth-child(9){animation-delay:.45s}
-.tcard:nth-child(10){animation-delay:.5s}
-.tcard:nth-child(11){animation-delay:.5s}
-.tcard:nth-child(12){animation-delay:.5s}
-.tcard:nth-child(13){animation-delay:.5s}
-/* ホバー */
-.tcard[data-title]{cursor:pointer;transition:box-shadow .2s,outline .15s;}
-.tcard[data-title]:hover{box-shadow:0 6px 28px rgba(0,0,0,.1);outline:2px solid var(--red);}
+/* tcard ホバー — vigil.css の transition を上書き */
+.tcard[data-title]{
+  cursor:pointer;
+  transition:background .15s,box-shadow .25s,outline .15s,transform .2s !important;
+}
+.tcard[data-title]:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.12);
+  outline:2px solid var(--red);
+  transform:translateY(-2px);
+}
+.tcard[data-title]:hover h3{color:var(--red);}
 .tcard[data-title]:hover .go{color:var(--red);}
 .tcard h3{transition:color .15s;}
-.tcard[data-title]:hover h3{color:var(--red);}
 /* フィルター */
 .filter-pill.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important;}
 .filter-pill:hover{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;}
-/* フィルタ遷移 */
-.tcard{transition:box-shadow .2s,outline .15s,opacity .3s,transform .3s;}
+/* フィルタ非表示時の遷移 */
+.tcard{transition:background .15s,box-shadow .25s,outline .15s,transform .2s,opacity .3s !important;}
 </style>"""
 
 # vigil.css にない detail ページ専用スタイル（inline で追加）
