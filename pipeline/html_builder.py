@@ -40,6 +40,11 @@ INTERACTIVE_JS = """
       <p id="modal-lede"></p>
       <div id="modal-kp"></div>
       <div id="modal-pull"></div>
+      <div id="modal-bizapp">
+        <div class="bizapp-head">💡 ビジネス活用ポイント</div>
+        <div class="bizapp-summary" id="modal-bizapp-summary"></div>
+        <ul class="bizapp-actions" id="modal-bizapp-actions"></ul>
+      </div>
       <div class="modal-foot">
         <span id="modal-src"></span>
         <a id="modal-link" href="#" target="_blank" rel="noopener">元記事を読む →</a>
@@ -93,6 +98,26 @@ INTERACTIVE_JS = """
     var pullEl=document.getElementById('modal-pull');
     if(d.pull){pullEl.textContent='「'+d.pull+'」';pullEl.style.display='block';}
     else{pullEl.style.display='none';}
+
+    /* bizapp */
+    var bizEl=document.getElementById('modal-bizapp');
+    try{
+      var biz=JSON.parse(d.bizapp||'null');
+      if(biz&&biz.summary){
+        document.getElementById('modal-bizapp-summary').textContent=biz.summary;
+        var baList=document.getElementById('modal-bizapp-actions');
+        baList.innerHTML='';
+        var icons=['🏢','🤝','👁'];
+        (biz.actions||[]).forEach(function(act,i){
+          var li=document.createElement('li');
+          var ic=document.createElement('span');
+          ic.className='ba-icon';ic.textContent=icons[i]||'→';
+          li.appendChild(ic);li.appendChild(document.createTextNode(act));
+          baList.appendChild(li);
+        });
+        bizEl.style.display='block';
+      } else { bizEl.style.display='none'; }
+    }catch(e){ bizEl.style.display='none'; }
 
     modal.style.display='flex';
     modal.style.pointerEvents='auto';
@@ -457,8 +482,9 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
         slide_exists = (img_dir / f"topic_{i}.png").exists()
 
         import json as _json
-        kp_json = _json.dumps(a.get("keypoints", []), ensure_ascii=False).replace('"', '&quot;')
-        pull_esc = a.get("pull","").replace('"','&quot;')
+        kp_json    = _json.dumps(a.get("keypoints", []), ensure_ascii=False).replace('"', '&quot;')
+        pull_esc   = a.get("pull","").replace('"','&quot;')
+        bizapp_json = _json.dumps(a.get("bizapp", {}), ensure_ascii=False).replace('"', '&quot;')
         data_attrs = (
             f'data-title="{title.replace(chr(34), "&quot;")}" '
             f'data-category="{category}" '
@@ -466,6 +492,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
             f'data-lede="{lede.replace(chr(34), "&quot;")}" '
             f'data-keypoints="{kp_json}" '
             f'data-pull="{pull_esc}" '
+            f'data-bizapp="{bizapp_json}" '
             f'data-link="{detail_url}"'
         )
 
@@ -602,6 +629,22 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
             f'        <li data-i="{str(j).zfill(2)}">{kp}</li>'
             for j, kp in enumerate(a.get("keypoints", [])[:5], 1)
         )
+        biz = a.get("bizapp", {})
+        biz_html = ""
+        if isinstance(biz, dict) and biz.get("summary"):
+            icons = ["🏢", "🤝", "👁"]
+            biz_actions = "".join(
+                f'        <li><span class="bi">{icons[j] if j < len(icons) else "→"}</span>{act}</li>'
+                for j, act in enumerate(biz.get("actions", [])[:3])
+            )
+            biz_html = f"""      <div class="bizapp-block">
+        <div class="biz-label">💡 ビジネス活用ポイント</div>
+        <div class="biz-summary">{biz["summary"]}</div>
+        <ul>
+{biz_actions}
+        </ul>
+      </div>"""
+
         links_html = "\n".join(
             f'        <dd><a href="{lnk}">{lnk[:55]}…</a></dd>' if len(lnk) > 55
             else f'        <dd><a href="{lnk}">{lnk}</a></dd>'
@@ -630,6 +673,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 {kp_html}
       </ul>
       <div class="pull">{a.get('pull','')}</div>
+{biz_html}
     </div>
     <aside class="side">
       <dl>
@@ -741,6 +785,26 @@ INDEX_CSS = """
   background:var(--paper-2);font-size:13px;line-height:1.75;
   color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;
 }
+/* ── ビジネス活用ポイント ── */
+#modal-bizapp{display:none;margin-bottom:24px;}
+.bizapp-head{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:#fff;background:var(--red);
+  display:inline-block;padding:4px 10px;margin-bottom:12px;font-weight:700;
+}
+.bizapp-summary{
+  font-family:'Noto Serif JP',serif;font-size:14px;font-weight:700;
+  color:var(--ink);line-height:1.65;margin-bottom:12px;
+}
+.bizapp-actions{list-style:none;padding:0;margin:0;}
+.bizapp-actions li{
+  padding:9px 12px 9px 36px;margin-bottom:2px;
+  background:var(--paper-2);border-left:2px solid var(--red);
+  position:relative;font-size:12.5px;line-height:1.6;color:var(--ink-2);
+}
+.bizapp-actions li .ba-icon{
+  position:absolute;left:10px;top:9px;font-size:11px;
+}
 .modal-foot{
   display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:12px;padding-top:16px;border-top:1px solid var(--rule);
@@ -781,6 +845,12 @@ DAILY_CSS = """
 .keypoints li::before{content:attr(data-i);position:absolute;left:14px;top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em}
 .pull{padding:18px 22px;border-left:3px solid var(--red);background:var(--paper-2);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-top:24px;transition:border-left-width .2s,padding-left .2s}
 .pull:hover{border-left-width:6px;padding-left:19px}
+.bizapp-block{margin-top:28px;border:1px solid var(--red);padding:20px 22px;}
+.bizapp-block .biz-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#fff;background:var(--red);display:inline-block;padding:3px 10px;margin-bottom:12px;font-weight:700;}
+.bizapp-block .biz-summary{font-size:14px;font-weight:700;color:var(--ink);line-height:1.65;margin-bottom:10px;font-family:'Noto Serif JP',serif;}
+.bizapp-block ul{list-style:none;padding:0;margin:0;}
+.bizapp-block li{padding:8px 10px 8px 32px;margin-bottom:2px;background:var(--paper-2);border-left:2px solid var(--red);position:relative;font-size:13px;line-height:1.6;color:var(--ink-2);}
+.bizapp-block li .bi{position:absolute;left:8px;top:8px;font-size:12px;}
 .slide-img{margin:20px 0;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;position:relative;transition:border-color .2s}
 .slide-img:hover{border-color:var(--red)}
 .slide-img img{width:100%;display:block;transition:transform .5s}
