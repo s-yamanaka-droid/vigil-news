@@ -94,7 +94,7 @@ nav.main .brand {
 }
 nav.main .brand .dot-r  { font-style: normal; color: var(--red); margin-right: 4px; }
 nav.main .brand .brand-ai { color: var(--red); font-style: normal; }
-nav.main .brand .brand-r  { color: var(--mute); font-size: .65em; vertical-align: middle; }
+nav.main .brand .brand-r  { color: var(--mute); }
 
 nav.main ul {
   display: flex;
@@ -170,10 +170,7 @@ nav.main .subscribe:hover { background: var(--ink); }
 .hero .logo-block h1 .ai   { color: var(--red); font-style: normal; }
 .hero .logo-block h1 .r-sup {
   color: var(--mute);
-  font-size: .48em;
-  font-weight: 700;
-  vertical-align: middle;
-  letter-spacing: 0;
+  font-weight: 900;
 }
 .hero .logo-block .sub {
   font-family: var(--mono);

@@ -29,20 +29,20 @@ BRAND_FULL = 'Now on <span style="color:var(--red);font-style:normal;">AI</span>
 
 INTERACTIVE_JS = """
 <!-- Article Modal -->
-<div id="article-modal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(14,13,11,0);transition:background .3s;pointer-events:none;">
-  <div id="modal-box" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-48%) scale(.97);opacity:0;transition:transform .3s,opacity .3s;background:var(--paper);border:1px solid var(--rule-2);max-width:700px;width:calc(100% - 48px);max-height:88vh;overflow-y:auto;padding:0;">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:1;">
-      <span id="modal-cat" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)"></span>
-      <button id="modal-close" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;background:none;border:1px solid var(--rule-2);padding:5px 12px;cursor:pointer;color:var(--ink);transition:background .2s,color .2s;">✕ CLOSE</button>
+<div id="article-modal">
+  <div id="modal-box">
+    <div class="modal-head">
+      <span id="modal-cat"></span>
+      <button id="modal-close">✕ CLOSE</button>
     </div>
-    <div style="padding:28px 32px 32px;">
-      <h2 id="modal-title" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;line-height:1.35;margin:0 0 16px;"></h2>
-      <p id="modal-lede" style="font-family:'Noto Serif JP',serif;font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 22px;"></p>
-      <div id="modal-kp" style="margin:0 0 22px;"></div>
-      <div id="modal-pull" style="padding:14px 18px;border-left:3px solid var(--red);background:var(--paper-2);font-size:13px;line-height:1.7;color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;"></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <span id="modal-src" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:.08em;"></span>
-        <a id="modal-link" href="#" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--paper);background:var(--ink);padding:9px 20px;text-decoration:none;transition:background .2s;">FULL ARTICLE →</a>
+    <div class="modal-body">
+      <h2 id="modal-title"></h2>
+      <p id="modal-lede"></p>
+      <div id="modal-kp"></div>
+      <div id="modal-pull"></div>
+      <div class="modal-foot">
+        <span id="modal-src"></span>
+        <a id="modal-link" href="#" target="_blank" rel="noopener">元記事を読む →</a>
       </div>
     </div>
   </div>
@@ -59,14 +59,13 @@ INTERACTIVE_JS = """
   /* ── modal ── */
   var modal=document.getElementById('article-modal');
   var box=document.getElementById('modal-box');
-  var mclose=document.getElementById('modal-close');
 
   function openModal(card){
     var d=card.dataset;
     document.getElementById('modal-cat').textContent=d.category||'';
     document.getElementById('modal-title').textContent=d.title||'';
     document.getElementById('modal-lede').textContent=d.lede||'';
-    document.getElementById('modal-src').textContent=d.source||'';
+    document.getElementById('modal-src').textContent='SOURCE: '+(d.source||'');
     var linkEl=document.getElementById('modal-link');
     linkEl.href=d.link||'#';
 
@@ -77,15 +76,13 @@ INTERACTIVE_JS = """
       var kps=JSON.parse(d.keypoints||'[]');
       if(kps.length){
         var ul=document.createElement('ul');
-        ul.style.cssText='list-style:none;padding:0;margin:0;';
         kps.forEach(function(kp,i){
           var li=document.createElement('li');
-          li.style.cssText='padding:9px 12px 9px 38px;margin-bottom:2px;background:var(--paper-2);position:relative;font-size:13px;line-height:1.6;border-left:2px solid transparent;transition:border-color .15s;';
-          li.onmouseenter=function(){this.style.borderLeftColor='var(--red)';}; li.onmouseleave=function(){this.style.borderLeftColor='transparent';};
           var num=document.createElement('span');
-          num.style.cssText='position:absolute;left:12px;top:9px;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--red);';
+          num.className='kp-num';
           num.textContent=String(i+1).padStart(2,'0');
-          li.appendChild(num); li.appendChild(document.createTextNode(kp));
+          li.appendChild(num);
+          li.appendChild(document.createTextNode(kp));
           ul.appendChild(li);
         });
         kpEl.appendChild(ul);
@@ -94,33 +91,30 @@ INTERACTIVE_JS = """
 
     /* pull */
     var pullEl=document.getElementById('modal-pull');
-    if(d.pull){pullEl.textContent=d.pull;pullEl.style.display='block';}
+    if(d.pull){pullEl.textContent='「'+d.pull+'」';pullEl.style.display='block';}
     else{pullEl.style.display='none';}
 
-    modal.style.display='flex'; modal.style.alignItems='center'; modal.style.justifyContent='center';
+    modal.style.display='flex';
     modal.style.pointerEvents='auto';
     requestAnimationFrame(function(){
-      modal.style.background='rgba(14,13,11,.88)';
-      box.style.opacity='1'; box.style.transform='translate(-50%,-50%) scale(1)';
+      modal.style.background='rgba(0,0,0,.72)';
+      box.classList.add('is-open');
     });
     document.body.style.overflow='hidden';
   }
 
   function closeModal(){
-    modal.style.background='rgba(14,13,11,0)';
-    box.style.opacity='0'; box.style.transform='translate(-50%,-48%) scale(.97)';
-    setTimeout(function(){modal.style.display='none';modal.style.pointerEvents='none';},300);
+    modal.style.background='rgba(0,0,0,0)';
+    box.classList.remove('is-open');
+    setTimeout(function(){modal.style.display='none';modal.style.pointerEvents='none';},280);
     document.body.style.overflow='';
   }
 
-  mclose.addEventListener('click',closeModal);
+  document.getElementById('modal-close').addEventListener('click',closeModal);
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
-  document.getElementById('modal-close').onmouseover=function(){this.style.background='var(--red)';this.style.color='#fff';this.style.borderColor='var(--red)';};
-  document.getElementById('modal-close').onmouseout=function(){this.style.background='';this.style.color='var(--ink)';this.style.borderColor='var(--rule-2)';};
 
   /* tcard click → modal */
   document.querySelectorAll('.tcard[data-title]').forEach(function(card){
-    card.style.cursor='pointer';
     card.addEventListener('click',function(e){
       if(e.target.tagName==='A')return;
       openModal(card);
@@ -224,7 +218,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
   <span class="sep">/</span>
   <span>CURATED BY 山中秀斗</span>
   <div class="right">
-    <span class="jst"><b>07:15</b> JST</span>
+    <span class="jst"><b>06:30</b> JST</span>
     <span>{weekday}</span>
   </div>
 </div>"""
@@ -238,7 +232,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
     <li><a href="#about">SOURCES</a></li>
     <li><a href="#about">ABOUT</a></li>
   </ul>
-  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 06:30 DAILY →</button>
 </nav>"""
 
     # ── hero ──
@@ -264,7 +258,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
       <h1>NOW ON <em class="ai">AI</em><span class="r-sup">r</span></h1>
       <div class="sub"><b>AI MORNING INTELLIGENCE</b> · DAILY DISPATCH</div>
       <div class="tagline">
-        AIの今を、毎朝<b>07:15 JST</b>に。<br>
+        AIの今を、毎朝<b>06:30 JST</b>に。<br>
         ニュース・モデル発表・論文・注目スレッドを、<b>朝刊として一枚に。</b>
       </div>
     </div>
@@ -392,12 +386,12 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 <div class="about">
   <div class="card-about">
     <h3>NOW ON AIr — AI Morning Intelligence</h3>
-    <p>毎朝07:15 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
+    <p>毎朝06:30 JSTにAIエージェントが自律起動し、RSS・ニュースソースを収集・要約・スライド化してGitHub Pagesに自動配信。人間の介入ほぼゼロで動くモーニングディスパッチです。</p>
     <p>PIPELINE: RSS → CLAUDE HAIKU → GEMINI SLIDES → GITHUB PAGES</p>
     <div class="deliverbox">
       <div><div class="b">CURATOR</div><div class="v">山中秀斗</div></div>
       <div><div class="b">SINCE</div><div class="v">{min(all_dates) if all_dates else today_str}</div></div>
-      <div><div class="b">TIME</div><div class="v">07:15 JST</div></div>
+      <div><div class="b">TIME</div><div class="v">06:30 JST</div></div>
       <div><div class="b">ISSUES</div><div class="v">{days_count}</div></div>
     </div>
   </div>
@@ -555,7 +549,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
   <span class="sep">/</span>
   <span class="live"><span class="dot"></span>LIVE</span>
   <div class="right">
-    <span class="jst"><b>07:15</b> JST</span>
+    <span class="jst"><b>06:30</b> JST</span>
     <span>{weekday}</span>
   </div>
 </div>"""
@@ -569,7 +563,7 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
     <li><a href="../../#archive">ARCHIVE</a></li>
     <li><a href="../../#about">ABOUT</a></li>
   </ul>
-  <button class="subscribe" onclick="return false">SUBSCRIBE · 07:15 DAILY →</button>
+  <button class="subscribe" onclick="return false">SUBSCRIBE · 06:30 DAILY →</button>
 </nav>"""
 
     # ── daily head ──
@@ -677,24 +671,85 @@ def build_daily_page(date_str: str, articles: list[dict], issue_num: int = None)
 # インデックスページ専用インタラクションCSS
 INDEX_CSS = """
 <style>
-/* tcard ホバー — vigil.css の transition を上書き */
-.tcard[data-title]{
-  cursor:pointer;
-  transition:background .15s,box-shadow .25s,outline .15s,transform .2s !important;
-}
-.tcard[data-title]:hover{
-  box-shadow:0 8px 32px rgba(0,0,0,.12);
-  outline:2px solid var(--red);
-  transform:translateY(-2px);
-}
+/* ── tcard インタラクション ── */
+.tcard[data-title]{cursor:pointer;transition:background .15s,box-shadow .2s,transform .18s,opacity .3s !important;}
+.tcard[data-title]:hover{box-shadow:4px 4px 0 var(--red);transform:translate(-2px,-2px);}
 .tcard[data-title]:hover h3{color:var(--red);}
 .tcard[data-title]:hover .go{color:var(--red);}
 .tcard h3{transition:color .15s;}
-/* フィルター */
-.filter-pill.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important;}
-.filter-pill:hover{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;}
-/* フィルタ非表示時の遷移 */
-.tcard{transition:background .15s,box-shadow .25s,outline .15s,transform .2s,opacity .3s !important;}
+
+/* ── フィルターピル ── */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.filter-pill{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;
+  padding:6px 14px;border:1px solid var(--rule-2);background:none;color:var(--mute);
+  cursor:pointer;transition:all .15s;text-transform:uppercase;
+}
+.filter-pill.active{background:var(--ink)!important;color:#fff!important;border-color:var(--ink)!important;}
+.filter-pill:not(.active):hover{border-color:var(--red)!important;color:var(--red)!important;}
+
+/* ── モーダル ── */
+#article-modal{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0);transition:background .25s;
+  pointer-events:none;align-items:center;justify-content:center;
+}
+#modal-box{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-46%) scale(.96);opacity:0;
+  transition:transform .28s cubic-bezier(.22,.68,0,1.2),opacity .25s;
+  background:var(--paper);
+  border-top:4px solid var(--red);
+  border-left:1px solid var(--rule-2);border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);
+  max-width:720px;width:calc(100% - 40px);max-height:90vh;overflow-y:auto;
+  box-shadow:0 24px 64px rgba(0,0,0,.18);
+}
+#modal-box.is-open{transform:translate(-50%,-50%) scale(1);opacity:1;}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;border-bottom:1px solid var(--rule);
+  position:sticky;top:0;background:var(--paper);z-index:1;
+}
+#modal-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700;}
+#modal-close{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+  background:none;border:1px solid var(--rule-2);padding:5px 14px;
+  cursor:pointer;color:var(--mute);transition:background .15s,color .15s,border-color .15s;
+}
+#modal-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.modal-body{padding:28px 32px 36px;}
+#modal-title{
+  font-family:'Barlow Condensed','JetBrains Mono',monospace;
+  font-weight:900;font-size:28px;line-height:1.2;
+  margin:0 0 16px;letter-spacing:-.01em;
+}
+#modal-lede{font-family:'Noto Serif JP',serif;font-size:15px;line-height:1.82;color:var(--ink-2);margin:0 0 22px;}
+#modal-kp{margin:0 0 22px;}
+#modal-kp ul{list-style:none;padding:0;margin:0;}
+#modal-kp li{
+  padding:9px 14px 9px 40px;margin-bottom:2px;
+  background:var(--paper-2);border-left:2px solid transparent;
+  position:relative;font-size:13px;line-height:1.65;
+  transition:border-color .15s,transform .15s;
+}
+#modal-kp li:hover{border-left-color:var(--red);transform:translateX(3px);}
+#modal-kp li .kp-num{position:absolute;left:13px;top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);font-weight:700;}
+#modal-pull{
+  padding:14px 18px;border-left:4px solid var(--red);
+  background:var(--paper-2);font-size:13px;line-height:1.75;
+  color:var(--ink-2);font-style:italic;margin-bottom:24px;display:none;
+}
+.modal-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding-top:16px;border-top:1px solid var(--rule);
+}
+#modal-src{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);letter-spacing:.08em;}
+#modal-link{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;font-weight:700;
+  color:#fff;background:var(--red);padding:10px 22px;text-decoration:none;
+  transition:background .15s,transform .15s;display:inline-block;
+}
+#modal-link:hover{background:var(--ink);transform:translateX(3px);}
 </style>"""
 
 # vigil.css にない detail ページ専用スタイル（inline で追加）
