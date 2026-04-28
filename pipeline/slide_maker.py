@@ -1,7 +1,6 @@
 """
-VIGIL — Slide Maker
+Now on AIr — Slide Maker
 Gemini 3.1 Flash Image Preview APIで各記事のスライド画像を生成する
-nano-banana v3 Flashを流用
 """
 import os
 import base64
@@ -25,16 +24,24 @@ Key Points:
 {keypoints}
 
 DESIGN REQUIREMENTS:
-- Style: Clean editorial / newspaper-inspired
-- Background: Warm white/cream (#F7F5F2)
-- Accent color: TREPRO Red (#F10903) for highlights and borders
-- Typography: Bold headline, clear hierarchy, no decorative fonts
-- Layout: Title prominent at top, key points as visual elements
-- Include category label and source badge
-- Brand mark: "VIGIL" in small monospace font, top-right corner
-- NO dark backgrounds
-- Clean minimal professional look
-- Japanese text rendered clearly if present
+- Style: Bold editorial — inspired by Nike Air Jordan / Jordan Brand visual identity
+- Background: Pure white (#FFFFFF)
+- Primary accent: Jordan Chicago Red (#CE1141) — use for borders, labels, highlights
+- Secondary: Jet black (#0D0D0D) for headlines
+- Typography: Heavy condensed sans-serif for headline (Barlow Condensed style, weight 900),
+  monospace for metadata and labels
+- Layout:
+  - Thick red horizontal rule at the very top (4px)
+  - Category label in red uppercase monospace (top-left)
+  - Brand mark "Now on AIr" — "Now on " in black, "AI" in #CE1141, "r" smaller in gray —
+    placed top-right corner in small condensed font
+  - Article title LARGE and bold in black, center-left
+  - Key points as numbered list in clean monospace
+  - Source badge bottom-right
+  - Red vertical accent bar on the left edge
+- High contrast black/white/red only — NO pastels, NO dark backgrounds, NO gradients
+- Clean, athletic, premium feel — like a sports brand applied to news media
+- Japanese text rendered clearly and crisply
 - Image size: 16:9, high quality
 """
 
