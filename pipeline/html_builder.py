@@ -256,6 +256,7 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
   <ul>
     <li><a href="./" class="active">TODAY</a></li>
     <li><a href="#archive">ARCHIVE</a></li>
+    <li><a href="./cases.html">CASES</a></li>
     <li><a href="#about">SOURCES</a></li>
     <li><a href="#about">ABOUT</a></li>
   </ul>
@@ -532,13 +533,21 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
   </div>
 """
         else:
-            # ── Regular card — 画像なし（vigil.css 仕様通り）──
+            # ── Regular card — トピック画像あり ──
+            if slide_exists:
+                card_img = f"""    <a href="{detail_url}" class="slide-img zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;margin:8px 0 10px;">
+      <img src="{slide_rel}" alt="{title}" style="width:100%;display:block;" loading="lazy" />
+    </a>"""
+            else:
+                card_img = ""
+
             html += f"""  <div class="tcard" {data_attrs}>
     <div class="tl">
       <span class="n">{str(i).zfill(2)}</span>
       <span class="cat">{category}</span>
     </div>
     <h3>{title}</h3>
+{card_img}
     <p class="lede">{lede}</p>
     <div class="foot">
       <span class="src">{source}</span>

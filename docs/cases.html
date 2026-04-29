@@ -1,479 +1,359 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI活用事例集 — Now on AIr</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/vigil.css?v4" />
-  <style>
-    /* Cases Page Styles */
-    .cases-hero {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 48px 24px 40px;
-      border-bottom: 3px solid var(--red);
-    }
-    .cases-hero h1 {
-      font-family: var(--display);
-      font-weight: 900;
-      font-size: clamp(36px, 6vw, 72px);
-      letter-spacing: -.02em;
-      line-height: 1;
-      margin: 0 0 8px;
-    }
-    .cases-hero h1 em { color: var(--red); font-style: normal; }
-    .cases-hero p {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(255,255,255,.5);
-      margin: 0;
-      letter-spacing: .08em;
-    }
-
-    /* Filter Pills */
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding: 20px 24px;
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .pill {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      padding: 6px 14px;
-      border: 1.5px solid var(--rule);
-      border-radius: 999px;
-      cursor: pointer;
-      background: transparent;
-      color: var(--ink);
-      transition: all .15s;
-      white-space: nowrap;
-    }
-    .pill:hover, .pill.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
-    }
-    .pill[data-cat="全て"].active { background: var(--ink); border-color: var(--ink); }
-
-    /* Cases Grid */
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1px;
-      background: var(--rule);
-      padding: 0;
-    }
-
-    /* Case Card */
-    .case-card {
-      background: var(--paper);
-      padding: 28px 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: background .15s;
-      position: relative;
-    }
-    .case-card:hover { background: #fafafa; }
-    .case-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: transparent;
-      transition: background .15s;
-    }
-    .case-card:hover::before { background: var(--red); }
-
-    .case-cat {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      color: var(--red);
-      text-transform: uppercase;
-    }
-    .case-company {
-      font-family: var(--display);
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -.01em;
-      line-height: 1.1;
-      color: var(--ink);
-    }
-    .case-summary {
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--ink);
-      opacity: .8;
-    }
-    .case-result {
-      background: #f5f5f5;
-      border-left: 3px solid var(--red);
-      padding: 10px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .case-tools {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .tool-tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 3px 8px;
-      background: var(--ink);
-      color: var(--paper);
-      border-radius: 3px;
-      letter-spacing: .04em;
-    }
-    .case-pitch {
-      font-size: 12px;
-      font-style: italic;
-      color: var(--mute);
-      border-top: 1px solid var(--rule);
-      padding-top: 12px;
-    }
-
-    /* Copy Button */
-    .copy-btn {
-      align-self: flex-start;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      padding: 8px 16px;
-      background: transparent;
-      border: 1.5px solid var(--ink);
-      color: var(--ink);
-      cursor: pointer;
-      transition: all .15s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .copy-btn:hover { background: var(--ink); color: var(--paper); }
-    .copy-btn.copied { background: #22c55e; border-color: #22c55e; color: #fff; }
-
-    /* Section Header */
-    .section-head {
-      padding: 32px 24px 16px;
-      background: var(--paper);
-    }
-    .section-head h2 {
-      font-family: var(--display);
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -.01em;
-      margin: 0;
-    }
-    .section-head h2 em { color: var(--red); font-style: normal; }
-    .section-count {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--mute);
-      margin-top: 4px;
-    }
-
-    /* Stats Bar */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--rule);
-      border-top: 1px solid var(--rule);
-      border-bottom: 3px solid var(--red);
-    }
-    .stat-item {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 20px;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: var(--display);
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--red);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      opacity: .5;
-      letter-spacing: .08em;
-      margin-top: 4px;
-    }
-
-    @media (max-width: 640px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .cases-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI活用事例集 — Now on AIr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/vigil.css?v4" />
+<style>
+.tcard{cursor:pointer;transition:background .15s,box-shadow .2s,transform .18s;}
+.tcard:hover{box-shadow:4px 4px 0 var(--red);transform:translate(-2px,-2px);}
+.tcard:hover h3{color:var(--red);}
+.tcard h3{transition:color .15s;}
+.filter-pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:6px 14px;border:1px solid var(--rule-2);background:none;color:var(--ink);cursor:pointer;transition:all .15s;text-transform:uppercase;}
+.filter-pill.active{background:var(--ink)!important;color:#fff!important;border-color:var(--ink)!important;}
+.filter-pill:not(.active):hover{border-color:var(--red)!important;color:var(--red)!important;}
+.copy-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;font-weight:700;padding:8px 18px;background:none;border:1.5px solid var(--ink);color:var(--ink);cursor:pointer;transition:all .15s;display:inline-block;margin-top:10px;}
+.copy-btn:hover{background:var(--ink);color:#fff;}
+.copy-btn.copied{background:#22c55e;border-color:#22c55e;color:#fff;}
+.case-result{border-left:3px solid var(--red);padding:8px 12px;background:var(--paper-2);font-size:12px;font-weight:700;margin:8px 0;line-height:1.5;}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;background:var(--ink);color:#fff;margin-right:4px;margin-bottom:4px;display:inline-block;letter-spacing:.04em;}
+.case-pitch{font-size:12px;font-style:italic;color:var(--mute);border-top:1px solid var(--rule);padding-top:10px;margin-top:8px;}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a class="nav-brand" href="./"><span class="dot-r">●</span>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span></a>
-  <ul class="nav-links">
+<div class="dispatch" data-ticker="off">
+  <span class="tick">NOW ON AIr</span>
+  <span class="sep">/</span>
+  <span>AI活用事例集</span>
+  <span class="sep">/</span>
+  <span>JAPANESE USE CASES</span>
+  <span class="sep">/</span>
+  <span>COPY &amp; USE FREELY</span>
+  <span class="sep">/</span>
+  <span>2026-04-29</span>
+</div>
+
+<nav class="main">
+  <div class="brand"><em class="dot-r">●</em>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span></div>
+  <ul>
     <li><a href="./">TODAY</a></li>
     <li><a href="./cases.html" class="active">事例集</a></li>
     <li><a href="#about">ABOUT</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="cases-hero">
-  <h1>日本の<em>AI</em>活用事例集</h1>
-  <p>JAPANESE AI USE CASES — COPY &amp; USE FREELY — UPDATED 2026-04-29</p>
+<div class="hero-wrap">
+  <div class="edition-line">
+    <span>AI USE CASES</span>
+    <span class="sep">//</span>
+    <span>日本企業の実践事例</span>
+    <span class="sep">//</span>
+    <span>COPY &amp; USE IN PROPOSALS</span>
+    <span class="sep">//</span>
+    <span>UPDATED 2026-04-29</span>
+  </div>
+  <div class="hero">
+    <div class="logo-block">
+      <h1>日本の<em class="ai">AI</em>活用</h1>
+      <div class="sub"><b>JAPANESE AI USE CASES</b> · COPY &amp; USE FREELY</div>
+      <div class="tagline">
+        国内企業のリアルな導入事例を集約。<br>
+        提案・社内共有にそのまま使える<b>コピー機能</b>つき。
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">事例数</div></div>
-  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">カテゴリ</div></div>
-  <div class="stat-item"><div class="stat-num">70%</div><div class="stat-label">平均業務削減率</div></div>
-  <div class="stat-item"><div class="stat-num">3万人</div><div class="stat-label">NEC全社導入規模</div></div>
+<div style="max-width:1400px;margin:0 auto;padding:0 40px">
+  <div class="stats-row">
+    <div class="stat"><div class="k">CASES</div><div class="v">16</div><div class="n">事例掲載</div></div>
+    <div class="stat"><div class="k">CATEGORIES</div><div class="v">5</div><div class="n">カテゴリ</div></div>
+    <div class="stat"><div class="k">AVG REDUCTION</div><div class="v">70%</div><div class="n">平均業務削減率</div></div>
+    <div class="stat"><div class="k">MAX SCALE</div><div class="v">3万人</div><div class="n">NEC全社導入</div></div>
+  </div>
 </div>
 
-<!-- FILTER -->
-<div class="filter-bar">
-  <button class="pill active" data-cat="全て">ALL</button>
-  <button class="pill" data-cat="大企業">大企業導入</button>
-  <button class="pill" data-cat="採用・HR">採用・HR</button>
-  <button class="pill" data-cat="営業・マーケ">営業・マーケ</button>
-  <button class="pill" data-cat="バックオフィス">バックオフィス</button>
-  <button class="pill" data-cat="開発">開発・内製化</button>
-</div>
-
-<!-- CASES -->
 <div class="section-head">
-  <h2>事例一覧 <em id="case-count">20</em></h2>
-  <div class="section-count">クリックでコピー ／ そのまま提案・社内共有に使えます</div>
+  <span class="kicker">§01</span>
+  <h2>事例一覧</h2>
+  <span class="jp">カードをクリックでコピー</span>
+  <span class="count" id="case-count">16 cases</span>
 </div>
 
-<div class="cases-grid" id="cases-grid">
+<div class="today-strip">
+  <span class="pill red">大企業</span><span class="pill">採用・HR</span><span class="pill">営業・マーケ</span><span class="pill">バックオフィス</span><span class="pill">開発・内製化</span>
+  <div class="bar"></div>
+</div>
+
+<div style="max-width:1400px;margin:0 auto;padding:0 40px 20px;display:flex;gap:8px;flex-wrap:wrap;">
+  <button class="filter-pill active" data-cat="ALL">ALL</button>
+  <button class="filter-pill" data-cat="大企業">大企業</button>
+  <button class="filter-pill" data-cat="採用・HR">採用・HR</button>
+  <button class="filter-pill" data-cat="営業・マーケ">営業・マーケ</button>
+  <button class="filter-pill" data-cat="バックオフィス">バックオフィス</button>
+  <button class="filter-pill" data-cat="開発">開発・内製化</button>
+</div>
+
+<div class="today-grid">
+
   <!-- 大企業 -->
-  <div class="case-card" data-cat="大企業">
-    <div class="case-cat">大企業導入</div>
-    <div class="case-company">NEC</div>
-    <div class="case-summary">日本企業初のAnthropicグローバルパートナーに。グループ約3万人にClaude Codeを展開し、AIネイティブエンジニア体制を構築。金融・製造・自治体向け業種特化AIを共同開発。</div>
-    <div class="case-result">🏆 日本初 Anthropicグローバルパートナー ／ 3万人展開</div>
-    <div class="case-tools"><span class="tool-tag">Claude Code</span><span class="tool-tag">Claude Cowork</span></div>
+  <div class="tcard lead" data-category="大企業">
+    <div class="tl"><span class="n">01</span><span class="cat">大企業</span><span class="top">TOP CASE</span></div>
+    <h3>NEC｜日本初Anthropicグローバルパートナー・3万人展開</h3>
+    <p class="lede">グループ約3万人にClaude Codeを展開。AIネイティブエンジニア育成CoEを設立し、金融・製造・自治体向け業種特化AIをAnthropicと共同開発。</p>
+    <div class="case-result">🏆 日本企業初 Anthropicグローバルパートナー ／ 3万人展開</div>
+    <div><span class="tool-tag">Claude Code</span><span class="tool-tag">Claude Cowork</span></div>
     <div class="case-pitch">「NECが3万人で使うツールを、御社の5人チームで今すぐ試せます」</div>
-    <button class="copy-btn" data-copy="【NEC事例】日本企業初のAnthropicグローバルパートナー。グループ3万人にClaude Codeを展開し、AIネイティブエンジニア育成を加速。金融・製造・自治体向けの業種特化AIを共同開発中。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">Anthropic / NEC</span>
+      <button class="copy-btn" data-copy="【NEC事例】日本企業初のAnthropicグローバルパートナー。グループ3万人にClaude Codeを展開し、AIネイティブエンジニア育成を加速。金融・製造・自治体向けの業種特化AIをAnthropicと共同開発中。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="大企業">
-    <div class="case-cat">大企業導入</div>
-    <div class="case-company">クラスメソッド</div>
-    <div class="case-summary">グループ1,000人規模でClaudeを全社導入。エンジニア・ビジネス職含む全員が日常業務でClaudeを活用。AWS連携でセキュアな社内データアクセスも実現。</div>
+  <div class="tcard" data-category="大企業">
+    <div class="tl"><span class="n">02</span><span class="cat">大企業</span></div>
+    <h3>クラスメソッド｜1,000人全社Claude導入・生産性10倍</h3>
+    <p class="lede">グループ1,000人規模でClaudeを全社導入。エンジニア・ビジネス職含む全員が日常業務で活用。AWS連携でセキュアな社内データアクセスも実現。</p>
     <div class="case-result">⚡ 生産性10倍 ／ コードレビュー時間80%削減</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">AWS</span></div>
-    <div class="case-pitch">「1,000人規模で生産性10倍。中小企業なら導入のスピードはもっと速い」</div>
-    <button class="copy-btn" data-copy="【クラスメソッド事例】1,000人規模でClaude全社導入。生産性10倍・コードレビュー時間80%削減を実現。AWS連携でセキュリティを担保しながら全社展開。">📋 コピー</button>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">AWS</span></div>
+    <div class="case-pitch">「1,000人規模で生産性10倍。中小企業なら導入スピードはもっと速い」</div>
+    <div class="foot">
+      <span class="src">Classmethod</span>
+      <button class="copy-btn" data-copy="【クラスメソッド事例】1,000人規模でClaude全社導入。生産性10倍・コードレビュー時間80%削減を実現。AWS連携でセキュリティを担保しながら全社展開。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="大企業">
-    <div class="case-cat">大企業導入</div>
-    <div class="case-company">みずほFG</div>
-    <div class="case-summary">従業員3万人がClaudeを業務利用。金融機関として厳格なセキュリティ要件をクリアしたうえで大規模導入を実現。業務効率化と品質向上を両立。</div>
+  <div class="tcard" data-category="大企業">
+    <div class="tl"><span class="n">03</span><span class="cat">大企業</span></div>
+    <h3>みずほFG｜金融機関3万人へのClaude標準化</h3>
+    <p class="lede">厳格なセキュリティ要件をクリアしたうえで従業員3万人がClaudeを業務利用。金融機関における大規模AI導入のベンチマーク事例。</p>
     <div class="case-result">🏦 金融機関3万人への標準ツール化</div>
-    <div class="case-tools"><span class="tool-tag">Claude Enterprise</span></div>
+    <div><span class="tool-tag">Claude Enterprise</span></div>
     <div class="case-pitch">「規制が厳しい金融機関でも導入済み。セキュリティの心配は不要です」</div>
-    <button class="copy-btn" data-copy="【みずほFG事例】従業員3万人がClaude業務利用。金融機関として厳格なセキュリティ要件をクリアし大規模導入を実現。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">みずほFG</span>
+      <button class="copy-btn" data-copy="【みずほFG事例】従業員3万人がClaude業務利用。金融機関として厳格なセキュリティ要件をクリアし大規模導入を実現。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="大企業">
-    <div class="case-cat">大企業導入</div>
-    <div class="case-company">パナソニック</div>
-    <div class="case-summary">ウェルネスプラットフォーム「Umi」にClaudeを搭載。消費者向け製品への初のClaude採用事例。AIが健康・生活アドバイスをパーソナライズして提供。</div>
-    <div class="case-result">🌿 消費者向けAIウェルネスアプリ「Umi」リリース</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Panasonic Well</span></div>
+  <div class="tcard" data-category="大企業">
+    <div class="tl"><span class="n">04</span><span class="cat">大企業</span></div>
+    <h3>パナソニック｜Claude搭載ウェルネスアプリ「Umi」</h3>
+    <p class="lede">ウェルネスプラットフォーム「Umi」にClaudeを搭載。消費者向け製品への初のClaude採用。AIが健康・生活アドバイスをパーソナライズして提供。</p>
+    <div class="case-result">🌿 消費者向けAIウェルネスアプリリリース</div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">Panasonic Well</span></div>
     <div class="case-pitch">「AIは業務効率化だけでなく、顧客体験の向上にも直結する」</div>
-    <button class="copy-btn" data-copy="【パナソニック事例】ウェルネスアプリ「Umi」にClaude搭載。消費者向け製品への初のClaude採用。AIが健康アドバイスをパーソナライズ提供。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">Panasonic</span>
+      <button class="copy-btn" data-copy="【パナソニック事例】ウェルネスアプリ「Umi」にClaude搭載。消費者向け製品への初のClaude採用。AIが健康アドバイスをパーソナライズ提供。">📋 コピー</button>
+    </div>
   </div>
 
   <!-- 採用・HR -->
-  <div class="case-card" data-cat="採用・HR">
-    <div class="case-cat">採用・HR</div>
-    <div class="case-company">建設業TikTok採用</div>
-    <div class="case-summary">TikTokアカウントを開設6ヶ月で再生数480万回を達成。有効求人倍率3.81倍の電気工事業界で、若年層への認知獲得と応募数増加を実現。AIで台本・テロップを自動生成。</div>
+  <div class="tcard" data-category="採用・HR">
+    <div class="tl"><span class="n">05</span><span class="cat">採用・HR</span></div>
+    <h3>建設業｜TikTok採用6ヶ月で再生480万回</h3>
+    <p class="lede">有効求人倍率3.81倍の電気工事業界でTikTok採用を開始。AIで台本・テロップを自動生成し月10本投稿を継続。6ヶ月で再生数480万回を達成。</p>
     <div class="case-result">📱 6ヶ月で再生480万回 ／ 採用コスト大幅削減</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">TikTok</span><span class="tool-tag">CapCut</span></div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">TikTok</span><span class="tool-tag">CapCut</span></div>
     <div class="case-pitch">「求人倍率3倍超の業界でも、TikTok×AIで若手が集まり始める」</div>
-    <button class="copy-btn" data-copy="【建設業TikTok採用事例】6ヶ月で再生480万回達成。有効求人倍率3.81倍の電気工事業界でTikTok採用を開始。AIで台本・テロップを自動生成し、制作コストを抑えながら月10本投稿を継続。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">建設業界事例</span>
+      <button class="copy-btn" data-copy="【建設業TikTok採用事例】6ヶ月で再生480万回達成。有効求人倍率3.81倍の電気工事業界でTikTok採用を開始。AIで台本・テロップを自動生成し月10本投稿を継続。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="採用・HR">
-    <div class="case-cat">採用・HR</div>
-    <div class="case-company">介護・福祉採用</div>
-    <div class="case-summary">実在スタッフの人生ストーリーをドキュメンタリー動画化。「ここは、どこかで合わなかった人が、初めて合う場所」のメッセージで共感採用を実現。AIが台本・投稿文を自動生成。</div>
-    <div class="case-result">💬 共感型ストーリー採用で応募質・量ともに向上</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">TikTok</span><span class="tool-tag">Instagram</span></div>
-    <div class="case-pitch">「スタッフの物語がそのままコンテンツになる。AIが台本化するまで10分」</div>
-    <button class="copy-btn" data-copy="【介護業界採用事例】実在スタッフのドキュメンタリー動画で共感採用を実現。AIが台本・テロップ・投稿文を自動生成。撮影に集中できる制作体制を構築し、月10本投稿を2名で運用。">📋 コピー</button>
+  <div class="tcard" data-category="採用・HR">
+    <div class="tl"><span class="n">06</span><span class="cat">採用・HR</span></div>
+    <h3>介護業界｜ストーリー採用動画でAI台本自動生成</h3>
+    <p class="lede">実在スタッフのドキュメンタリー動画で共感採用を実現。AIが台本・テロップ・投稿文を自動生成し、撮影に集中できる体制で月10本を2名で運用。</p>
+    <div class="case-result">💬 共感型ストーリー採用で応募の質・量ともに向上</div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">TikTok</span><span class="tool-tag">Instagram</span></div>
+    <div class="case-pitch">「スタッフの物語がそのままコンテンツに。AIが台本化するまで10分」</div>
+    <div class="foot">
+      <span class="src">介護業界事例</span>
+      <button class="copy-btn" data-copy="【介護業界採用事例】実在スタッフのドキュメンタリー動画で共感採用を実現。AIが台本・テロップ・投稿文を自動生成。月10本投稿を2名体制で運用。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="採用・HR">
-    <div class="case-cat">採用・HR</div>
-    <div class="case-company">履歴書スクリーニング自動化</div>
-    <div class="case-summary">履歴書・職務経歴書をClaudeに読み込ませ、採用要件との適合度を自動スコアリング。採用担当者の初期選考工数を80%削減し、面接に集中できる体制を実現。</div>
+  <div class="tcard" data-category="採用・HR">
+    <div class="tl"><span class="n">07</span><span class="cat">採用・HR</span></div>
+    <h3>履歴書スクリーニング自動化｜選考工数80%削減</h3>
+    <p class="lede">履歴書・職務経歴書をClaudeに読み込ませ採用要件との適合度を自動スコアリング。月100件の応募も初期選考をAIが担い、面接に集中できる体制を実現。</p>
     <div class="case-result">⏱ 初期選考工数80%削減 ／ 面接の質が向上</div>
-    <div class="case-tools"><span class="tool-tag">Claude API</span><span class="tool-tag">Google Forms</span></div>
+    <div><span class="tool-tag">Claude API</span><span class="tool-tag">Google Forms</span></div>
     <div class="case-pitch">「月100件の応募も、AIが一次選考。人が判断するのは上位だけ」</div>
-    <button class="copy-btn" data-copy="【採用スクリーニング自動化事例】履歴書をClaudeに読み込ませ採用要件との適合度を自動スコアリング。初期選考工数80%削減。採用担当者が面接・関係構築に集中できる体制を実現。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">HR自動化事例</span>
+      <button class="copy-btn" data-copy="【採用スクリーニング自動化事例】履歴書をClaudeに読み込ませ採用要件との適合度を自動スコアリング。初期選考工数80%削減。採用担当者が面接・関係構築に集中できる体制を実現。">📋 コピー</button>
+    </div>
   </div>
 
   <!-- 営業・マーケ -->
-  <div class="case-card" data-cat="営業・マーケ">
-    <div class="case-cat">営業・マーケ</div>
-    <div class="case-company">提案書自動生成</div>
-    <div class="case-summary">商談議事録をClaudeに渡すだけで提案書の初稿を自動生成。顧客の課題・業界・予算感を反映したパーソナライズ提案書を10分で作成。営業担当者の提案書作成時間を70%削減。</div>
+  <div class="tcard" data-category="営業・マーケ">
+    <div class="tl"><span class="n">08</span><span class="cat">営業・マーケ</span></div>
+    <h3>提案書自動生成｜作成時間70%削減</h3>
+    <p class="lede">商談議事録をClaudeに渡すだけで提案書の初稿を自動生成。顧客の課題・業界・予算感を反映したパーソナライズ提案書を10分で作成。</p>
     <div class="case-result">📄 提案書作成時間70%削減（3時間→1時間以下）</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Notion</span><span class="tool-tag">Google Docs</span></div>
-    <div class="case-pitch">「議事録を貼るだけで提案書の8割が完成する。残り2割が営業の腕の見せ所」</div>
-    <button class="copy-btn" data-copy="【提案書自動生成事例】商談議事録をClaudeに渡すだけで提案書の初稿を自動生成。顧客の課題・業界・予算感を反映したパーソナライズ提案書を10分で作成。提案書作成時間70%削減。">📋 コピー</button>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">Notion</span><span class="tool-tag">Google Docs</span></div>
+    <div class="case-pitch">「議事録を貼るだけで提案書の8割が完成する」</div>
+    <div class="foot">
+      <span class="src">営業DX事例</span>
+      <button class="copy-btn" data-copy="【提案書自動生成事例】商談議事録をClaudeに渡すだけで提案書の初稿を自動生成。顧客の課題・業界・予算感を反映したパーソナライズ提案書を10分で作成。提案書作成時間70%削減。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="営業・マーケ">
-    <div class="case-cat">営業・マーケ</div>
-    <div class="case-company">SNS自動発信</div>
-    <div class="case-summary">毎朝のAIニュースから投稿文を自動生成。X・Threads・Facebookのトーン別に出力し、Bufferでスケジュール投稿まで全自動化。コンテンツマーケ工数を月20時間から2時間に削減。</div>
+  <div class="tcard" data-category="営業・マーケ">
+    <div class="tl"><span class="n">09</span><span class="cat">営業・マーケ</span></div>
+    <h3>SNS自動発信｜投稿工数90%削減・毎日継続</h3>
+    <p class="lede">毎朝のAIニュースから投稿文を自動生成。X・Threads・FacebookのSNS別トーンに合わせて出力し、Buffer連携でスケジュール投稿まで全自動化。</p>
     <div class="case-result">📲 SNS投稿工数90%削減 ／ 毎日発信が継続可能に</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Buffer</span><span class="tool-tag">Threads</span></div>
-    <div class="case-pitch">「毎日発信したいけど時間がない。AIが下書きを作るから確認するだけでいい」</div>
-    <button class="copy-btn" data-copy="【SNS自動発信事例】AIニュースから投稿文を自動生成。X・Threads・Facebookのトーン別に出力しBuffer連携で全自動化。コンテンツマーケ工数を月20時間から2時間に削減し、毎日発信を継続。">📋 コピー</button>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">Buffer</span><span class="tool-tag">Threads</span></div>
+    <div class="case-pitch">「AIが下書きを作るから、確認するだけでいい」</div>
+    <div class="foot">
+      <span class="src">マーケDX事例</span>
+      <button class="copy-btn" data-copy="【SNS自動発信事例】AIニュースから投稿文を自動生成。X・Threads・Facebookのトーン別に出力しBuffer連携で全自動化。コンテンツマーケ工数を月20時間から2時間に削減し毎日発信を継続。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="営業・マーケ">
-    <div class="case-cat">営業・マーケ</div>
-    <div class="case-company">日本コカ・コーラ</div>
-    <div class="case-summary">AI画像生成プラットフォーム「Create Real Magic」を公開。消費者が自分でブランドコンテンツを作成・投稿できる参加型キャンペーンを展開し、UGC創出とエンゲージメント向上を実現。</div>
+  <div class="tcard" data-category="営業・マーケ">
+    <div class="tl"><span class="n">10</span><span class="cat">営業・マーケ</span></div>
+    <h3>日本コカ・コーラ｜AI参加型キャンペーン</h3>
+    <p class="lede">AI画像生成プラットフォーム「Create Real Magic」を公開。消費者が自分でブランドコンテンツを作成・投稿する参加型キャンペーンでUGC創出とエンゲージメント向上を実現。</p>
     <div class="case-result">🎨 消費者参加型AIキャンペーンでエンゲージメント向上</div>
-    <div class="case-tools"><span class="tool-tag">画像生成AI</span><span class="tool-tag">UGCマーケ</span></div>
+    <div><span class="tool-tag">画像生成AI</span><span class="tool-tag">UGCマーケ</span></div>
     <div class="case-pitch">「AIで顧客をコンテンツクリエイターにする新しいマーケ手法」</div>
-    <button class="copy-btn" data-copy="【日本コカ・コーラ事例】AI画像生成プラットフォーム「Create Real Magic」で消費者参加型キャンペーンを展開。UGC創出とエンゲージメント向上を実現した新しいAIマーケティング手法。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">日本コカ・コーラ</span>
+      <button class="copy-btn" data-copy="【日本コカ・コーラ事例】AI画像生成「Create Real Magic」で消費者参加型キャンペーン展開。UGC創出とエンゲージメント向上を実現した新しいAIマーケティング手法。">📋 コピー</button>
+    </div>
   </div>
 
   <!-- バックオフィス -->
-  <div class="case-card" data-cat="バックオフィス">
-    <div class="case-cat">バックオフィス</div>
-    <div class="case-company">江崎グリコ</div>
-    <div class="case-summary">AIチャットボットを導入し、社外からの問い合わせ対応を自動化。製品に関するFAQや問い合わせをAIが一次対応することで、カスタマーサポートの負荷を大幅に削減。</div>
+  <div class="tcard" data-category="バックオフィス">
+    <div class="tl"><span class="n">11</span><span class="cat">バックオフィス</span></div>
+    <h3>江崎グリコ｜AIチャットボットで問い合わせ31%削減</h3>
+    <p class="lede">AIチャットボットを導入し社外からの問い合わせ対応を自動化。製品FAQ・問い合わせをAIが一次対応し、カスタマーサポートの負荷を大幅に削減。</p>
     <div class="case-result">📞 社外問い合わせ件数31%削減</div>
-    <div class="case-tools"><span class="tool-tag">AIチャットボット</span><span class="tool-tag">Claude</span></div>
+    <div><span class="tool-tag">AIチャットボット</span></div>
     <div class="case-pitch">「問い合わせの3割をAIが解決。人が対応するのは本当に価値ある案件だけ」</div>
-    <button class="copy-btn" data-copy="【江崎グリコ事例】AIチャットボット導入で社外問い合わせ件数を31%削減。製品FAQ・問い合わせのAI一次対応でカスタマーサポートの工数を大幅削減。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">江崎グリコ</span>
+      <button class="copy-btn" data-copy="【江崎グリコ事例】AIチャットボット導入で社外問い合わせ件数を31%削減。製品FAQ・問い合わせのAI一次対応でカスタマーサポートの工数を大幅削減。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="バックオフィス">
-    <div class="case-cat">バックオフィス</div>
-    <div class="case-company">帝人</div>
-    <div class="case-summary">社内問い合わせ対応にAIを導入。就業規則・経費精算・IT関連など社内FAQをClaudeに学習させ、Slack経由で24時間自動回答。人事・総務部門の問い合わせ対応工数を大幅削減。</div>
+  <div class="tcard" data-category="バックオフィス">
+    <div class="tl"><span class="n">12</span><span class="cat">バックオフィス</span></div>
+    <h3>帝人｜社内問い合わせAI対応で工数60%削減</h3>
+    <p class="lede">就業規則・経費精算・IT問い合わせなど社内FAQをClaudeに学習させSlack経由で24時間自動回答。人事・総務の問い合わせ対応工数を60%以上削減。</p>
     <div class="case-result">🤖 社内問い合わせ対応工数60%以上削減</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Slack</span><span class="tool-tag">社内DB</span></div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">Slack</span></div>
     <div class="case-pitch">「就業規則や経費ルールの質問、全部AIに答えさせましょう」</div>
-    <button class="copy-btn" data-copy="【帝人事例】社内FAQをClaudeに学習させSlack経由で24時間自動回答。就業規則・経費精算・IT問い合わせをAIが対応し、人事・総務の問い合わせ工数を60%以上削減。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">帝人</span>
+      <button class="copy-btn" data-copy="【帝人事例】社内FAQをClaudeに学習させSlack経由で24時間自動回答。就業規則・経費精算・IT問い合わせをAIが対応し、人事・総務の問い合わせ工数を60%以上削減。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="バックオフィス">
-    <div class="case-cat">バックオフィス</div>
-    <div class="case-company">議事録・契約書自動化</div>
-    <div class="case-summary">会議音声を自動文字起こし→要約→アクションアイテム抽出→担当者に自動通知まで全自動化。契約書PDFをClaudeに渡してリスク箇所の自動指摘・修正案の生成も実現。</div>
-    <div class="case-result">📝 議事録作成90%削減 ／ 契約書レビュー70%削減</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">Notta</span><span class="tool-tag">tl;dv</span></div>
+  <div class="tcard" data-category="バックオフィス">
+    <div class="tl"><span class="n">13</span><span class="cat">バックオフィス</span></div>
+    <h3>議事録・契約書自動化｜合計月60時間削減</h3>
+    <p class="lede">会議音声→文字起こし→要約→アクションアイテム抽出→通知まで全自動。契約書PDFのリスク箇所自動指摘も実現。議事録90%・契約書レビュー70%削減。</p>
+    <div class="case-result">📝 議事録90%削減 ／ 契約書レビュー70%削減 ／ 月60時間以上圧縮</div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">Notta</span><span class="tool-tag">tl;dv</span></div>
     <div class="case-pitch">「会議が終わったら議事録が届いている。そんな世界がすでに来ている」</div>
-    <button class="copy-btn" data-copy="【議事録・契約書自動化事例】会議音声→文字起こし→要約→アクションアイテム抽出→通知まで全自動。契約書PDFのリスク箇所自動指摘も実現。議事録作成90%・契約書レビュー70%の工数削減。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">バックオフィスDX事例</span>
+      <button class="copy-btn" data-copy="【議事録・契約書自動化事例】会議音声→文字起こし→要約→アクションアイテム抽出→通知まで全自動。契約書PDFのリスク箇所自動指摘も実現。議事録作成90%・契約書レビュー70%の工数削減。">📋 コピー</button>
+    </div>
   </div>
 
   <!-- 開発・内製化 -->
-  <div class="case-card" data-cat="開発">
-    <div class="case-cat">開発・内製化</div>
-    <div class="case-company">楽天</div>
-    <div class="case-summary">ECプラットフォームの機能開発に自律型コーディングエージェントを導入。タスクの指示からコード生成・テスト・デプロイまでをAIが自律的に実行し、開発工程を大幅に自動化。</div>
+  <div class="tcard" data-category="開発">
+    <div class="tl"><span class="n">14</span><span class="cat">開発・内製化</span></div>
+    <h3>楽天｜自律型コーディングエージェントで開発自動化</h3>
+    <p class="lede">ECプラットフォームの機能開発に自律型コーディングエージェントを導入。コード生成・テスト・デプロイをAIが自律実行し、開発工程を大幅に自動化。</p>
     <div class="case-result">🚀 開発工程の自律自動化を実現</div>
-    <div class="case-tools"><span class="tool-tag">Claude Code</span><span class="tool-tag">AIエージェント</span></div>
+    <div><span class="tool-tag">Claude Code</span><span class="tool-tag">AIエージェント</span></div>
     <div class="case-pitch">「コードを書く量が減るのではなく、AIが書いてくれる量が増える」</div>
-    <button class="copy-btn" data-copy="【楽天事例】ECプラットフォーム開発に自律型AIコーディングエージェントを導入。コード生成・テスト・デプロイをAIが自律実行し開発工程を自動化。Claude Codeを活用。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">楽天</span>
+      <button class="copy-btn" data-copy="【楽天事例】ECプラットフォーム開発に自律型AIコーディングエージェントを導入。コード生成・テスト・デプロイをAIが自律実行し開発工程を自動化。Claude Codeを活用。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="開発">
-    <div class="case-cat">開発・内製化</div>
-    <div class="case-company">野村総研（NRI）</div>
-    <div class="case-summary">大量のリサーチ資料・契約書・報告書をClaudeが自動分析・要約。コンサルタントが提案資料作成に費やしていた時間を75%削減。分析の質と速度を同時に向上。</div>
+  <div class="tcard" data-category="開発">
+    <div class="tl"><span class="n">15</span><span class="cat">開発・内製化</span></div>
+    <h3>野村総研｜文書分析ワークフローで工数75%削減</h3>
+    <p class="lede">大量のリサーチ資料・報告書をClaudeが自動分析・要約。コンサルタントの資料作成時間を75%削減。RAGで社内ナレッジと連携し分析の質・速度も向上。</p>
     <div class="case-result">📊 文書分析・要約工数75%削減</div>
-    <div class="case-tools"><span class="tool-tag">Claude</span><span class="tool-tag">RAG</span><span class="tool-tag">社内DB連携</span></div>
+    <div><span class="tool-tag">Claude</span><span class="tool-tag">RAG</span></div>
     <div class="case-pitch">「100ページの資料を読んで要点を出す。AIなら3分でできる」</div>
-    <button class="copy-btn" data-copy="【野村総研事例】大量のリサーチ資料・報告書をClaudeが自動分析・要約。コンサルタントの資料作成時間を75%削減。RAGで社内ナレッジと連携し分析の質・速度を向上。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">野村総研</span>
+      <button class="copy-btn" data-copy="【野村総研事例】大量のリサーチ資料・報告書をClaudeが自動分析・要約。コンサルタントの資料作成時間を75%削減。RAGで社内ナレッジと連携し分析の質・速度を向上。">📋 コピー</button>
+    </div>
   </div>
 
-  <div class="case-card" data-cat="開発">
-    <div class="case-cat">開発・内製化</div>
-    <div class="case-company">中小企業の内製化支援</div>
-    <div class="case-summary">プログラミング知識ゼロの中小企業が、Claude Coworkを使って社内業務ツールを内製化。問い合わせ対応ボット・日報自動生成・データ集計ツールを2週間で構築。外注コストを年200万円削減。</div>
-    <div class="case-result">💰 外注コスト年200万円削減 ／ 2週間で内製化</div>
-    <div class="case-tools"><span class="tool-tag">Claude Cowork</span><span class="tool-tag">Cursor</span><span class="tool-tag">Notion</span></div>
+  <div class="tcard" data-category="開発">
+    <div class="tl"><span class="n">16</span><span class="cat">開発・内製化</span></div>
+    <h3>中小企業内製化｜2週間で外注コスト年200万円削減</h3>
+    <p class="lede">プログラミング知識ゼロの中小企業がClaude Coworkを使って業務ツールを内製化。問い合わせボット・日報生成・データ集計を2週間で構築し外注コストを年200万円削減。</p>
+    <div class="case-result">💰 外注コスト年200万円削減 ／ 2週間で内製化完了</div>
+    <div><span class="tool-tag">Claude Cowork</span><span class="tool-tag">Cursor</span></div>
     <div class="case-pitch">「エンジニアがいなくても、AIと一緒なら作れる時代になった」</div>
-    <button class="copy-btn" data-copy="【中小企業内製化事例】プログラミング知識ゼロでClaude Coworkを使い業務ツールを内製化。問い合わせ対応ボット・日報自動生成・データ集計を2週間で構築。外注コスト年200万円削減を実現。">📋 コピー</button>
+    <div class="foot">
+      <span class="src">中小企業内製化事例</span>
+      <button class="copy-btn" data-copy="【中小企業内製化事例】プログラミング知識ゼロでClaude Coworkを使い業務ツールを内製化。問い合わせ対応ボット・日報自動生成・データ集計を2週間で構築。外注コスト年200万円削減を実現。">📋 コピー</button>
+    </div>
   </div>
+
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-brand">
-    <span class="dot-r">●</span>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span>
-  </div>
+  <div class="footer-brand"><em class="dot-r">●</em>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span></div>
   <p class="footer-copy">AI Morning Intelligence · 毎朝6:30 JST自動配信</p>
-  <p class="footer-copy" style="margin-top:8px;font-size:11px;opacity:.4;">事例は公開情報をもとに作成。数値は概算・推定値を含みます。</p>
+  <p class="footer-copy" style="margin-top:4px;font-size:11px;opacity:.4;">事例は公開情報をもとに作成。数値は概算・推定値を含みます。</p>
 </footer>
 
 <script>
-// Filter
-document.querySelectorAll('.pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    const cat = pill.dataset.cat;
-    const cards = document.querySelectorAll('.case-card');
-    let count = 0;
-    cards.forEach(card => {
-      const show = cat === '全て' || card.dataset.cat === cat;
-      card.style.display = show ? '' : 'none';
-      if (show) count++;
+(function(){
+  /* filter */
+  document.querySelectorAll('.filter-pill').forEach(function(pill){
+    pill.addEventListener('click',function(){
+      var cat=pill.dataset.cat;
+      document.querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      var count=0;
+      document.querySelectorAll('.tcard').forEach(function(c){
+        var show=cat==='ALL'||c.dataset.category===cat;
+        c.style.opacity=show?'1':'.15';
+        c.style.pointerEvents=show?'':'none';
+        c.style.transform=show?'':'scale(.97)';
+        if(show)count++;
+      });
+      document.getElementById('case-count').textContent=count+' cases';
     });
-    document.getElementById('case-count').textContent = count;
   });
-});
 
-// Copy
-document.querySelectorAll('.copy-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const text = btn.dataset.copy;
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✅ コピーしました';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = '📋 コピー';
-        btn.classList.remove('copied');
-      }, 2000);
+  /* copy */
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      navigator.clipboard.writeText(btn.dataset.copy).then(function(){
+        btn.textContent='✅ コピーしました';
+        btn.classList.add('copied');
+        setTimeout(function(){btn.textContent='📋 コピー';btn.classList.remove('copied');},2000);
+      });
     });
   });
-});
+})();
 </script>
 </body>
 </html>
