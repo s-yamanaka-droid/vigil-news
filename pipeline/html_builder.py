@@ -469,9 +469,27 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 
 
 def _build_today_grid(articles, date_str, img_dir, root="../../"):
-    """vigil.css の .today-grid / .tcard / .tcard.lead を生成"""
+    """Gemini図解画像をメインに据えた画像グリッド"""
     img_root = f"{root}assets/images/{date_str}"
-    html = '<div class="today-grid">\n'
+    # 画像グリッド用CSS（インライン）
+    html = """<style>
+.img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0;}
+@media(max-width:600px){.img-grid{grid-template-columns:1fr;}}
+.img-card{position:relative;cursor:pointer;border:1px solid var(--rule-2);transition:border-color .2s,transform .18s,box-shadow .2s;}
+.img-card:hover{border-color:var(--red);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red);}
+.img-card img{width:100%;display:block;}
+.img-card .ic-label{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;border-top:1px solid var(--rule-2);
+  background:var(--paper);
+}
+.img-card .ic-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--red);}
+.img-card .ic-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+.img-card .ic-src{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);margin-left:auto;}
+.img-card.lead{grid-column:span 2;}
+@media(max-width:600px){.img-card.lead{grid-column:span 1;}}
+</style>
+<div class="img-grid">\n"""
 
     for i, a in enumerate(articles, 1):
         title      = a.get("title", "")
@@ -497,61 +515,31 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
             f'data-link="{detail_url}"'
         )
 
-        if i == 1:
-            # ── Lead card (2×2, dark background) ──
-            if slide_exists:
-                slide_html = f"""    <a href="{detail_url}" class="slide zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;">
-      <img src="{slide_rel}" alt="{title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy" />
-      <div class="sl-inner">
-        <div class="chip">NOW ON AIr · SLIDE 01 / {len(articles):02d} <b>●</b></div>
-        <div style="flex:1"></div>
-        <div class="meta">{category.upper()} · {source.upper()}</div>
-      </div>
-    </a>"""
-            else:
-                slide_html = f"""    <div class="slide">
-      <div class="sl-inner">
-        <div class="chip">NOW ON AIr · SLIDE 01 / {len(articles):02d} <b>●</b></div>
-        <div class="bigt">{title[:24]}</div>
-        <div class="meta">{category.upper()} · {source.upper()}</div>
-      </div>
-    </div>"""
+        lead_class = " lead" if i == 1 else ""
 
-            html += f"""  <div class="tcard lead" {data_attrs}>
-    <div class="tl">
-      <span class="n">01</span>
-      <span class="cat">{category}</span>
-      <span class="top">TOP STORY</span>
-    </div>
-    <h3>{title}</h3>
-{slide_html}
-    <p class="lede">{lede}</p>
-    <div class="foot">
-      <span class="src">{source}</span>
-      <a href="{detail_url}" class="go">READ →</a>
+        if slide_exists:
+            html += f"""  <div class="img-card{lead_class}" {data_attrs}>
+    <a href="{detail_url}" class="zoom-image" data-src="{slide_rel}" data-alt="{title}" style="display:block;">
+      <img src="{slide_rel}" alt="{title}" loading="lazy" />
+    </a>
+    <div class="ic-label">
+      <span class="ic-num">{str(i).zfill(2)}</span>
+      <span class="ic-cat">{category}</span>
+      <span class="ic-src">{source}</span>
     </div>
   </div>
 """
         else:
-            # ── Regular card — トピック画像あり ──
-            if slide_exists:
-                card_img = f"""    <a href="{detail_url}" class="slide-img zoom-image" data-src="{slide_rel}" data-alt="{title}" role="button" tabindex="0" style="display:block;margin:8px 0 10px;">
-      <img src="{slide_rel}" alt="{title}" style="width:100%;display:block;" loading="lazy" />
-    </a>"""
-            else:
-                card_img = ""
-
-            html += f"""  <div class="tcard" {data_attrs}>
-    <div class="tl">
-      <span class="n">{str(i).zfill(2)}</span>
-      <span class="cat">{category}</span>
-    </div>
-    <h3>{title}</h3>
-{card_img}
-    <p class="lede">{lede}</p>
-    <div class="foot">
-      <span class="src">{source}</span>
-      <a href="{detail_url}" class="go">READ →</a>
+            # 画像未生成時はシンプルなテキストカード
+            html += f"""  <div class="img-card{lead_class}" {data_attrs}>
+    <a href="{detail_url}" style="display:block;padding:20px;text-decoration:none;color:inherit;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:8px;">{category.upper()}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;">{title}</div>
+    </a>
+    <div class="ic-label">
+      <span class="ic-num">{str(i).zfill(2)}</span>
+      <span class="ic-cat">{category}</span>
+      <span class="ic-src">{source}</span>
     </div>
   </div>
 """
