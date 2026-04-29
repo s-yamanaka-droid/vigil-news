@@ -35,6 +35,9 @@ INTERACTIVE_JS = """
       <span id="modal-cat"></span>
       <button id="modal-close">✕ CLOSE</button>
     </div>
+    <div id="modal-slide-wrap" style="display:none;margin:0;overflow:hidden;border-bottom:1px solid var(--rule-2);">
+      <img id="modal-slide-img" src="" alt="" style="width:100%;display:block;" />
+    </div>
     <div class="modal-body">
       <h2 id="modal-title"></h2>
       <p id="modal-lede"></p>
@@ -73,6 +76,14 @@ INTERACTIVE_JS = """
     document.getElementById('modal-src').textContent='SOURCE: '+(d.source||'');
     var linkEl=document.getElementById('modal-link');
     linkEl.href=d.link||'#';
+
+    /* Gemini slide image */
+    var slideWrap=document.getElementById('modal-slide-wrap');
+    var slideImg=document.getElementById('modal-slide-img');
+    if(d.slide){
+      slideImg.src=d.slide; slideImg.alt=d.title||'';
+      slideWrap.style.display='block';
+    } else { slideWrap.style.display='none'; slideImg.src=''; }
 
     /* keypoints */
     var kpEl=document.getElementById('modal-kp');
@@ -138,8 +149,8 @@ INTERACTIVE_JS = """
   document.getElementById('modal-close').addEventListener('click',closeModal);
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
 
-  /* tcard click → modal */
-  document.querySelectorAll('.tcard[data-title]').forEach(function(card){
+  /* card click → modal */
+  document.querySelectorAll('.img-card[data-title],.tcard[data-title]').forEach(function(card){
     card.addEventListener('click',function(e){
       if(e.target.tagName==='A')return;
       openModal(card);
@@ -469,27 +480,35 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
 
 
 def _build_today_grid(articles, date_str, img_dir, root="../../"):
-    """Gemini図解画像をメインに据えた画像グリッド"""
+    """Gemini図解画像を画面いっぱいに見せるギャラリーレイアウト"""
     img_root = f"{root}assets/images/{date_str}"
-    # 画像グリッド用CSS（インライン）
+
     html = """<style>
-.img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0;}
-@media(max-width:600px){.img-grid{grid-template-columns:1fr;}}
-.img-card{position:relative;cursor:pointer;border:1px solid var(--rule-2);transition:border-color .2s,transform .18s,box-shadow .2s;}
-.img-card:hover{border-color:var(--red);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red);}
-.img-card img{width:100%;display:block;}
-.img-card .ic-label{
-  display:flex;align-items:center;gap:8px;
-  padding:8px 12px;border-top:1px solid var(--rule-2);
-  background:var(--paper);
-}
-.img-card .ic-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--red);}
-.img-card .ic-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
-.img-card .ic-src{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);margin-left:auto;}
-.img-card.lead{grid-column:span 2;}
-@media(max-width:600px){.img-card.lead{grid-column:span 1;}}
+/* ── Image Gallery ── */
+.ig-wrap{max-width:1400px;margin:0 auto;padding:0 24px 40px;}
+.ig-featured{margin-bottom:20px;}
+.ig-featured .ig-img-link{display:block;cursor:pointer;}
+.ig-featured img{width:100%;display:block;border:2px solid var(--rule-2);transition:border-color .2s;}
+.ig-featured .ig-img-link:hover img{border-color:var(--red);}
+.ig-featured .ig-bar{display:flex;align-items:center;gap:10px;padding:10px 0 0;}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.ig-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.ig-grid{grid-template-columns:1fr;}}
+.ig-card{cursor:pointer;border:1px solid var(--rule-2);transition:border-color .2s,transform .18s,box-shadow .2s;}
+.ig-card:hover{border-color:var(--red);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red);}
+.ig-card .ig-img-link{display:block;}
+.ig-card img{width:100%;display:block;}
+.ig-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;border-top:1px solid var(--rule-2);}
+.ig-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--red);}
+.ig-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+.ig-src{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);margin-left:auto;}
+.ig-no-img{padding:28px 20px;background:var(--paper-2);border:1px solid var(--rule-2);}
+.ig-no-img .ig-no-cat{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:8px;letter-spacing:.1em;text-transform:uppercase;}
+.ig-no-img .ig-no-title{font-family:'Barlow Condensed','Noto Sans JP',sans-serif;font-size:22px;font-weight:900;line-height:1.25;}
 </style>
-<div class="img-grid">\n"""
+<div class="ig-wrap">\n"""
+
+    import json as _json
 
     for i, a in enumerate(articles, 1):
         title      = a.get("title", "")
@@ -500,7 +519,6 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
         slide_rel  = f"{img_root}/topic_{i}.png"
         slide_exists = (img_dir / f"topic_{i}.png").exists()
 
-        import json as _json
         kp_json    = _json.dumps(a.get("keypoints", []), ensure_ascii=False).replace('"', '&quot;')
         pull_esc   = a.get("pull","").replace('"','&quot;')
         bizapp_json = _json.dumps(a.get("bizapp", {}), ensure_ascii=False).replace('"', '&quot;')
@@ -512,39 +530,61 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
             f'data-keypoints="{kp_json}" '
             f'data-pull="{pull_esc}" '
             f'data-bizapp="{bizapp_json}" '
-            f'data-link="{detail_url}"'
+            f'data-link="{detail_url}" '
+            f'data-slide="{slide_rel if slide_exists else ""}"'
         )
 
-        lead_class = " lead" if i == 1 else ""
-
-        if slide_exists:
-            html += f"""  <div class="img-card{lead_class}" {data_attrs}>
-    <a href="{detail_url}" class="zoom-image" data-src="{slide_rel}" data-alt="{title}" style="display:block;">
+        if i == 1:
+            # ── フィーチャード（画面幅フル） ──
+            if slide_exists:
+                html += f"""<div class="ig-featured" {data_attrs}>
+  <a href="{detail_url}" class="ig-img-link zoom-image" data-src="{slide_rel}" data-alt="{title}">
+    <img src="{slide_rel}" alt="{title}" loading="lazy" />
+  </a>
+  <div class="ig-bar">
+    <span class="ig-num">01</span>
+    <span class="ig-cat">{category}</span>
+    <span class="ig-src">{source}</span>
+    <a href="{detail_url}" style="margin-left:16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--red);text-decoration:none;letter-spacing:.08em;">READ →</a>
+  </div>
+</div>
+<div class="ig-grid">\n"""
+            else:
+                html += f"""<div class="ig-featured" {data_attrs}>
+  <a href="{detail_url}" style="display:block;text-decoration:none;color:inherit;">
+    <div class="ig-no-img"><div class="ig-no-cat">{category}</div><div class="ig-no-title">{title}</div></div>
+  </a>
+  <div class="ig-bar"><span class="ig-num">01</span><span class="ig-cat">{category}</span><span class="ig-src">{source}</span></div>
+</div>
+<div class="ig-grid">\n"""
+        else:
+            # ── グリッドカード ──
+            if slide_exists:
+                html += f"""  <div class="ig-card" {data_attrs}>
+    <a href="{detail_url}" class="ig-img-link zoom-image" data-src="{slide_rel}" data-alt="{title}">
       <img src="{slide_rel}" alt="{title}" loading="lazy" />
     </a>
-    <div class="ic-label">
-      <span class="ic-num">{str(i).zfill(2)}</span>
-      <span class="ic-cat">{category}</span>
-      <span class="ic-src">{source}</span>
+    <div class="ig-bar">
+      <span class="ig-num">{str(i).zfill(2)}</span>
+      <span class="ig-cat">{category}</span>
+      <span class="ig-src">{source}</span>
     </div>
   </div>
 """
-        else:
-            # 画像未生成時はシンプルなテキストカード
-            html += f"""  <div class="img-card{lead_class}" {data_attrs}>
-    <a href="{detail_url}" style="display:block;padding:20px;text-decoration:none;color:inherit;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:8px;">{category.upper()}</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;">{title}</div>
+            else:
+                html += f"""  <div class="ig-card" {data_attrs}>
+    <a href="{detail_url}" style="display:block;text-decoration:none;color:inherit;">
+      <div class="ig-no-img"><div class="ig-no-cat">{category}</div><div class="ig-no-title">{title}</div></div>
     </a>
-    <div class="ic-label">
-      <span class="ic-num">{str(i).zfill(2)}</span>
-      <span class="ic-cat">{category}</span>
-      <span class="ic-src">{source}</span>
+    <div class="ig-bar">
+      <span class="ig-num">{str(i).zfill(2)}</span>
+      <span class="ig-cat">{category}</span>
+      <span class="ig-src">{source}</span>
     </div>
   </div>
 """
 
-    html += "</div>\n"
+    html += "</div>\n</div>\n"  # .ig-grid + .ig-wrap
     return html
 
 

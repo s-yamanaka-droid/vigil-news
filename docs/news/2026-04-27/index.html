@@ -460,6 +460,9 @@
       <span id="modal-cat"></span>
       <button id="modal-close">✕ CLOSE</button>
     </div>
+    <div id="modal-slide-wrap" style="display:none;margin:0;overflow:hidden;border-bottom:1px solid var(--rule-2);">
+      <img id="modal-slide-img" src="" alt="" style="width:100%;display:block;" />
+    </div>
     <div class="modal-body">
       <h2 id="modal-title"></h2>
       <p id="modal-lede"></p>
@@ -498,6 +501,14 @@
     document.getElementById('modal-src').textContent='SOURCE: '+(d.source||'');
     var linkEl=document.getElementById('modal-link');
     linkEl.href=d.link||'#';
+
+    /* Gemini slide image */
+    var slideWrap=document.getElementById('modal-slide-wrap');
+    var slideImg=document.getElementById('modal-slide-img');
+    if(d.slide){
+      slideImg.src=d.slide; slideImg.alt=d.title||'';
+      slideWrap.style.display='block';
+    } else { slideWrap.style.display='none'; slideImg.src=''; }
 
     /* keypoints */
     var kpEl=document.getElementById('modal-kp');
@@ -563,8 +574,8 @@
   document.getElementById('modal-close').addEventListener('click',closeModal);
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
 
-  /* tcard click → modal */
-  document.querySelectorAll('.tcard[data-title]').forEach(function(card){
+  /* card click → modal */
+  document.querySelectorAll('.img-card[data-title],.tcard[data-title]').forEach(function(card){
     card.addEventListener('click',function(e){
       if(e.target.tagName==='A')return;
       openModal(card);
