@@ -48,6 +48,24 @@ INTERACTIVE_JS = """
         <div class="bizapp-summary" id="modal-bizapp-summary"></div>
         <ul class="bizapp-actions" id="modal-bizapp-actions"></ul>
       </div>
+      <div id="modal-quickstart">
+        <div class="qs-head">⚡ 明日からできる｜個人事業主・社長向け</div>
+        <div class="qs-headline" id="qs-headline"></div>
+        <div class="qs-meta">
+          <div class="qs-tool"><span class="qs-label">推奨ツール</span> <a id="qs-tool-link" href="#" target="_blank" rel="noopener"></a> <span id="qs-cost" class="qs-cost"></span></div>
+          <div class="qs-time"><span class="qs-label">所要時間</span> <span id="qs-time"></span></div>
+        </div>
+        <div class="qs-steps-wrap">
+          <div class="qs-section-label">3ステップで試す</div>
+          <ol class="qs-steps" id="qs-steps"></ol>
+        </div>
+        <div class="qs-prompt-wrap">
+          <div class="qs-section-label">📋 コピペで使えるプロンプト</div>
+          <div class="qs-prompt" id="qs-prompt"></div>
+          <button class="qs-copy-btn" id="qs-copy-btn">📋 プロンプトをコピー</button>
+        </div>
+        <div class="qs-roi" id="qs-roi"></div>
+      </div>
       <div class="modal-foot">
         <span id="modal-src"></span>
         <a id="modal-link" href="#" target="_blank" rel="noopener">元記事を読む →</a>
@@ -129,6 +147,38 @@ INTERACTIVE_JS = """
         bizEl.style.display='block';
       } else { bizEl.style.display='none'; }
     }catch(e){ bizEl.style.display='none'; }
+
+    /* quickstart */
+    var qsEl=document.getElementById('modal-quickstart');
+    try{
+      var qs=JSON.parse(d.quickstart||'null');
+      if(qs&&qs.headline){
+        document.getElementById('qs-headline').textContent=qs.headline;
+        var toolLink=document.getElementById('qs-tool-link');
+        toolLink.textContent=(qs.tool&&qs.tool.name)||'';
+        toolLink.href=(qs.tool&&qs.tool.url)||'#';
+        document.getElementById('qs-cost').textContent=(qs.tool&&qs.tool.cost)?'· '+qs.tool.cost:'';
+        document.getElementById('qs-time').textContent=qs.time||'';
+        var stepsEl=document.getElementById('qs-steps');
+        stepsEl.innerHTML='';
+        (qs.steps||[]).forEach(function(step){
+          var li=document.createElement('li');
+          li.textContent=step;
+          stepsEl.appendChild(li);
+        });
+        var promptEl=document.getElementById('qs-prompt');
+        promptEl.textContent=qs.prompt||'';
+        var copyBtn=document.getElementById('qs-copy-btn');
+        copyBtn.onclick=function(){
+          navigator.clipboard.writeText(qs.prompt||'').then(function(){
+            copyBtn.textContent='✓ コピー完了';
+            setTimeout(function(){copyBtn.textContent='📋 プロンプトをコピー';},1800);
+          });
+        };
+        document.getElementById('qs-roi').textContent=qs.roi?'💰 想定効果：'+qs.roi:'';
+        qsEl.style.display='block';
+      } else { qsEl.style.display='none'; }
+    }catch(e){ qsEl.style.display='none'; }
 
     modal.style.display='flex';
     modal.style.pointerEvents='auto';
@@ -522,6 +572,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
         kp_json    = _json.dumps(a.get("keypoints", []), ensure_ascii=False).replace('"', '&quot;')
         pull_esc   = a.get("pull","").replace('"','&quot;')
         bizapp_json = _json.dumps(a.get("bizapp", {}), ensure_ascii=False).replace('"', '&quot;')
+        quickstart_json = _json.dumps(a.get("quickstart", {}), ensure_ascii=False).replace('"', '&quot;')
         data_attrs = (
             f'data-title="{title.replace(chr(34), "&quot;")}" '
             f'data-category="{category}" '
@@ -530,6 +581,7 @@ def _build_today_grid(articles, date_str, img_dir, root="../../"):
             f'data-keypoints="{kp_json}" '
             f'data-pull="{pull_esc}" '
             f'data-bizapp="{bizapp_json}" '
+            f'data-quickstart="{quickstart_json}" '
             f'data-link="{detail_url}" '
             f'data-slide="{slide_rel if slide_exists else ""}"'
         )
@@ -853,6 +905,38 @@ INDEX_CSS = """
   transition:background .15s,transform .15s;display:inline-block;
 }
 #modal-link:hover{background:var(--ink);transform:translateX(3px);}
+
+/* ── Quickstart（明日からできる） ── */
+#modal-quickstart{display:none;margin:24px 0;padding:20px 22px;background:#FFF8E5;border:2px solid #FFC107;border-left:6px solid #FF9800;}
+.qs-head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#E65100;font-weight:800;margin-bottom:10px;}
+.qs-headline{font-family:'Barlow Condensed','Noto Sans JP',sans-serif;font-size:22px;font-weight:900;line-height:1.3;color:var(--ink);margin-bottom:14px;}
+.qs-meta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px;font-size:12px;}
+.qs-tool,.qs-time{background:#fff;padding:6px 12px;border:1px solid #FFC107;}
+.qs-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-right:6px;}
+#qs-tool-link{color:#E65100;font-weight:700;text-decoration:none;border-bottom:1px solid #E65100;}
+#qs-tool-link:hover{color:#BF360C;}
+.qs-cost{color:#666;font-size:11px;margin-left:4px;}
+#qs-time{font-weight:700;color:var(--ink);}
+.qs-section-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#E65100;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.qs-steps-wrap{margin-bottom:16px;}
+.qs-steps{margin:0;padding:0 0 0 24px;}
+.qs-steps li{font-size:13.5px;line-height:1.7;color:var(--ink);margin-bottom:4px;}
+.qs-prompt-wrap{margin-bottom:14px;}
+.qs-prompt{
+  background:#1a1a1a;color:#f5f5f5;padding:14px 16px;font-size:12px;line-height:1.65;
+  font-family:'JetBrains Mono',monospace;border-radius:0;white-space:pre-wrap;word-break:break-word;
+  max-height:200px;overflow-y:auto;margin-bottom:8px;
+}
+.qs-copy-btn{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;
+  background:#FF9800;color:#fff;border:none;padding:9px 20px;cursor:pointer;
+  transition:background .15s;
+}
+.qs-copy-btn:hover{background:#E65100;}
+.qs-roi{
+  font-size:13px;font-weight:700;color:#E65100;padding:10px 14px;
+  background:#fff;border-left:4px solid #FF9800;
+}
 </style>"""
 
 # vigil.css にない detail ページ専用スタイル（inline で追加）
