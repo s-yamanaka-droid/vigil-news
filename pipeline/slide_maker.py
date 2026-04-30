@@ -13,7 +13,8 @@ MODEL_ID = "gemini-3.1-flash-image-preview"
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 SLIDE_PROMPT_TEMPLATE = """
-Create a 16:9 editorial news card slide for the following AI news article.
+Create a 16:9 INFOGRAPHIC slide for the following AI news article.
+This must be a VISUAL DIAGRAM with icons and illustrations — NOT a text-only slide.
 
 ARTICLE:
 Title: {title}
@@ -23,26 +24,39 @@ Summary: {summary}
 Key Points:
 {keypoints}
 
-DESIGN REQUIREMENTS:
-- Style: Bold editorial — inspired by Nike Air Jordan / Jordan Brand visual identity
+CRITICAL — INFOGRAPHIC REQUIREMENT (MOST IMPORTANT):
+The slide MUST contain VISUAL DIAGRAMS that illustrate the key concepts.
+DO NOT make a text-only slide with bullet points.
+
+Required visual elements:
+- 3 to 4 ICON/ILLUSTRATION BOXES arranged horizontally in the lower half
+- Each box illustrates one key concept with:
+  * A custom ICON or ILLUSTRATION (e.g., gear with chip for "engine", network nodes for "integration",
+    lock for "security", arrow with clock for "speed", cloud for "cloud", graph for "growth", robot for "AI agent", etc.)
+  * A short Japanese label below the icon (4-10 chars, e.g., "Codex駆動エージェント", "複数ツール連携", "クラウド実行", "WebSockets活用")
+  * A one-line description below the label (8-15 chars in Japanese)
+- Each icon box has a thin red border and small red number badge (1, 2, 3, 4) in the top-right corner
+- Icons should be flat, minimal, geometric — NOT photorealistic — using black/red/gray with white background
+
+LAYOUT (top to bottom):
+1. TOP: Category label in red (top-left) + "Now on AIr" brand mark (top-right)
+2. UPPER MIDDLE: Article TITLE — large, bold, black, 2-3 lines max
+3. MIDDLE: A compact 1-line summary in a thin-bordered box (the "lede")
+4. LOWER HALF (THE INFOGRAPHIC): 3-4 ICON BOXES side-by-side, each with icon + label + brief description
+5. BOTTOM-RIGHT: Source badge ("Source: {source}")
+
+DESIGN SYSTEM:
 - Background: Pure white (#FFFFFF)
-- Primary accent: Jordan Chicago Red (#CE1141) — use for borders, labels, highlights
-- Secondary: Jet black (#0D0D0D) for headlines
-- Typography: Heavy condensed sans-serif for headline (Barlow Condensed style, weight 900),
-  monospace for metadata and labels
-- Layout:
-  - Thick red horizontal rule at the very top (4px)
-  - Category label in red uppercase monospace (top-left)
-  - Brand mark "Now on AIr" — "Now on " in black, "AI" in #CE1141, "r" smaller in gray —
-    placed top-right corner in small condensed font
-  - Article title LARGE and bold in black, center-left
-  - Key points as numbered list in clean monospace
-  - Source badge bottom-right
-  - Red vertical accent bar on the left edge
-- High contrast black/white/red only — NO pastels, NO dark backgrounds, NO gradients
-- Clean, athletic, premium feel — like a sports brand applied to news media
+- Primary accent: Jordan Chicago Red (#CE1141) — borders, badges, category label, accents
+- Black (#0D0D0D) for main text
+- Gray (#888) for secondary text
+- Typography: Heavy condensed sans-serif for headline, clean sans-serif for labels, monospace for metadata
+- NO pastels, NO dark backgrounds, NO gradients, NO photorealistic imagery
+- Clean editorial infographic feel — like a magazine explainer graphic
 - Japanese text rendered clearly and crisply
-- Image size: 16:9, high quality
+
+REMEMBER: The user has explicitly rejected text-only slides. The icon/illustration boxes
+in the lower half are MANDATORY. Show, don't just tell.
 """
 
 
