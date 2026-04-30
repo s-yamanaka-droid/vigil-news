@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>今週のAI3本 — Now on AIr Weekly</title>
+<meta name="description" content="今週のAIニュースから、個人事業主・社長が絶対押さえるべき3本だけ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/vigil.css?v4">
+<style>
+.weekly-hero{padding:60px 32px 40px;border-bottom:4px solid var(--red);}
+.weekly-hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:64px;line-height:.95;margin:0 0 12px;letter-spacing:-.02em;}
+.weekly-hero h1 em{color:var(--red);font-style:normal;}
+.weekly-hero .sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:20px;}
+.weekly-hero .summary{font-family:'Noto Serif JP',serif;font-size:16px;line-height:1.85;color:var(--ink-2);max-width:780px;}
+.weekly-grid{padding:48px 32px 80px;display:grid;gap:32px;max-width:1200px;margin:0 auto;}
+.weekly-card{border:1px solid var(--rule-2);padding:24px;background:var(--paper);transition:border-color .2s,box-shadow .2s,transform .18s;}
+.weekly-card:hover{border-color:var(--red);box-shadow:6px 6px 0 var(--red);transform:translate(-3px,-3px);}
+.weekly-card .rank{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#fff;background:var(--red);display:inline-block;padding:5px 12px;font-weight:800;margin-bottom:14px;}
+.weekly-img-link{display:block;border:1px solid var(--rule-2);overflow:hidden;cursor:zoom-in;margin-bottom:14px;}
+.weekly-img-link img{width:100%;display:block;}
+.weekly-meta{display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;}
+.weekly-meta .cat{color:var(--red);font-weight:700;}
+.weekly-title{font-family:'Barlow Condensed','Noto Sans JP',sans-serif;font-weight:900;font-size:28px;line-height:1.2;margin:0 0 12px;}
+.weekly-tldr{font-family:'Noto Serif JP',serif;font-size:14px;line-height:1.7;color:var(--ink-2);margin:0 0 16px;}
+.weekly-why,.weekly-action{font-size:13px;line-height:1.7;padding:10px 14px;margin-bottom:8px;}
+.weekly-why{background:#FFF8E5;border-left:4px solid #FF9800;}
+.weekly-action{background:#FFEBEE;border-left:4px solid var(--red);}
+.why-label,.action-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;margin-right:6px;}
+.why-label{color:#E65100;}
+.action-label{color:var(--red);}
+.weekly-cta{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;font-weight:700;color:#fff;background:var(--ink);padding:10px 22px;text-decoration:none;transition:background .15s;}
+.weekly-cta:hover{background:var(--red);}
+@media (min-width:900px){.weekly-grid{grid-template-columns:1fr 1fr 1fr;}}
+</style>
+</head>
+<body>
+<nav class="main">
+  <div class="brand"><em class="dot-r">●</em>Now on <em class="brand-ai">AI</em><span class="brand-r">r</span></div>
+  <ul>
+    <li><a href="./">TODAY</a></li>
+    <li><a href="./weekly.html" class="active">WEEKLY</a></li>
+    <li><a href="./cases.html">CASES</a></li>
+    <li><a href="./#about">ABOUT</a></li>
+  </ul>
+</nav>
+
+<div class="weekly-hero">
+  <div class="sub">WEEKLY DIGEST · 2026-04-25 → 2026-05-01</div>
+  <h1>今週の<em>AI 3本</em></h1>
+  <p class="summary">今週のAIニュース最大の特徴は、AIエージェント化による実務自動化の本格化と、計算リソース争奪戦の激化です。Google Geminiの文書生成、Anthropicの取引実験、Mistral Workflowsなど、複数のエージェント連携で複雑業務を自動実行する技術が次々と実装段階に入りました。同時にOpenAIのMicrosoft独占契約解除でクラウド競争が活性化し、中国DeepSeekのオープンソース化で低コストAI普及が加速。小規模事業者にとっては、高機能AIへのアクセス選択肢が劇的に増える転換期です。</p>
+</div>
+
+<div class="weekly-grid">
+
+  <div class="weekly-card">
+    <div class="rank">RANK 01</div>
+    <a href="../news/2026-04-30/#topic-2" class="weekly-img-link">
+      <img src="../assets/images/2026-04-30/topic_2.png" alt="Google Geminiが文書・表計算・プレゼン資料を直接生成可能に" loading="lazy" />
+    </a>
+    <div class="weekly-meta">
+      <span class="cat">ツール更新</span>
+      <span class="date">2026-04-30</span>
+      <span class="src">The Decoder</span>
+    </div>
+    <h2 class="weekly-title">Google Geminiが文書・表計算・プレゼン資料を直接生成可能に</h2>
+    <p class="weekly-tldr">Geminiがテキスト指示で Word・Excel・PDF・スライドを直接生成。資料作成業務が自動化。</p>
+    <div class="weekly-why">
+      <span class="why-label">なぜTOP 1？</span> テキスト指示だけで提案資料が完成。営業・企画の資料作成時間が30分で削減できる即実行性。
+    </div>
+    <div class="weekly-action">
+      <span class="action-label">⚡ 今週やる</span> 今週中に営業提案資料1件をGeminiで試作し、作業時間を記録する。
+    </div>
+    <a href="../news/2026-04-30/#topic-2" class="weekly-cta">記事を読む →</a>
+  </div>
+  <div class="weekly-card">
+    <div class="rank">RANK 02</div>
+    <a href="../news/2026-04-26/#topic-4" class="weekly-img-link">
+      <img src="../assets/images/2026-04-26/topic_4.png" alt="Prompt Cache活用で Claude 利用コストを84%削減可能" loading="lazy" />
+    </a>
+    <div class="weekly-meta">
+      <span class="cat">ツール更新</span>
+      <span class="date">2026-04-26</span>
+      <span class="src">Zenn AI</span>
+    </div>
+    <h2 class="weekly-title">Prompt Cache活用で Claude 利用コストを84%削減可能</h2>
+    <p class="weekly-tldr">Claude Prompt Cache使用で長文処理が84%低コスト化。2ターン目から収支黒字。</p>
+    <div class="weekly-why">
+      <span class="why-label">なぜTOP 2？</span> 100Kトークンの長文処理で84%コスト削減。既存Claude契約で即実装できるお金が浮く施策。
+    </div>
+    <div class="weekly-action">
+      <span class="action-label">⚡ 今週やる</span> 現在のClaude利用量を棚卸し、長文文脈が多いタスク3件をCache対象にリスト化。
+    </div>
+    <a href="../news/2026-04-26/#topic-4" class="weekly-cta">記事を読む →</a>
+  </div>
+  <div class="weekly-card">
+    <div class="rank">RANK 03</div>
+    <a href="../news/2026-04-29/#topic-4" class="weekly-img-link">
+      <img src="../assets/images/2026-04-29/topic_4.png" alt="Anthropic が Claude Desktop エージェント「Cowork」公開、ノーコードで実務自動化" loading="lazy" />
+    </a>
+    <div class="weekly-meta">
+      <span class="cat">ツール更新</span>
+      <span class="date">2026-04-29</span>
+      <span class="src">VentureBeat AI</span>
+    </div>
+    <h2 class="weekly-title">Anthropic が Claude Desktop エージェント「Cowork」公開、ノーコードで実務自動化</h2>
+    <p class="weekly-tldr">ClaudeのCoworkで領収書整理・経費報告などを無コード自動化。プログラミング不要。</p>
+    <div class="weekly-why">
+      <span class="why-label">なぜTOP 3？</span> プログラミング知識不要でエージェント自動化。事務作業をノーコードで削減、今週から試せる。
+    </div>
+    <div class="weekly-action">
+      <span class="action-label">⚡ 今週やる</span> 事務作業の手動タスク3件をリストアップ、Cowork試用版でシミュレーション実施。
+    </div>
+    <a href="../news/2026-04-29/#topic-4" class="weekly-cta">記事を読む →</a>
+  </div>
+</div>
+
+<div style="text-align:center;padding:40px 32px 80px;border-top:1px solid var(--rule-2);">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--mute);text-transform:uppercase;">毎週月曜更新 · 個人事業主・社長のためのAI週報</p>
+  <a href="./" style="display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);font-weight:700;letter-spacing:.1em;">← 毎日のAIニュースに戻る</a>
+</div>
+
+</body>
+</html>

@@ -316,9 +316,9 @@ def build_index(all_dates: list[str], today_articles: list[dict], today_str: str
   <div class="brand">{BRAND_NAV}</div>
   <ul>
     <li><a href="./" class="active">TODAY</a></li>
+    <li><a href="./weekly.html">WEEKLY</a></li>
     <li><a href="#archive">ARCHIVE</a></li>
     <li><a href="./cases.html">CASES</a></li>
-    <li><a href="#about">SOURCES</a></li>
     <li><a href="#about">ABOUT</a></li>
   </ul>
   <button class="subscribe" onclick="return false">SUBSCRIBE · 06:30 DAILY →</button>

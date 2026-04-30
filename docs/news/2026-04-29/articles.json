@@ -22,7 +22,23 @@
     "links": [
       "https://openai.com/index/openai-on-aws"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "社内データをAWS内でOpenAI活用、セキュリティ維持のまま導入",
+      "tool": {
+        "name": "AWS Bedrock + Claude API",
+        "url": "https://aws.amazon.com/jp/bedrock/",
+        "cost": "従量課金・利用量次第（目安: 月¥5,000～）"
+      },
+      "time": "半日",
+      "steps": [
+        "AWSマネジメントコンソールでBedrockを有効化し、モデルアクセス申請",
+        "既存社内APIやシステムをBedrockエンドポイントに切り替え設定",
+        "テスト用の簡単なプロンプトで動作確認し、本運用へ移行"
+      ],
+      "prompt": "あなたは{自社名}の{部門名}アシスタントです。以下の{業務内容}について、社内ルール『{ポリシー名}』を遵守しながら、{具体的タスク}を実行してください。機密情報は絶対に外部に送信しないこと。",
+      "roi": "既存セキュリティ維持のまま最新AI導入で開発効率30%向上・マイグレーション不要"
+    }
   },
   {
     "title": "Amazon AWS、OpenAI製品提供で独占体制を打破",
@@ -47,7 +63,23 @@
     "links": [
       "https://techcrunch.com/2026/04/28/amazon-is-already-offering-new-openai-products-on-aws/"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "AWSユーザーなら新規設定不要、OpenAI最新モデルを即活用",
+      "tool": {
+        "name": "AWS Bedrock",
+        "url": "https://aws.amazon.com/jp/bedrock/",
+        "cost": "従量課金・実績次第（目安: 月¥3,000～）"
+      },
+      "time": "10分",
+      "steps": [
+        "AWS Bedrockコンソール内『モデルアクセス』からOpenAIモデルを有効化",
+        "既存のAWS Lambda/SDKコードをGPT-5.5エンドポイントに置き換え",
+        "テスト実行して料金体系を確認、本番環境で運用開始"
+      ],
+      "prompt": "あなたは{自社名}の営業サポートAIです。{商品・サービス}について、見込み客の『{顧客課題}』に対して、3分で読める提案文を作成してください。",
+      "roi": "マイグレーション不要で最新AI活用・既存AWSインフラで追加費用最小化"
+    }
   },
   {
     "title": "GitHub Copilot、従量課金に移行へ　AI利用コスト急騰に対応",
@@ -72,7 +104,23 @@
     "links": [
       "https://arstechnica.com/ai/2026/04/github-will-start-charging-copilot-users-based-on-their-actual-ai-usage/"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "Copilot高額化に備え、軽いコーディングはCursorで代替",
+      "tool": {
+        "name": "Cursor",
+        "url": "https://www.cursor.com/",
+        "cost": "無料 / ¥200/月（Pro）"
+      },
+      "time": "30分",
+      "steps": [
+        "Cursorをダウンロード・インストール、GitHubアカウントで認証",
+        "既存プロジェクトを開き、軽い修正・補完タスクでAI機能を試用",
+        "月間使用量を測定し、Copilot従量課金との費用比較表を作成"
+      ],
+      "prompt": "あなたはプロ開発アシスタント。{プログラミング言語}で『{機能説明}』を実装するコードを生成してください。エラーハンドリングとコメント付き。",
+      "roi": "Copilot従量課金化で月¥5,000以上削減見込み・開発速度維持可能"
+    }
   },
   {
     "title": "Anthropic が Claude Desktop エージェント「Cowork」公開、ノーコードで実務自動化",
@@ -97,7 +145,23 @@
     "links": [
       "https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "領収書整理を週2時間から30分へ、Claudeで経費処理自動化",
+      "tool": {
+        "name": "Claude Desktop + Cowork（コラボレーション機能）",
+        "url": "https://claude.ai/",
+        "cost": "¥3,200/月（Claude Pro必須）"
+      },
+      "time": "1時間",
+      "steps": [
+        "Claude Desktopをインストール、Coworkエージェント機能を有効化",
+        "毎月の領収書フォルダを指定し、自動抽出ルールを3～5件設定",
+        "初回実行後、AI判定を確認・修正し、ルール精度を高める"
+      ],
+      "prompt": "あなたは{自社名}の経費精算AI。添付の領収書から『日付・金額・項目・部門』を抽出し、{会計システム名}形式のCSVで出力してください。不明点は『要確認』と記入。",
+      "roi": "経費処理を月2時間削減＝月¥6,000相当削減・ヒューマンエラー90%低下"
+    }
   },
   {
     "title": "日本・羽田空港、AI搭載ヒューマノイドロボットで荷物搬送試験　2028年まで",
@@ -122,7 +186,23 @@
     "links": [
       "https://arstechnica.com/ai/2026/04/japan-airlines-tests-having-robots-instead-of-humans-handle-travelers-luggage/"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "ロボット導入検討企業向けに『AI×ロボット運用支援』を営業化",
+      "tool": {
+        "name": "ChatGPT Plus / Claude Pro",
+        "url": "https://chatgpt.com/",
+        "cost": "¥3,600/月（ChatGPT Plus）"
+      },
+      "time": "2時間",
+      "steps": [
+        "JAL羽田実績事例をChatGPTに入力し、『導入ROI試算テンプレート』生成",
+        "自社の対象顧客（小規模物流・ホテル）向けに初稿提案資料を作成",
+        "営業担当者向けに『ロボット導入効果の説明テンプレート』を社内展開"
+      ],
+      "prompt": "あなたはロボット導入コンサルタント。{顧客企業}（従業員{人数}、{業種}）が『{作業内容}』をヒューマノイドロボットで自動化した場合の『初期投資・人件費削減・ROI期間』を試算してください。JAL実績を参考に。",
+      "roi": "新規提案商材化で月2～3件営業機会追加・受注高（1件¥50万～）見込み"
+    }
   },
   {
     "title": "AI生成テキストがネット全体を均質化、「陽気さ」が増加　研究が警告",
@@ -147,7 +227,23 @@
     "links": [
       "https://the-decoder.com/researchers-find-ai-text-is-making-the-internet-more-uniform-and-weirdly-cheerful/"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "AI埋もれ対策：自社ブログに『一次取材×独自分析』強化で差別化",
+      "tool": {
+        "name": "Claude Pro",
+        "url": "https://claude.ai/",
+        "cost": "¥3,200/月"
+      },
+      "time": "半日",
+      "steps": [
+        "自社ブログの過去記事をClaude分析、AI生成との『多様性スコア』を算出",
+        "月2本以上の『独自取材+オピニオン記事』掲載枠を営業・企画で確保",
+        "Claudeは補完・構成のみに使用し、『執筆者名+一次情報』を前面化"
+      ],
+      "prompt": "あなたは{自社名}の編集アシスタント。以下の『{インタビュー対象者}へのオリジナル取材内容』を基に、AI生成では出ない『独創的視点』を前面化したブログ記事（1,500字）を構成してください。取材者氏名を明記。",
+      "roi": "検索流入15～20%増加・AI汎用コンテンツとの差別化で月¥30万以上のリード獲得"
+    }
   },
   {
     "title": "Mistral AI、エンタープライズAI業務自動化基盤「Workflows」提供開始",
@@ -172,7 +268,23 @@
     "links": [
       "https://the-decoder.com/mistral-ai-takes-on-enterprise-ai-orchestration-with-workflows/"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "稟議・承認フロー自動化で月4時間削減、人間チェック組み込み",
+      "tool": {
+        "name": "Claude API + Zapier（またはMake）",
+        "url": "https://claude.ai/",
+        "cost": "¥3,200/月（Claude）+ 自動化ツール月¥1,000～"
+      },
+      "time": "2時間",
+      "steps": [
+        "現在の稟議フロー（申請→承認→実行）を書き出し、Claude分析用に準備",
+        "ZapierでClaude APIを組み込み、自動判定ステップを設定（金額別ルール等）",
+        "テスト申請3～5件で精度確認、実運用へ移行"
+      ],
+      "prompt": "あなたは{自社名}の稟議AI。以下の『支出申請』を『金額・部門・用途』で自動判定し、『低リスク=自動承認』『要確認=管理職へ』の振り分けを実行。判定理由を日本語で添付。",
+      "roi": "稟議承認時間を月4時間削減＝月¥8,000相当・承認漏れゼロ化"
+    }
   },
   {
     "title": "Google、Pentagon向けAI提供で防衛省との契約拡大　Anthropic拒否の隙間埋める",
@@ -197,6 +309,22 @@
     "links": [
       "https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal"
     ],
-    "likes": 0
+    "likes": 0,
+    "quickstart": {
+      "headline": "防衛・セキュリティ企業向け、Google AI営業で市場シェア拡大",
+      "tool": {
+        "name": "ChatGPT Plus / Google Gemini Pro",
+        "url": "https://gemini.google.com/",
+        "cost": "無料～¥3,600/月"
+      },
+      "time": "1時間",
+      "steps": [
+        "Google防衛省契約のニュースをChatGPTで整理、『Anthropic排除の営業ポイント』リスト化",
+        "既存防衛・セキュリティ顧客リストに対し『Google AIで実現可能な機密処理タスク』を提案資料化",
+        "営業メール5本のテンプレート化と初回接触実施"
+      ],
+      "prompt": "あなたは{セキュリティ企業}の営業戦略家。Google AIが防衛省と契約した背景で、『Anthropicの利用制限を避けたい顧客』へどう提案するか、3つの訴求ポイントを日本語で作成。",
+      "roi": "防衛関連案件3～5件の新規提案機会・案件規模1件¥100万～¥500万想定"
+    }
   }
 ]

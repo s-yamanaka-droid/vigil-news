@@ -1,0 +1,41 @@
+{
+  "trend_summary": "今週のAIニュース最大の特徴は、AIエージェント化による実務自動化の本格化と、計算リソース争奪戦の激化です。Google Geminiの文書生成、Anthropicの取引実験、Mistral Workflowsなど、複数のエージェント連携で複雑業務を自動実行する技術が次々と実装段階に入りました。同時にOpenAIのMicrosoft独占契約解除でクラウド競争が活性化し、中国DeepSeekのオープンソース化で低コストAI普及が加速。小規模事業者にとっては、高機能AIへのアクセス選択肢が劇的に増える転換期です。",
+  "top3": [
+    {
+      "rank": 1,
+      "date": "2026-04-30",
+      "title": "Google Geminiが文書・表計算・プレゼン資料を直接生成可能に",
+      "category": "ツール更新",
+      "source": "The Decoder",
+      "why_picked": "テキスト指示だけで提案資料が完成。営業・企画の資料作成時間が30分で削減できる即実行性。",
+      "tldr": "Geminiがテキスト指示で Word・Excel・PDF・スライドを直接生成。資料作成業務が自動化。",
+      "action": "今週中に営業提案資料1件をGeminiで試作し、作業時間を記録する。",
+      "image": "../assets/images/2026-04-30/topic_2.png",
+      "link": "../news/2026-04-30/#topic-2"
+    },
+    {
+      "rank": 2,
+      "date": "2026-04-26",
+      "title": "Prompt Cache活用で Claude 利用コストを84%削減可能",
+      "category": "ツール更新",
+      "source": "Zenn AI",
+      "why_picked": "100Kトークンの長文処理で84%コスト削減。既存Claude契約で即実装できるお金が浮く施策。",
+      "tldr": "Claude Prompt Cache使用で長文処理が84%低コスト化。2ターン目から収支黒字。",
+      "action": "現在のClaude利用量を棚卸し、長文文脈が多いタスク3件をCache対象にリスト化。",
+      "image": "../assets/images/2026-04-26/topic_4.png",
+      "link": "../news/2026-04-26/#topic-4"
+    },
+    {
+      "rank": 3,
+      "date": "2026-04-29",
+      "title": "Anthropic が Claude Desktop エージェント「Cowork」公開、ノーコードで実務自動化",
+      "category": "ツール更新",
+      "source": "VentureBeat AI",
+      "why_picked": "プログラミング知識不要でエージェント自動化。事務作業をノーコードで削減、今週から試せる。",
+      "tldr": "ClaudeのCoworkで領収書整理・経費報告などを無コード自動化。プログラミング不要。",
+      "action": "事務作業の手動タスク3件をリストアップ、Cowork試用版でシミュレーション実施。",
+      "image": "../assets/images/2026-04-29/topic_4.png",
+      "link": "../news/2026-04-29/#topic-4"
+    }
+  ]
+}
