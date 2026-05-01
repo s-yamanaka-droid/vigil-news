@@ -1,0 +1,204 @@
+[
+  {
+    "title": "米国防総省、8大手IT企業とAI軍事利用契約　分類情報ネットワークへの展開開始",
+    "category": "業界動向",
+    "source": "The Decoder / TechCrunch AI",
+    "lede": "米国防総省がSpaceX、OpenAI、Google、Nvidia、Microsoft、AWS、Oracleと契約を締結し、機密軍事ネットワークへのAI展開を開始。各社の利用条件や安全性基準が争点に。",
+    "keypoints": [
+      "8社の米大手IT企業が国防総省のAI軍事利用契約に参加",
+      "分類情報ネットワークでの『合法的運用』が条件だが解釈に曖昧性",
+      "Anthropicは使用条件に異議を唱え、政府機関から排除される事態に",
+      "米国防総省はベンダーロックイン回避のため複数企業との契約で多角化"
+    ],
+    "pull": "OpenAIが引いた3つの赤線（国内監視禁止・自律兵器禁止・自動意思決定禁止）も、契約に明記されなければ実効性が疑問視されている。",
+    "bizapp": {
+      "summary": "防衛産業・セキュリティ企業にとり、政府AIプロジェクトへの参画機会が広がる一方、米中対立の影響で規制リスクが高まる。",
+      "actions": [
+        "SIer・コンサル：顧客の政府プロジェクト対応支援に向けAIガバナンス・コンプライアンス体制構築を提案",
+        "防衛関連企業：自社システムのAI統合時に『合法性監視』の仕組みを採用企業に売込",
+        "注目理由：米政府調達が実質的にAI企業選別の圧力になり、日本企業にも波及する可能性"
+      ]
+    },
+    "links": [
+      "https://the-decoder.com/eight-tech-giants-sign-pentagon-deals-to-build-an-ai-first-fighting-force-across-classified-networks/",
+      "https://techcrunch.com/2026/05/01/pentagon-inks-deals-with-nvidia-microsoft-and-aws-to-deploy-ai-on-classified-networks/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "大手テック企業のAI投資、2026年に725億ドルへ急増　クラウド価格も上昇圧力",
+    "category": "業界動向",
+    "source": "The Decoder",
+    "lede": "Google・Amazon・Microsoft・Metaの4社が2026年のAI投資を725億ドルに増加させ、前年比77%増。計算機不足とメモリ価格上昇が加速要因。",
+    "keypoints": [
+      "4大IT企業の2026年AI投資は725億ドル、前年410億ドルから77%増",
+      "Microsoft・Google・Metaは投資を100%超で倍増させる計画",
+      "Q1だけで130億ドル支出済み、それでも計算能力が需要に追いつかない状況",
+      "ソフトウェア料金体系が『定員制』から『利用量課金』へ転換予定"
+    ],
+    "pull": "Microsoft CEOは「顧客は今後、利用量に応じた追加料金を覚悟すべき」と明言。企業のAI利用コストが急増局面へ。",
+    "bizapp": {
+      "summary": "企業のAI導入コストが確実に上昇する。クラウド契約更新時の料金交渉・予算拡大に備える必要がある。",
+      "actions": [
+        "経理・IT部門：Azure・GCP・AWS利用の『ベースチャージ+従量課金』への移行計画立案を加速",
+        "中小企業向けコンサル：生成AI導入の『隠れコスト』（計算費用・ストレージ費用）を事前説明し提案精度を高める",
+        "注目理由：業界全体の投資が増えても計算機不足が続き、サービス提供企業側の余裕がなくなり顧客負担増加確定"
+      ]
+    },
+    "links": [
+      "https://the-decoder.com/big-techs-ai-spending-balloons-to-725-billion-this-year/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "中国AI新興企業、海外法人構造から撤退　国内直接登録へシフト",
+    "category": "業界動向",
+    "source": "The Decoder",
+    "lede": "Moonshot AI・DeepRoute.ai・StepFunなど中国AI企業が外国法人構造を解消し、中国に直接登録し直す。規制強化と地政学的支配強化が背景。",
+    "keypoints": [
+      "Kimi開発のMoonshot AIが180億ドル評価額で資金調達時に再構築を検討中",
+      "中国証券監督部門がIPOの海外拠点企業に対し厳格審査を示唆",
+      "再構造化には6～12ヶ月要し、海外投資家からの資金調達が困難に",
+      "ByteDance・Alibaba等も過去にケイマン諸島籍で実質中国支配を続けてきた"
+    ],
+    "pull": "中国がAIなど戦略技術の国内統制を強化。企業の独立性低下で政府命令の即応性が増す。",
+    "bizapp": {
+      "summary": "中国AI企業への投資・提携時のリスク評価が難しくなる。政府支配強化により欧米との技術分断がさらに加速。",
+      "actions": [
+        "海外投資チーム：中国AI企業への出資判断時に『政府統制度合い』を新評価項目として追加",
+        "日本企業：中国AI企業との技術提携・データ共有契約を結ぶ前にジオポリティクスリスク監査を実施",
+        "注目理由：米国の対中AI規制と中国の国内統制が同時進行し、グローバル企業の事業分離が加速する局面"
+      ]
+    },
+    "links": [
+      "https://the-decoder.com/first-chinese-ai-startups-are-reportedly-ditching-offshore-structures-to-register-directly-in-china/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "ChatGPT、『ゴブリン執着』が明かす訓練データの深刻な問題",
+    "category": "新モデル発表",
+    "source": "The Decoder",
+    "lede": "OpenAIがGPT-5.1以降でゴブリンなどのファンタジー生物への言及が175%増加した原因を特定。『Nerdy』性格調整機能の報酬信号が原因で、フィードバックループに拡大。",
+    "keypoints": [
+      "GPT-5.1から『ゴブリン』言及が175%増加する異常現象が発生",
+      "『Nerdy』パーソナリティ機能（全回答の2.5%）が全ゴブリン言及の66.7%を占有",
+      "報酬信号の誤設定がフィードバックループで他モードにも波及",
+      "GPT-5.5もすでに訓練開始後の発見のため、同じ問題を引継ぎ"
+    ],
+    "pull": "AIの訓練データ品質管理の盲点を露呈。わずかな報酬信号の誤り が全体システムに波及する構造的脆弱性がある。",
+    "bizapp": {
+      "summary": "生成AI導入企業は、モデルの『クセ』や予測不可能な言動リスクに備える。仕様書の明示的記述だけでなく実運用テストが必須。",
+      "actions": [
+        "企業AI部門：Claude導入時に『ビジネスドメイン特化』の再訓練時に報酬信号の過度な最適化を避ける設計方針を確認",
+        "営業・カスタマーサービス：ChatGPT・Codexを使った自動応答では、出力ログを監視し異常パターン検出を組込",
+        "注目理由：大規模言語モデルの訓練品質管理技術がまだ発展途上。導入企業側での検証負担が今後も増える"
+      ]
+    },
+    "links": [
+      "https://the-decoder.com/chatgpts-goblin-obsession-may-be-hilarious-but-it-points-to-a-deeper-problem-in-ai-training/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "Musk対Altman、OpenAI非営利化破棄を巡る裁判が本格化",
+    "category": "業界動向",
+    "source": "TechCrunch AI",
+    "lede": "Elon Muskがサム・Altmanを相手にした訴訟でOpenAIの営利化を『慈善詐欺』と主張。Muskの証言と社内通信が法廷で明かされ、業界の権力争いが可視化。",
+    "keypoints": [
+      "Muskが『非営利を標榜して募集した資金を営利企業に転換した詐欺』と主張",
+      "Muskはメール・ツイートを証拠に3日間の証言を実施",
+      "『慈善機関は盗めない』というMuskの主張が中心",
+      "今後Altman他CEOなど主要幹部の証言が続く予定"
+    ],
+    "pull": "Muskが『OpenAIは営利化で人類利益の使命を捨てた』と法廷で異議唱え、AIガバナンスの基本理念が争点に。",
+    "bizapp": {
+      "summary": "OpenAI・Anthropic等の非営利から営利への転換モデルの法的リスクが明確化。AI企業のミッション宣言と事業形態の整合性が問われる局面。",
+      "actions": [
+        "投資・提携部門：AI企業の『社会貢献ミッション』と実際の営利体制の整合性チェック項目を投資判断に追加",
+        "法務部：国内AI企業の非営利組織設立時に欧米の訴訟事例を参考に契約書を厳格化する必要あり",
+        "注目理由：AI企業のガバナンス問題が法廷で争われ、業界全体の信用リスク・規制リスクが高まる可能性"
+      ]
+    },
+    "links": [
+      "https://techcrunch.com/podcast/did-you-know-you-cant-steal-a-charity-dont-worry-elon-musk-will-remind-you/",
+      "https://techcrunch.com/video/musk-v-altman-is-just-getting-started/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "米ミネソタ州、AI生成ヌード画像禁止法を全米初可決　罰金最大50万ドル",
+    "category": "その他",
+    "source": "Ars Technica AI",
+    "lede": "ミネソタ州議会がAI『脱衣アプリ』を禁止する法律を全会一致で可決。違反者には最大50万ドルの罰金と被害者への損害賠償責任。8月から施行。",
+    "keypoints": [
+      "米国初のAI脱衣アプリ禁止法を院・参両議院が全会一致で可決（65-0）",
+      "違反企業への罰金は50万ドル、被害者が個別に損害賠償請求も可能",
+      "個人の写真を無断で性的画像に改変するアプリが対象",
+      "州内で80人以上の女性の画像が無断脱衣されたケースで法成立が加速"
+    ],
+    "pull": "AIによる非合意性的画像生成は個人の人権侵害として刑事・民事両面で規制される時代へ。",
+    "bizapp": {
+      "summary": "AIツール提供企業・プラットフォーム企業は違法コンテンツ生成への法的責任回避が不可避。日本企業も米州法対応が必須。",
+      "actions": [
+        "AI画像生成ツール提供企業：USA内規制州の法令遵守機能（年齢確認・同意取得・検閲フィルター）の搭載を急ぐ",
+        "SNS・プラットフォーム企業：AI脱衣画像の検出・削除機能を強化し法的責任を最小化する施策を実装",
+        "注目理由：非合意性的画像問題がAI規制の最優先事項になり、各州で次々と類似法案成立の可能性"
+      ]
+    },
+    "links": [
+      "https://arstechnica.com/tech-policy/2026/05/minnesota-set-to-be-first-state-to-ban-nudification-apps/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "GPT-5.5、Anthropic『Mythos』と同等のサイバーセキュリティ能力　独自優位性なし",
+    "category": "新モデル発表",
+    "source": "Ars Technica AI",
+    "lede": "英国AI安全研究所（AISI）の評価で、OpenAIのGPT-5.5がAnthropicのMythos Previewと同等の脆弱性診断能力を発揮。Anthropicの『特別制限リリース』の根拠が薄れる。",
+    "keypoints": [
+      "AISI脆弱性診断テストで両モデルとも71％前後のスコア達成",
+      "GPT-5.5が Rust バイナリ逆エンジニアリングを10分で解決（費用$1.73）",
+      "データ抽出攻撃シミュレーション（TLO）でGPT-5.5が3/10、Mythos 2/10で打ち分け",
+      "前提となるMythosの『脅威水準が1モデル特有ではない』と判明"
+    ],
+    "pull": "最先端AIモデルのサイバー攻撃能力は複数企業で競合。一社の『特別制限』では業界全体の安全性向上につながらない。",
+    "bizapp": {
+      "summary": "セキュリティ企業・サイバー防御企業は最先端AI両方への対抗技術開発が不可欠。単一ベンダーロックインでは防ぎきれない。",
+      "actions": [
+        "セキュリティベンダー：GPT-5.5・Mythos等複数最新モデルに対する『AIジェイルブレイク検知』機能開発を加速",
+        "金融・政府機関のセキュリティ部門：最先端AI搭載ペネトレーションテストツールの導入を検討し防御体制をテスト",
+        "注目理由：AIのサイバー脅威が単一企業でコントロール不可能になり、業界全体の防御能力競争が激化"
+      ]
+    },
+    "links": [
+      "https://arstechnica.com/ai/2026/05/amid-mythos-hyped-cybersecurity-prowess-researchers-find-gpt-5-5-is-just-as-good/"
+    ],
+    "likes": 0
+  },
+  {
+    "title": "ChatGPT Images 2.0、インドで急速普及　グローバルではまだ低迷",
+    "category": "ツール更新",
+    "source": "TechCrunch AI",
+    "lede": "OpenAIの画像生成モデル『ChatGPT Images 2.0』がインドで最大利用市場に。アバター・肖像画等個人向けコンテンツ需要が高い一方、グローバル伸長は1%程度に留まる。",
+    "keypoints": [
+      "インドがChatGPT Images 2.0の最大利用地域に浮上",
+      "グローバルアプリダウンロード11%増だが日次利用ユーザー・セッション数は1%程度の伸び",
+      "インド・パキスタン・ベトナム・インドネシアで週79%までの急増、先進国では停滞",
+      "ユーザーはアバター・ファンタジー肖像画等、生成AI=エンタメ用途が中心"
+    ],
+    "pull": "生成AI画像ツール市場は先進国で飽和、新興国向けエンタメ用途での伸長がメイン。ビジネス利用の本格化はまだ先。",
+    "bizapp": {
+      "summary": "企業のAI画像生成ツール導入は、マーケティング・デザイン部門への無制限開放より制限運用から始めるべき。",
+      "actions": [
+        "マーケティング部門：ChatGPT Images 2.0の商用利用規約・著作権リスクを確認し、プロトタイプ段階の導入に留める",
+        "BtoC企業向けコンサル：ユーザーの『個人化・エンタメ需要』に応える方向でAI画像機能を提案",
+        "注目理由：生成AI画像は先進国より新興国エンタメ需要が主で、業務効率化ツール化は想定より遅い"
+      ]
+    },
+    "links": [
+      "https://techcrunch.com/2026/04/30/chatgpt-images-2-0-is-a-hit-in-india-but-not-a-big-winner-elsewhere-yet/"
+    ],
+    "likes": 0
+  }
+]
